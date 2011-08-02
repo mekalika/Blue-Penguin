@@ -4,7 +4,7 @@
   $db_username = 'sandrew';
   $db_password = 'Burrito8291';
   
-  mysql_connect($db_hostname, $db_username, $db_password) or die(mysql_error());
+  $db_server = mysql_connect($db_hostname, $db_username, $db_password) or die(mysql_error());
   mysql_select_db($db_database) or die(mysql_error());
   
   function queryMysql($query) {
@@ -27,5 +27,9 @@
     $var = htmlentities($var);
     $var = stripslashes($var);
     return mysql_real_escape_string($var);
+  }
+  
+  function get_post($var) {
+    return mysql_real_escape_string($_POST[$var]);
   }
 ?>

@@ -13,12 +13,11 @@
     $query = "SELECT * FROM accounts WHERE playerID='$playerID'";
     $result = queryMysql($query);
     $row = mysql_fetch_array($result);
-    $password           = $row['password'];
-  }
-  if ($user_password == $password) {
-    session_start();
-    $_SESSION['playerID'] = $playerID;
-    header( 'Location: main.php' );
+    $password = $row['password'];
+    if ($user_password == $password) {
+      $_SESSION['playerID'] = $playerID;
+      header( 'Location: main.php' );
+    }
   }
 
   echo <<<_HTML
@@ -49,8 +48,4 @@
 _HTML;
     
   mysql_close($db_server);
-    
-  function get_post($var) {
-    return mysql_real_escape_string($_POST[$var]);
-  }
 ?>
