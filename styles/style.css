@@ -53,7 +53,7 @@ CSS Library: http://www.bitrepository.com/
 
   /* set the image to use and establish the lower-right position */ 
   .cssbox, .cssbox_body, .cssbox_head, .cssbox_head h2 { 
-    background: transparent url(img.php.png) no-repeat bottom right } 
+    background: transparent url(i/img.php.png) no-repeat bottom right } 
   .cssbox{ 
   /* intended total box width - padding-right(next) */ 
     float: left;
