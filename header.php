@@ -60,12 +60,12 @@
 <div class="cssbox_head"><h2 align="left">$characterName</h2></div> 
 <div class="cssbox_body">  
 <ul class = "stats">
-  <li>Motivation: $currMotivation/$maxMotivation
-  <li>Pride: $currPride/$maxPride
-  <li>Cash: $$cash
+  <li>Motivation: <span id="currMotivation">$currMotivation</span>/<span id="maxMotivation">$maxMotivation</span>
+  <li>Pride: <span id="currPride">$currPride</span>/<span id="maxPride">$maxPride</span>
+  <li>Cash: $<span id="cash">$cash</span>
 </ul>
 <!-- TODO: District is based on friends. -->
-<pre>District: 27	$gradeString</pre></div>
+<pre>District: 27	<span id="gradeString">$gradeString</span></pre></div>
 </div>
 
 <!-- Site navigation menu -->
