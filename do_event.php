@@ -27,6 +27,7 @@
     $query = "SELECT * FROM accounts, characters WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
     $result = queryMysql($query);
     $row=mysql_fetch_array($result);
+    $studentID          = $row['studentID'];
     $gradeLevel         = $row['gradeLevel'];
     $cash               = $row['cash'];
     $currMotivation     = $row['currMotivation'];
@@ -66,7 +67,7 @@
         $skillString .= ", " . strtolower($skillC) . "EXP" . "=$skillEXP3";
       }
 
-      $query = "UPDATE characters SET cash=$cash, currMotivation=$currMotivation, lastAction=$time" . $skillString;
+      $query = "UPDATE characters SET cash=$cash, currMotivation=$currMotivation, lastAction=$time" . $skillString . " WHERE studentID=$studentID";
       $result = queryMysql($query);
       
       // Handle one-time event

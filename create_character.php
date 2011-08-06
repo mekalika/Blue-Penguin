@@ -35,10 +35,6 @@
 
     return $y;
   }
-  
-  function get_post($var) {
-    return mysql_real_escape_string($_POST[$var]);
-  }
  
   require_once 'botm_functions.php';
   session_start();
@@ -116,8 +112,6 @@
     $result = queryMysql('SELECT playerID FROM accounts WHERE studentID=' .
                          "'$studentID'");
     $playerID = mysql_result($result, 0);
-  
-    session_start();
     $_SESSION['playerID'] = $playerID;
     header( 'Location: main.php' );
   }    
