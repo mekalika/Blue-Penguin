@@ -38,7 +38,7 @@
 
         $.ajax({  
           type: "POST",  
-          url: "checkNameAvailability.php",  
+          url: "check_name_availability.php",  
           data: "name="+ usr,  
           success: function(msg) { 
    
@@ -133,7 +133,7 @@ function validateForm() {
     $.ajax({ 
       async: false, 
       type: "POST",  
-      url: "checkNameAvailability.php",  
+      url: "check_name_availability.php",  
       data: "name="+ x,  
       success: function(msg) {
         
