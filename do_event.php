@@ -17,7 +17,7 @@
     // Retrieve event properties
     $query = "SELECT events.*, charevents.timeReady FROM events LEFT JOIN charevents
               ON events.eventID=charevents.eventID
-              WHERE charevents.studentID=$studentID AND events.eventID=$eventID";
+              AND charevents.studentID=$studentID WHERE events.eventID=$eventID";
     $result = queryMysql($query);
     $row=mysql_fetch_array($result);
     $eventName          = $row['eventName'];
@@ -36,7 +36,7 @@
     echo "studentID: $studentID eventID: $eventID<br>";
 
     // Retreive character properties
-    $query = "SELECT * FROM accounts, characters WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
+    $query = "SELECT * FROM characters WHERE studentID=$studentID";
     $result = queryMysql($query);
     $row=mysql_fetch_array($result);
     $studentID          = $row['studentID'];
