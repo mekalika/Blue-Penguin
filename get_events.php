@@ -14,10 +14,10 @@
     $studentID  = $row['studentID'];
     $gradeLevel = $row['gradeLevel'];
     
-    // Get all events below current grade level, join events and charevents table
-    $query = "SELECT events.*,charevents.timeReady,charevents.timesDone FROM events
-              LEFT JOIN charevents ON events.eventID=charevents.eventID
-              AND charevents.studentID=$studentID WHERE events.eGradeLevel<=$gradeLevel";
+    // Get all events below current grade level, join events and charEvents table
+    $query = "SELECT events.*,charEvents.timeReady,charEvents.timesDone FROM events
+              LEFT JOIN charEvents ON events.eventID=charEvents.eventID
+              AND charEvents.studentID=$studentID WHERE events.eGradeLevel<=$gradeLevel";
     $result = queryMysql($query);
     
     echo "Player ID: $playerID<br>";

@@ -15,9 +15,9 @@
     $studentID  = $row['studentID'];
     
     // Retrieve event properties
-    $query = "SELECT events.*, charevents.timeReady FROM events LEFT JOIN charevents
-              ON events.eventID=charevents.eventID
-              AND charevents.studentID=$studentID WHERE events.eventID=$eventID";
+    $query = "SELECT events.*, charEvents.timeReady FROM events LEFT JOIN charEvents
+              ON events.eventID=charEvents.eventID
+              AND charEvents.studentID=$studentID WHERE events.eventID=$eventID";
     $result = queryMysql($query);
     $row=mysql_fetch_array($result);
     $eventName          = $row['eventName'];
@@ -92,26 +92,26 @@
         $result = queryMysql($query);
       }
       
-      // Update charevents table
-      $query = "SELECT * FROM charevents WHERE studentID=$studentID AND eventID=$eventID";
+      // Update charEvents table
+      $query = "SELECT * FROM charEvents WHERE studentID=$studentID AND eventID=$eventID";
       $result = queryMysql($query);
       
       if (mysql_num_rows($result) == 0)
       {
-        // First time doing event, add to charevents table
-        $query = "INSERT INTO charevents (studentID, eventID, timeReady)
+        // First time doing event, add to charEvents table
+        $query = "INSERT INTO charEvents (studentID, eventID, timeReady)
                   VALUES ($studentID, $eventID, $timeLimit+$time)";
         $result = queryMysql($query);
         echo "Adding new charevent";
       }
       else
       {
-        // Update previous charevents entry
+        // Update previous charEvents entry
         $row = mysql_fetch_array($result);
         $timesDone = $row['timesDone'];
         $timesDone++;
         
-        $query = "UPDATE charevents SET timeReady=$timeLimit+$time, timesDone=$timesDone
+        $query = "UPDATE charEvents SET timeReady=$timeLimit+$time, timesDone=$timesDone
                   WHERE studentID=$studentID AND eventID=$eventID";
         $result = queryMysql($query);
         echo "Updating charevent";
