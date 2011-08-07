@@ -30,6 +30,9 @@ function getEvents(playerID)
         {
           // Write events table to the eventList DIV
           document.getElementById('eventList').innerHTML = this.responseText
+          
+          // Reset timers
+          resetTimer()
         }
         else alert("Ajax error: No data received")
       }
@@ -61,6 +64,9 @@ function doEvent(playerID, eventID)
           
           // referesh events list
           getEvents(playerID)
+          
+          // debug
+          document.getElementById('info1').innerHTML = this.responseText
         }
         else alert("Ajax error: No data received")
       }
@@ -169,7 +175,7 @@ $time
 <div id='info'>b</div>
 <div id='info1'>c</div>
 <a href='javascript:;' onclick='temp();'>test</a>
-<a href="refresh_header.php">test2</a>
+<a href="do_event.php">test2</a>
 <div id="test" name="timer" title=500></div><br>
 <div id="test2" name="timer" title=300></div><br>
 <script type="text/javascript" src="timer.js"></script>

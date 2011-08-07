@@ -7,11 +7,17 @@
     $playerID = sanitizeString($_POST['playerID']);
     
     // Get grade level from playerID
-    $query = "SELECT gradeLevel from accounts,characters WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
+    $query = "SELECT characters.studentID,gradeLevel FROM accounts,characters
+              WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
     $result = queryMysql($query);
-    $gradeLevel = mysql_result($result, 0);
+    $row = mysql_fetch_array($result);
+    $studentID  = $row['studentID'];
+    $gradeLevel = $row['gradeLevel'];
     
-    $query = "SELECT * FROM events WHERE eGradeLevel<=$gradeLevel";
+    // Get all events below current grade level, join events and charevents table
+    $query = "SELECT events.*,charevents.timeReady,charevents.timesDone FROM events
+              LEFT JOIN charevents ON events.eventID=charevents.eventID
+              AND charevents.studentID=$studentID WHERE events.eGradeLevel<=$gradeLevel";
     $result = queryMysql($query);
     
     echo "Player ID: $playerID<br>";
@@ -19,17 +25,20 @@
 
     $time = time();
     while($row=mysql_fetch_array($result)) {
-      $eventID            = $row['eventID'];
-      $eventName          = $row['eventName'];
-      $eventCost          = $row['eventCost'];
-      $motivationReq      = $row['motivationReq'];
-      $timeLimit          = $row['timeLimit'];
-      $eventDescription   = $row['eventDescription'];
-      $skillA             = $row['skillA'];
-      $skillB             = $row['skillB'];
-      $skillC             = $row['skillC'];
+      $eventID          = $row['eventID'];
+      $eventName        = $row['eventName'];
+      $eventCost        = $row['eventCost'];
+      $motivationReq    = $row['motivationReq'];
+      $timeLimit        = $row['timeLimit'];
+      $timeReady        = $row['timeReady'];
+      $eventDescription = $row['eventDescription'];
+      $skillA           = $row['skillA'];
+      $skillB           = $row['skillB'];
+      $skillC           = $row['skillC'];
+      $timesDone        = $row['timesDone'];
       
-      $timerName = "";
+      $timerName = "NULL";
+      $timeLeft=0;
       // TODO: Use -2 to implement a completed one-time event
       if ($timeLimit == -1) {
         $eventTime = "One-time event";
@@ -39,7 +48,7 @@
         $eventTime = "Completed";
       }
       else {
-        $timeLeft = $timeLimit - time();
+        $timeLeft = $timeReady - $time;
         $eventTime = "";
         $timerName = "timer";
       }
