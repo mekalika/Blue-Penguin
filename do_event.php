@@ -68,15 +68,18 @@
       $skillString = "";
       $skillEXP1 += round((int)$EXPA * (float)$skillMultiplier1);
       $skillString .= ", " . strtolower($skillA) . "EXP" . "=$skillEXP1";
+      echo "$skillA increased to $skillEXP1!<br>";
       if ($skillB != "")
       {
         $skillEXP2 += round((int)$EXPB * (float)$skillMultiplier2);
         $skillString .= ", " . strtolower($skillB) . "EXP" . "=$skillEXP2";
+        echo "$skillB increased to $skillEXP2!<br>";
       }        
       if ($skillC != "")
       {
         $skillEXP3 += round((int)$EXPC * (float)$skillMultiplier3);
         $skillString .= ", " . strtolower($skillC) . "EXP" . "=$skillEXP3";
+        echo "$skillC increased to $skillEXP3!<br>";
       }
 
       $query = "UPDATE characters SET cash=$cash, currMotivation=$currMotivation, lastAction=$time" . $skillString . " WHERE studentID=$studentID";
