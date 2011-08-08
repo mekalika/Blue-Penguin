@@ -193,6 +193,9 @@ CSS Library: http://www.bitrepository.com/
   #traits tr.alt td {
     color:#000000;
     background-color:#ECFFFF; }
+  #traits tr.selected td {
+    color:#000000;
+    background-color:#D6ADFF; }
 
   #events {
     font-family:Verdana, Helvetica, Arial, sans-serif;

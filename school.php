@@ -37,6 +37,43 @@ function getSchools(playerID) {
   request.send(params)
 }
 
+function enrollSchool(playerID, schoolID)
+{
+  params = "playerID=" + playerID + "&schoolID=" + schoolID
+  request = new ajaxRequest()
+  request.open("POST", "enroll_school.php", true)
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+  request.setRequestHeader("Content-length", params.length)
+  request.setRequestHeader("Connection", "close")
+
+  request.onreadystatechange = function()
+  {
+    if (this.readyState == 4) // readyState == 4 means the page is done loading
+    {
+      if (this.status == 200) // status == 200 means the query returned successfully
+      {
+ /*       if (this.responseText != null)
+        {
+          // refresh header
+          refreshHeader()
+          
+          // refresh events list
+          //getEvents(playerID)
+          
+          // Display stat increases
+//          document.getElementById('eventResult').innerHTML = this.responseText
+          
+          // debug
+          //document.getElementById('info1').innerHTML = this.responseText
+        }*/
+        //else alert("Ajax error: No data received")
+      }
+      else alert("Ajax error1: " + this.statusText + " " + this.status)
+    }
+  }
+  request.send(params)
+}
+
 function ajaxRequest() {
   try {
     // For Non-IE Browsers

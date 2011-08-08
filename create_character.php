@@ -1,5 +1,5 @@
 <?php // create_character.php
-// Copyright 2011 M.G.Twice. All Rights Reserved.
+// Copyright 2011 Bearslug. All Rights Reserved.
 
 /* 
  * @fileoverview: Gets character information from form and by randomly
@@ -71,6 +71,26 @@
                          'characters WHERE name=' . "('$name')");
     $row = mysql_fetch_array($result);
 
+    // Determine schoolType based on grade.
+    if ($row['gradeLevel'] == -1) {
+      $schoolType = 'Preschool';
+    }
+    elseif ($row['gradeLevel'] > -1 && $row['gradeLevel'] < 6) {
+      $schoolType = 'Elementary';
+    }
+    elseif ($row['gradeLevel'] >= 6 && $row['gradeLevel'] < 9) {
+      $schoolType = 'Middle';
+    }
+    else {
+      $schoolType = 'High';
+    }
+
+    // Enroll character in lowest school based on grade.
+    $result = queryMysql("SELECT schoolID FROM schools WHERE friendsReq=1 AND schoolType='$schoolType'");
+    $schoolID = mysql_result($result, 0);
+    $studentID = $row['studentID'];
+    queryMysql("INSERT INTO charSchool VALUES ($studentID, $schoolID)");
+
     $skills = array('pianoEXP', 'violinEXP', 'athleticsEXP', 'danceEXP',
                     'languageEXP', 'scienceEXP', 'mathEXP', 'historyEXP',
                     'chineseEXP');
@@ -103,7 +123,6 @@
       }
     }
 
-    $studentID = $row['studentID'];
     // TODO: Change the following section once we integrate with Facebook.
     queryMysql('INSERT INTO accounts (studentID, password) VALUES (' .
                "'$studentID'" . ', \'a\')');
