@@ -72,7 +72,7 @@
 <ul class="navbar">
   <li><a href="main.php">Home</a>
   <li><a href="events.php">Events</a>
-  <li><a href="shop.html">Shop</a>
+  <li><a href="shop.php">Shop</a>
   <li><a href="compete.html">Compete</a>
   <li><a href="reportcard.html">Stats</a>
   <li><a href="district.html">District</a>
