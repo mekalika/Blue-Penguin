@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 05. August 2011 um 19:59
+-- Erstellungszeit: 07. August 2011 um 19:15
 -- Server Version: 5.5.9
 -- PHP-Version: 5.3.5
 
@@ -31,22 +31,13 @@ CREATE TABLE `accounts` (
   `studentID` int(10) unsigned NOT NULL,
   PRIMARY KEY (`playerID`),
   KEY `studentID` (`studentID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Daten für Tabelle `accounts`
 --
 
-INSERT INTO `accounts` VALUES(14, 'a', 119);
-INSERT INTO `accounts` VALUES(15, 'a', 120);
-INSERT INTO `accounts` VALUES(16, 'a', 121);
-INSERT INTO `accounts` VALUES(59, 'a', 177);
-INSERT INTO `accounts` VALUES(60, 'a', 178);
-INSERT INTO `accounts` VALUES(61, 'a', 179);
-INSERT INTO `accounts` VALUES(62, 'a', 180);
-INSERT INTO `accounts` VALUES(63, 'a', 181);
-INSERT INTO `accounts` VALUES(64, 'a', 182);
-INSERT INTO `accounts` VALUES(65, 'a', 183);
+INSERT INTO `accounts` VALUES(1, 'a', 1);
 
 -- --------------------------------------------------------
 
@@ -104,22 +95,13 @@ CREATE TABLE `characters` (
   UNIQUE KEY `name_2` (`name`),
   KEY `name` (`name`),
   KEY `inappropriate` (`inappropriate`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=184 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Daten für Tabelle `characters`
 --
 
-INSERT INTO `characters` VALUES('Sarah', '1', -1, NULL, 19530, 3, 3, 10, 8, 100, 100, 0, 0, 0, NULL, 0, 119, 1.24336, 1, 1.2286, 1, 0.905265, 1, 0.913305, 1, 1.49453, 1, 1.05998, 1, 1.26762, 1, 0.817767, 1, 1.32351, 1, 0, 0, 0, 0, 0, 0, 0, 0, 22, 1312599225);
-INSERT INTO `characters` VALUES('Andrew', '0', -1, NULL, 19530, 3, 3, 10, 8, 100, 100, 0, 0, 0, NULL, 0, 120, 0.930013, 1, 1.04268, 1, 1.44523, 1, 1.12676, 1, 1.3171, 1, 0.984446, 1, 1.06264, 1, 1.11101, 1, 0.853535, 1, 0, 0, 0, 0, 0, 0, 0, 0, 22, 1312599225);
-INSERT INTO `characters` VALUES('Mai', '1', -1, NULL, 19530, 3, 3, 10, 8, 100, 100, 0, 0, 0, NULL, 0, 121, 0.708288, 1, 1.37747, 1, 1.17255, 1, 0.672108, 1, 0.675036, 1, 1.30769, 1, 0.883496, 1, 0.784929, 1, 1.17204, 1, 0, 0, 0, 0, 0, 0, 0, 0, 22, 1312599225);
-INSERT INTO `characters` VALUES('Yik Quin', '0', 7, NULL, 19530, 3, 3, 10, 8, 100, 100, 0, 0, 80, NULL, 0, 177, 0.916095, 1, 1.04745, 1, 1.0156, 1, 0.799471, 1, 1.1108, 1, 1.12435, 1, 1.22965, 1, 1.07472, 1, 1.14189, 1, 0, 0, 0, 0, 0, 0, 0, 0, 22, 1312599225);
-INSERT INTO `characters` VALUES('Alan', '0', 7, NULL, 19530, 3, 3, 10, 8, 100, 100, 0, 0, 80, NULL, 0, 178, 1.38711, 1, 0.914191, 1, 0.809026, 1, 1.18117, 1, 0.905505, 1, 0.98108, 1, 1.00737, 1, 1.15053, 1, 0.978157, 1, 0, 0, 0, 0, 0, 0, 0, 0, 22, 1312599225);
-INSERT INTO `characters` VALUES('Cutie', '0', 7, NULL, 19530, 3, 3, 10, 8, 100, 100, 0, 0, 80, NULL, 0, 179, 0.70979, 1, 0.707622, 1, 0.66779, 1, 0.802598, 1, 0.707734, 1, 1.45146, 1, 0.855485, 1, 1.08289, 1, 1.12035, 1, 0, 0, 0, 0, 0, 0, 0, 0, 22, 1312599225);
-INSERT INTO `characters` VALUES('Melissa', '1', 7, NULL, 19530, 3, 3, 10, 8, 100, 100, 0, 0, 80, NULL, 0, 180, 1.12586, 1, 1.04534, 1, 0.700485, 1, 0.842055, 1, 0.867009, 1, 1.28393, 1, 1.02162, 1, 1.39377, 1, 0.885014, 1, 0, 0, 0, 0, 0, 0, 0, 0, 22, 1312599225);
-INSERT INTO `characters` VALUES('alan2', '0', -1, NULL, 19530, 3, 3, 10, 8, 100, 100, 0, 0, 0, NULL, 0, 181, 0.988464, 1, 1.071, 1, 1.11155, 1, 1.12144, 1, 1.33098, 1, 0.987985, 1, 0.852966, 1, 1.0498, 1, 1.05636, 1, 0, 0, 0, 0, 0, 0, 0, 0, 22, 1312599225);
-INSERT INTO `characters` VALUES('Joy', '1', -1, NULL, 19530, 3, 3, 10, 8, 100, 100, 0, 0, 0, NULL, 0, 182, 0.969612, 1, 1.06309, 1, 0.826966, 1, 1.72638, 1, 0.935493, 1, 0.735907, 1, 0.739156, 1, 1.4052, 1, 0.758362, 1, 0, 0, 0, 0, 0, 0, 0, 0, 22, 1312599225);
-INSERT INTO `characters` VALUES('Joyce', '1', -1, NULL, 19530, 3, 3, 10, 8, 100, 100, 0, 0, 0, NULL, 0, 183, 1.05307, 1, 1.38139, 1, 0.789471, 1, 1.17686, 1, 1.06329, 1, 0.885745, 1, 1.18309, 1, 1.05977, 1, 0.704734, 1, 0, 0, 0, 0, 0, 0, 0, 0, 22, 1312599225);
+INSERT INTO `characters` VALUES('Sarah', '1', -1, NULL, 19200, 3, 3, 10, 10, 100, 100, 0, 0, 0, NULL, 0, 1, 0.959807, 1, 0.789093, 1, 1.30098, 1, 1.08273, 1, 0.96106, 1, 0.974285, 1, 0.731602, 1, 0.731791, 1, 0.9175, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1312769408);
 
 -- --------------------------------------------------------
 
@@ -177,6 +159,7 @@ CREATE TABLE `charSchool` (
 -- Daten für Tabelle `charSchool`
 --
 
+INSERT INTO `charSchool` VALUES(1, 6);
 
 -- --------------------------------------------------------
 
@@ -305,22 +288,28 @@ INSERT INTO `grades` VALUES('Chinese', 12, 70);
 --
 
 CREATE TABLE `items` (
-  `itemName` varchar(20) NOT NULL,
+  `itemName` varchar(50) NOT NULL,
   `itemType` varchar(20) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
-  `picture` longblob,
+  `picture` varchar(20) DEFAULT NULL,
   `bonus` float NOT NULL DEFAULT '1',
-  `number` tinyint(3) unsigned DEFAULT NULL,
+  `rank` tinyint(3) unsigned DEFAULT NULL,
   `itemSkill` varchar(10) NOT NULL,
   `itemID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `price` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`itemID`),
   KEY `itemName` (`itemName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Daten für Tabelle `items`
 --
 
+INSERT INTO `items` VALUES('Digital Piano', 'Piano', 'Economical and convenient, a great choice when you just want to "try out" piano before making a big commitment.', 'digitalpiano.jpg', 1, 1, 'Piano', 1, 800);
+INSERT INTO `items` VALUES('Yamaha upright piano', 'Piano', 'A very popular piano. Acoustic, bright, and the right price.', 'digitalpiano.jpg', 1, 2, 'Piano', 2, 3000);
+INSERT INTO `items` VALUES('Yamaha baby grand piano', 'Piano', 'The next step up.', 'digitalpiano.jpg', 1, 3, 'Piano', 3, 20000);
+INSERT INTO `items` VALUES('Steinway Model O "Living Room Grand" piano', 'Piano', 'Steinway - making the world''s finest pianos for 150 years', 'digitalpiano.jpg', 1, 4, 'Piano', 4, 40000);
+INSERT INTO `items` VALUES('Bosendorfer Model 200 Grand piano', 'Piano', 'Very romantic, very warm, very mellow, in an uncommonly beautiful way.', 'digitalpiano.jpg', 1, 5, 'Piano', 5, 50000);
 
 -- --------------------------------------------------------
 
@@ -339,6 +328,7 @@ CREATE TABLE `purchases` (
 -- Daten für Tabelle `purchases`
 --
 
+INSERT INTO `purchases` VALUES(1, 1);
 
 -- --------------------------------------------------------
 
