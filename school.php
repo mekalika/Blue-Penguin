@@ -52,21 +52,12 @@ function enrollSchool(playerID, schoolID)
     {
       if (this.status == 200) // status == 200 means the query returned successfully
       {
- /*       if (this.responseText != null)
+        if (this.responseText != null)
         {
-          // refresh header
-          refreshHeader()
-          
-          // refresh events list
-          //getEvents(playerID)
-          
-          // Display stat increases
-//          document.getElementById('eventResult').innerHTML = this.responseText
-          
-          // debug
-          //document.getElementById('info1').innerHTML = this.responseText
-        }*/
-        //else alert("Ajax error: No data received")
+          // Refresh school list
+          getSchools(playerID)
+        }
+        else alert("Ajax error: No data received")
       }
       else alert("Ajax error1: " + this.statusText + " " + this.status)
     }
