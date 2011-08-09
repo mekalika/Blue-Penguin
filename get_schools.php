@@ -132,7 +132,7 @@ _HTML;
       }
       $alt++; 
     }
-    echo "</table></br><br>";
+    echo "</table></br>";
   }
   else
   {
