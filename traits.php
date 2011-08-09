@@ -1,9 +1,8 @@
-<?php // school.php
-// Copyright 2011 Bearslug. All Rights Reserved.
+<?php // traits.php
+// Copyright 2011 Bearslug Entertainment. All Rights Reserved.
 
 /**
-  * @fileoverview: Loads schools based on grade,
-  *                TODO: showing which school the character currently goes to.
+  * @fileoverview: Loads traits and displays available skill points. 
   */
 
   // Log in to MySQL
@@ -11,11 +10,11 @@
 
   echo <<<_HTML
 <script>
-window.onload = getSchools($playerID)
-function getSchools(playerID) {
+window.onload = getTraits($playerID)
+function getTraits(playerID) {
   params = "playerID=" + playerID // + "&gradeLevel=" + gradeLevel
   request = new ajaxRequest()
-  request.open("POST", "get_schools.php", true)
+  request.open("POST", "get_traits.php", true)
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
   request.setRequestHeader("Content-length", params.length)
   request.setRequestHeader("Connection", "close")
@@ -26,8 +25,8 @@ function getSchools(playerID) {
       // status == 200 means the query returned successfully
       if (this.status == 200) {
         if (this.responseText != null) {
-          // Write schools table to the schoolsList DIV
-          document.getElementById('schoolList').innerHTML = this.responseText
+          // Write traits table to the traitsList DIV
+          document.getElementById('traitsList').innerHTML = this.responseText
         }
         else alert("Ajax error: No data received")
       }
@@ -37,25 +36,22 @@ function getSchools(playerID) {
   request.send(params)
 }
 
-function enrollSchool(playerID, schoolID)
+function allocateSkillPoint(playerID, trait)
 {
-  params = "playerID=" + playerID + "&schoolID=" + schoolID
+  params = "playerID=" + playerID + "&trait=" + trait
   request = new ajaxRequest()
-  request.open("POST", "enroll_school.php", true)
+  request.open("POST", "allocate_skill_point.php", true)
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
   request.setRequestHeader("Content-length", params.length)
   request.setRequestHeader("Connection", "close")
 
-  request.onreadystatechange = function()
-  {
-    if (this.readyState == 4) // readyState == 4 means the page is done loading
-    {
-      if (this.status == 200) // status == 200 means the query returned successfully
-      {
-        if (this.responseText != null)
-        {
-          // Refresh school list
-          getSchools(playerID)
+  request.onreadystatechange = function() {
+    if (this.readyState == 4) {
+      // status == 200 means the query returned successfully
+      if (this.status == 200) {
+        if (this.responseText != null) {
+          // Refresh traits list
+          getTraits(playerID)
         }
         else alert("Ajax error: No data received")
       }
@@ -105,15 +101,14 @@ function temp() {
 </span>
 </div>
 
-<!-- Schools -->
-<h2>Schools</h2>
-<p>The right preschool will lead to the right elementary school which leads to 
-the right middle school, and so on! But do you live in the right school
-district? The more Tiger Mom friends you have, the better!"
-<div class="electivelist" id='schoolList'>a</div>
+<!-- Traits -->
+<h2>Traits</h2>
+<p>Who knew instilling values on your kids was so easy? Use the skill points you
+earned from doggedly forcing your kids to study and practice to improve their traits so you can force them to work even more! ;D
+<div class="electivelist" id='traitsList'>a</div>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
-<address>Copyright &copy 2011 M.G.Twice. All Rights Reserved.</address>
+<address>Copyright &copy 2011. Bearslug Entertainment. All Rights Reserved.</address>
 </center>
 _HTML;
 
