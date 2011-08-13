@@ -74,7 +74,7 @@
   <li><a href="events.php">Events</a>
   <li><a href="shop.php">Shop</a>
   <li><a href="compete.html">Compete</a>
-  <li><a href="reportcard.html">Stats</a>
+  <li><a href="reportcard.php">Stats</a>
   <li><a href="district.html">District</a>
 </ul>
 </div>
