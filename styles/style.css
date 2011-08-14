@@ -106,7 +106,6 @@ CSS Library: http://www.bitrepository.com/
   ul.navbar a {
     text-decoration: none }
   
-  
   h1 {
     font-family: Verdana, Helvetica, Arial, SunSans-Regular, sans-serif }
   h2 {
@@ -203,7 +202,7 @@ CSS Library: http://www.bitrepository.com/
     background-color:#ffffff; }
   #traits tr.alt td {
     color:#000000;
-    background-color:#ECFFFF; }
+    background-color:#D2E4FC; }
   #traits tr.selected td {
     color:#000000;
     background-color:#D6ADFF; }
