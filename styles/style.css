@@ -8,12 +8,15 @@ CSS Library: http://www.bitrepository.com/
   lookthisup {
     color: black; }
 
+  A:link {color: #3b5998}
+  A:visited {color: #3b5998}
+
   body {
     padding-left: 0;
-    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
     font-size: .9em
     color: black;
-    background-color: #FFFACD; }
+    background-color: #FFFFFF; }
   
   table {
     font-size: .8em;
@@ -109,6 +112,14 @@ CSS Library: http://www.bitrepository.com/
   h2 {
     font-family: Verdana, Helvetica, Arial, SunSans-Regular, sans-serif }
   
+  #container {
+    margin:auto;
+    width: 760px; 
+    padding: 10px;
+    color: #333333;
+    background: #FFFACD;
+  }
+
   #subnavbar {
     width:auto;
     height:36px;
@@ -226,4 +237,3 @@ CSS Library: http://www.bitrepository.com/
     color:#000000;
     background-color:#ffffff; 
     padding-top:0px;}
- 
