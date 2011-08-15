@@ -32,7 +32,7 @@ function getEvents(playerID)
           document.getElementById('eventList').innerHTML = this.responseText
           
           // Reset timers
-          resetTimer()
+          resetCountdownTimer()
         }
         else alert("Ajax error: No data received")
       }
@@ -61,6 +61,7 @@ function doEvent(playerID, eventID)
         {
           // refresh header
           refreshHeader()
+          resetCountupTimers()
           
           // referesh events list
           getEvents(playerID)
@@ -71,7 +72,7 @@ function doEvent(playerID, eventID)
           // debug
           //document.getElementById('info1').innerHTML = this.responseText
         }
-        else alert("Ajax error: No data received")
+        else alert("Ajax error1: No data received")
       }
       else alert("Ajax error1: " + this.statusText + " " + this.status)
     }
@@ -103,6 +104,9 @@ function refreshHeader()
           maxPride              = this.responseXML.getElementsByTagName('maxpride')
           cash                  = this.responseXML.getElementsByTagName('cash')
           gradeString           = this.responseXML.getElementsByTagName('gradestring')
+          motivationTime        = this.responseXML.getElementsByTagName('motivationTime')
+          prideTime             = this.responseXML.getElementsByTagName('prideTime')
+          battleTime            = this.responseXML.getElementsByTagName('battleTime')
           
           // Update ID card info
           document.getElementById('currMotivation').innerHTML = currMotivation[0].childNodes[0].nodeValue
@@ -111,8 +115,14 @@ function refreshHeader()
           document.getElementById('maxPride').innerHTML = maxPride[0].childNodes[0].nodeValue
           document.getElementById('cash').innerHTML = cash[0].childNodes[0].nodeValue
           document.getElementById('gradeString').innerHTML = gradeString[0].childNodes[0].nodeValue
+          document.getElementById('motivationTimer').title = motivationTime[0].childNodes[0].nodeValue
+          document.getElementById('prideTimer').title = prideTime[0].childNodes[0].nodeValue
+          document.getElementById('battleTimer').title = battleTime[0].childNodes[0].nodeValue
+          
+          // debug
+          //document.getElementById('info1').innerHTML = "success"
         }
-        else alert("Ajax error: No data received")
+        else alert("Ajax error2: No data received")
       }
       else alert("Ajax error2: " + this.statusText + " " + this.status)
     }
@@ -162,7 +172,7 @@ function temp()
 <ul>
   <li><a href="life.html"><span>Life</span></a>
   <li><a href="academics.html"><span>Academics</span></a>
-  <li><a href='javascript:;' onclick='getEvents($playerID); resetTimer();'><span>Electives</span></a>
+  <li><a href='javascript:;' onclick='getEvents($playerID);'><span>Electives</span></a>
 </ul>
 </span>
 </div>
@@ -179,10 +189,9 @@ $time
 <div id='info'>b</div>
 <div id='info1'>c</div>
 <a href='javascript:;' onclick='temp();'>test</a>
-<a href="do_event.php">test2</a>
-<div id="test" name="timer" title=500></div><br>
-<div id="test2" name="timer" title=300></div><br>
-<script type="text/javascript" src="timer.js"></script>
+<a href="refresh_header.php">test2</a>
+<div id="test" name="countdownTimer" title=500></div><br>
+<div id="test2" name="countdownTimer" title=300></div><br>
 _HTML;
 
   mysql_close($db_server);
