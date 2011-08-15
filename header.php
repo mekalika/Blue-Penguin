@@ -22,13 +22,23 @@
     $query = "SELECT * FROM characters WHERE studentID='$studentID'";
     $result = queryMysql($query);
     $row = mysql_fetch_array($result);
-    $characterName          = $row['name'];
-    $currMotivation         = $row['currMotivation'];
-    $maxMotivation          = $row['maxMotivation'];
-    $currPride              = $row['currPride'];
-    $maxPride               = $row['maxPride'];
-    $cash                   = $row['cash'];
-    $gradeLevel             = $row['gradeLevel'];
+    $characterName      = $row['name'];
+    $currMotivation     = $row['currMotivation'];
+    $maxMotivation      = $row['maxMotivation'];
+    $currPride          = $row['currPride'];
+    $maxPride           = $row['maxPride'];
+    $currBattle         = $row['currBattle'];
+    $maxBattle          = $row['maxBattle'];
+    $cash               = $row['cash'];
+    $gradeLevel         = $row['gradeLevel'];
+    $lastAction         = $row['lastAction'];
+    $motivationTimer    = $row['motivationTimer'];
+    $prideTimer         = $row['prideTimer'];
+    $battleTimer        = $row['battleTimer'];
+    
+    // Update lastAction timestamp
+    $query = "UPDATE characters SET lastAction=$time WHERE studentID=$studentID";
+    $result = queryMysql($query);
 
     // Determine what to print on ID card based on gradeLevel.
     if ($gradeLevel == -1) {
@@ -44,6 +54,23 @@
   else {
     header( 'Location: logout.php' );
   }
+  
+  // Calculate time since last action
+  $motivationTime = $time - $motivationTimer;
+  $prideTime = $time - $prideTimer;
+  $battleTime = $time - $battleTimer;
+  $idleTime = $time - $lastAction;
+  $offsetTime = ($time - $lastAction) % $RT;
+  
+  // Calculate stat replenishment
+  $currMotivation = min($currMotivation + floor($motivationTime/$RT),$maxMotivation);
+  $currPride = min($currPride + floor($prideTime/$RT),$maxPride);
+  $currBattle = min($currBattle + floor($battleTime/$RT),$maxBattle);
+  
+  // Calculate time left after stat replenishment
+  $motivationTime %= $RT;
+  $prideTime %= $RT;
+  $battleTime %= $RT;
 
   echo <<<_HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
@@ -62,13 +89,13 @@
 <div class="cssbox_head"><h2 align="left">$characterName</h2></div> 
 <div class="cssbox_body">  
 <ul class = "stats">
-  <li>Motivation: <span id="currMotivation">$currMotivation</span>/<span id="maxMotivation">$maxMotivation</span>
-  <li>Pride: <span id="currPride">$currPride</span>/<span id="maxPride">$maxPride</span>
+  <li>Motivation: <span id="currMotivation">$currMotivation</span>/<span id="maxMotivation">$maxMotivation</span> <span id="motivationTimer" title=$motivationTime>a</span> <span id="motivationTime">$motivationTime</span>
+  <li>Pride: <span id="currPride">$currPride</span>/<span id="maxPride">$maxPride</span> <span id="prideTimer" title=$prideTime>a</span> <span id="prideTime">$prideTime</span>
+  <li> Battle: <span id="currBattle">$currBattle</span>/<span id="maxBattle">$maxBattle</span> <span id="battleTimer" title=$battleTime>a</span> <span id="battleTime">$battleTime</span>
   <li>Cash: $<span id="cash">$cash</span>
 </ul>
 <!-- TODO: District is based on friends. -->
 <pre>District: 27	<span id="gradeString">$gradeString</span></pre></div>
-</div>
 </div>
 
 <!-- Site navigation menu -->
@@ -91,5 +118,7 @@
     </ul>
   <li><a href="district.html">District</a>
 </ul>
+</div>
+<script type="text/javascript" src="timer.js"></script>
 _HTML;
 ?>

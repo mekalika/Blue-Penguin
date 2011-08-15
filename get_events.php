@@ -50,7 +50,7 @@
       else {
         $timeLeft = $timeReady - $time;
         $eventTime = "";
-        $timerName = "timer";
+        $timerName = "countdownTimer";
       }
 
     echo <<<_HTML

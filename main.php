@@ -28,4 +28,6 @@ Student ID: $studentID
 </body>
 </html>
 _HTML;
+
+  mysql_close($db_server);
 ?>
