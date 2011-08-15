@@ -4,6 +4,16 @@
   require_once 'botm_functions.php';
   session_start();
 
+  // TODO: Andrew will make this more awesome.
+  function getLevelFromEXP($exp) {
+    return floor(($exp / 10) + 1);
+  }
+
+  // TODO: Andrew will make this more awesome.
+  function getEXPforLevel($level) {
+    return ($level * 10) - 10;
+  }
+
   function getGradeString($gradeLevel) {
     // Determine what grade to print.
     if ($gradeLevel == -1) {
@@ -89,16 +99,12 @@ function reportName(studentID) {
 </script>
 
   <!-- Subnavigation menu -->
-  <div id="subnavbar">
-  <span class="inbar">
-  <ul>
-    <li><a href="reportcard.php"><span>Report Card</span></a>
-    <li><a href="items.html"><span>Items</span></a>
-    <li><a href="traits.php"><span>My Traits</span></a>
-    <li><a href="school.php"><span>My School</span></a>
+  <ul id="subnav">
+    <li><a href="reportcard.php">Report Card</a>
+    <li><a href="items.html">Items</a>
+    <li><a href="traits.php">My Traits</a>
+    <li><a href="school.php">My School</a>
   </ul>
-  </span>
-  </div>
 _HTML;
 
   // Get grade level from playerID.
@@ -220,7 +226,7 @@ _HTML;
       $percent = mysql_result($result2, 0);
       if ($percent == NULL) {  // Gray out grade.
         echo <<<_HTML
-<font color ="gray">$subject</font>
+<font color ="#999999">$subject</font>
 <br>
 _HTML;
       }
@@ -232,17 +238,42 @@ _HTML;
   }
   echo "</table>";
 
-// Skill information.
-/*
- TODO: For each skill, get skillEXP, skillLevel.
-       Also need the EXP difference between current skillLevel and next
-       skillLevel. Calculate percentage based on skillEXP and this
-       EXP difference. Display progress bars.
-*/
+  // Skill information.
+  $skillEXPs = array('pianoEXP', 'violinEXP', 'athleticsEXP', 'danceEXP',
+                     'languageEXP', 'scienceEXP', 'mathEXP', 'historyEXP',
+                     'chineseEXP');
+  $skills = array('Piano', 'Violin', 'Athletics', 'Dance',
+                  'Language', 'Science', 'Math', 'History',
+                  'Chinese');
+
+  foreach ($skillEXPs as $skillEXP) {
+    $query = "SELECT $skillEXP FROM characters WHERE studentID=$studentID";
+    $result = queryMysql($query);
+    $exp = mysql_result($result, 0);
+    $currLevel = getLevelFromEXP($exp);
+    $expCurrLevel = getEXPForLevel($currLevel);
+    $expNextLevel = getEXPForLevel($currLevel + 1);
+    $expDiff = $expNextLevel - $expCurrLevel;
+    $expPercent = floor((($exp - $expCurrLevel) / $expDiff) * 100);
+    $progressWidth = 300 * ($expPercent / 100);
+
+    // Get name of skill for printing.
+    $index = array_search($skillEXP, $skillEXPs);
+    $skillName = $skills[$index];
+    
+     echo <<<_HTML
+<div style="float: left;width:90px">$skillName:<pre></div><div style="float:left;width:300px;padding:2px;background-color:white;border:1px solid black;text-align:center">
+    <div style="width:
+_HTML;
+      echo "$progressWidth";
+        echo <<<_HTML
+px;background-color:#2FB2A0;">$exp/$expNextLevel 
+    </div></div><br><br>
+_HTML;
+  }
   echo <<<_HTML
 
 <p>Progress bars and levels for skills. BONUS: add pithy descriptions for each skill.
-Piano Violin Athletics Dance Language Science Math
 
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> 

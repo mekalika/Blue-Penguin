@@ -62,7 +62,7 @@ function doEvent(playerID, eventID)
           // refresh header
           refreshHeader()
           
-          // referesh events list
+          // refresh events list
           getEvents(playerID)
           
           // Display stat increases
@@ -103,7 +103,7 @@ function refreshHeader()
           maxPride              = this.responseXML.getElementsByTagName('maxpride')
           cash                  = this.responseXML.getElementsByTagName('cash')
           gradeString           = this.responseXML.getElementsByTagName('gradestring')
-          
+          console.log('Hi Andrew' + currMotivation); 
           // Update ID card info
           document.getElementById('currMotivation').innerHTML = currMotivation[0].childNodes[0].nodeValue
           document.getElementById('maxMotivation').innerHTML = maxMotivation[0].childNodes[0].nodeValue
@@ -157,22 +157,16 @@ function temp()
 </script>
 
 <!-- Subnavigation menu -->
-<div id="subnavbar">
-<span class="inbar">
-<ul>
-  <li><a href="life.html"><span>Life</span></a>
-  <li><a href="academics.html"><span>Academics</span></a>
-  <li><a href='javascript:;' onclick='getEvents($playerID); resetTimer();'><span>Electives</span></a>
+<ul id="subnav">
+  <li><a href="life.html">Life</a>
+  <li><a href="academics.html">Academics</a>
+  <li><a href='javascript:;' onclick='getEvents($playerID); resetTimer();'>Electives</a>
 </ul>
-</span>
-</div>
 
 <!-- Events -->
 <h2>Elective Events</h2>
-<div class="electivelist">
 <p>"Unlike your typical Western overscheduling soccer mom, the Chinese mother believes that...the only activities your children should be permitted to do are those in which they can eventually win a medal; and...that medal must be gold."<br><br>
 <a href="#piano">Piano</a> <a href="#violin">Violin</a> <a href="#athletics">Athletics</a> <a href="#dance">Dance</a> <a href="#language">Language</a> <a href="#science">Science</a> <a href="#math">Math</a>
-</div>
 <div id='eventResult'></div>
 <div class="electivelist" id='eventList'>a</div>
 $time

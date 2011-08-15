@@ -13,7 +13,7 @@
 <script>
 window.onload = getSchools($playerID)
 function getSchools(playerID) {
-  params = "playerID=" + playerID // + "&gradeLevel=" + gradeLevel
+  params = "playerID=" + playerID 
   request = new ajaxRequest()
   request.open("POST", "get_schools.php", true)
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
@@ -46,14 +46,12 @@ function enrollSchool(playerID, schoolID)
   request.setRequestHeader("Content-length", params.length)
   request.setRequestHeader("Connection", "close")
 
-  request.onreadystatechange = function()
-  {
-    if (this.readyState == 4) // readyState == 4 means the page is done loading
-    {
-      if (this.status == 200) // status == 200 means the query returned successfully
-      {
-        if (this.responseText != null)
-        {
+  request.onreadystatechange = function() {
+    // readyState == 4 means the page is done loading
+    if (this.readyState == 4) {
+      // status == 200 means the query returned successfully
+      if (this.status == 200) {
+        if (this.responseText != null) {
           // Refresh school list
           getSchools(playerID)
         }

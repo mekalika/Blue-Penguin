@@ -52,10 +52,12 @@
   <title>Battle of the Tiger Moms</title>
   <link rel="stylesheet" href="styles/style.css">
  </head>
+<div id="container">
 <body>
 
 <!-- ID Card -->
 <div class="topbar">
+<img src="images/harvard_logo.jpg">
 <div class="cssbox"> 
 <div class="cssbox_head"><h2 align="left">$characterName</h2></div> 
 <div class="cssbox_body">  
@@ -67,16 +69,27 @@
 <!-- TODO: District is based on friends. -->
 <pre>District: 27	<span id="gradeString">$gradeString</span></pre></div>
 </div>
+</div>
 
 <!-- Site navigation menu -->
-<ul class="navbar">
+<ul id="nav">
   <li><a href="main.php">Home</a>
   <li><a href="events.php">Events</a>
+    <ul>
+      <li><a href="life.html">Life</a>
+      <li><a href="academics.html">Academics</a>
+      <li><a href="events.php">Electives</a>
+    </ul>
   <li><a href="shop.php">Shop</a>
   <li><a href="compete.html">Compete</a>
   <li><a href="reportcard.php">Stats</a>
+    <ul>
+      <li><a href="reportcard.php">Report Card</a>
+      <li><a href="items.php">My Items</a>
+      <li><a href="traits.php">My Traits</a>
+      <li><a href="school.php">School</a>
+    </ul>
   <li><a href="district.html">District</a>
 </ul>
-</div>
 _HTML;
 ?>

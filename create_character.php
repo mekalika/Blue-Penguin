@@ -71,6 +71,8 @@
                          'characters WHERE name=' . "('$name')");
     $row = mysql_fetch_array($result);
 
+    // TODO: Initiate current grades.
+
     // Determine schoolType based on grade.
     if ($row['gradeLevel'] == -1) {
       $schoolType = 'Preschool';
