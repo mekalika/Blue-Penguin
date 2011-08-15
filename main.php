@@ -1,5 +1,5 @@
 <?php // main.php
-// Copyright 2011 M.G.Twice. All Rights Reserved.
+// Copyright 2011 Bearslug. All Rights Reserved.
   require_once 'header.php';
   
   echo <<<_HTML
@@ -16,7 +16,7 @@
 <center><a href="blog.html">Blog</a> 
         <a href="forums.html">Forums</a>
         <a href="help.html">Help</a>
-<address>Copyright &copy 2011 M.G.Twice. All Rights Reserved.</address>
+<address>Copyright &copy 2011 Bearslug. All Rights Reserved.</address>
 </center>
 
 <form action="logout.php" method="post"><pre>

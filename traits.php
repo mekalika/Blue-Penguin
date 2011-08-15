@@ -137,7 +137,7 @@ function temp() {
 <div id="subnavbar">
 <span class="inbar">
 <ul>
-  <li><a href="reportcard.html"><span>Report Card</span></a>
+  <li><a href="reportcard.php"><span>Report Card</span></a>
   <li><a href="items.html"><span>Items</span></a>
   <li><a href="traits.php"><span>My Traits</span></a>
   <li><a href="school.php"><span>My School</span></a>
