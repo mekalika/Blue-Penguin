@@ -64,7 +64,7 @@
   </tr>
   <tr>
     <th width=20%>Skills trained</th>
-    <th width=65%>Requirements</th>
+    <th width=60%>Requirements</th>
     <th></th>
   </tr>
   <tr>
