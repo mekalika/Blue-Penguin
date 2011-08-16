@@ -86,8 +86,8 @@
 <div class="topbar">
 <img src="images/harvard_logo.jpg">
 <div class="cssbox"> 
-<div class="cssbox_head"><h2 align="left">$characterName</h2></div> 
-<div class="cssbox_body">  
+<div class="cssbox-head"><h2 align="left">$characterName</h2></div> 
+<div class="cssbox-body">  
 <ul class = "stats">
   <li>Motivation: <span id="currMotivation">$currMotivation</span>/<span id="maxMotivation">$maxMotivation</span> <span id="motivationTimer" title=$motivationTime>a</span> <span id="motivationTime">$motivationTime</span>
   <li>Pride: <span id="currPride">$currPride</span>/<span id="maxPride">$maxPride</span> <span id="prideTimer" title=$prideTime>a</span> <span id="prideTime">$prideTime</span>

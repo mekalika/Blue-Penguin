@@ -1,255 +1,321 @@
-/*
-Creits: Bit Repository
-CSS Library: http://www.bitrepository.com/
-*/
+/**
+ * Copyright 2011 by Bearslug Games. All Rights Reserved.
+ *
+ * Battle of the Tiger Moms Interface Style Sheet
+ */
 
-<style type="text/css">
+/**
+ * Color Map:
+ *   #3b5998 Dark blue from Facebook used for link/anchor text.
+ *   #fffacd Light yellow for background.
+ *   #333 Almost black from Facebook for dark text
+ *   #8eafd1 Medium blue for navbar, and hovering over links in subnavbar.
+ *   #d8f0f0 Light green-blue for hovering over links in navbar.
+ *   #5ca8b1 Teal green for drop-down menu.
+ *   #c0d8d8 Baby blue for hovering over links in drop-down menu.
+ *   #eceff6 Pretty light blue for subnavbar.
+ *   #a7c942 Bright green for row with column names. 
+ *   #8cc0fa Bright blue for event/item name and description backgrounds.
+ *   #d2e4fc Another pretty light blue for alt rows in tables.
+ *   #d6adff Strong lilac for selected rows in tables. 
+ */
 
-  lookthisup {
-    color: black; }
+A:link {
+  color: #3b5998;
+}
+A:visited {
+  color: #3b5998;
+}
+h1 {
+  font-family: Verdana, Helvetica, Arial, SunSans-Regular, sans-serif;
+}
+h2 {
+  font-family: Verdana, Helvetica, Arial, SunSans-Regular, sans-serif;
+}
 
-  A:link {color: #3b5998}
-  A:visited {color: #3b5998}
+body {
+  background-color: white;
+  color: black;
+  font: .9em "lucida grande", tahoma, verdana, arial, sans-serif;
+  padding-left: 0;
+}
+ 
+/* Contains the app. */
+#container {
+  background: #fffacd;
+  color: #333;
+  margin: auto;
+  padding: 10px;
+  width: 760px; 
+}
 
-  body {
-    padding-left: 0;
-    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
-    font-size: .9em
-    color: black;
-    background-color: #FFFFFF; }
-  
-  #container {
-    margin: auto;
-    width: 760px; 
-    padding: 10px;
-    color: #333333;
-    background: #FFFACD;
-  }
+/* Contains the header. */
+.topbar {
+  overflow: auto; 
+  width: 100%;
+}
 
-  table {
-    font-size: .8em;
-    font-family: Verdana, Helvetica, Arial, sans-serif; }
+/* Form input approved. */
+.object-ok {
+  border: 1px solid green;
+  color: #333;
+}
 
-  .object_ok {
-    border: 1px solid green;
-    color: #333333; }
+/* Form input invalid. */
+.object-error {
+  border: 1px solid #ac3962;
+  color: #333;
+}
 
-  .object_error {
-    border: 1px solid #AC3962;
-    color: #333333; }
+/* A pretty input box for forms. */
+input {
+  -moz-border-radius: 3px;
+  border: 1px solid #999;
+  border-left-color: #ccc;
+  border-top-color: #ccc;
+  color: #333;
+  font-size: 13px;
+  margin: 5 5 5 0;
+  padding: 2px;
+} 
 
-  input {
-    margin: 5 5 5 0;
-    padding: 2px;
-    border: 1px solid #999999;
-    border-top-color: #CCCCCC;
-    border-left-color: #CCCCCC;
-    color: #333333;
-    font-size: 13px
-    -moz-border-radius: 3px; } 
+/* A pretty select input for forms. */
+select {
+  -moz-border-radius: 3px;
+  border: 1px solid #999;
+  border-left-color: #ccc;
+  border-top-color: #ccc;
+  color: #333;
+  font-size: 13px;
+  margin: 5 5 5 0;
+  padding: 2px;
+}
 
-  select {
-    margin: 5 5 5 0;
-    padding: 2px;
-    border: 1px solid #999999;
-    border-top-color: #CCCCCC;
-    border-left-color: #CCCCCC;
-    color: #333333;
-    font-size: 13px;
-    -moz-border-radius: 3px; }
+/* ID card. */
+/* Set the image to use and establish the lower-right position. */ 
+.cssbox,
+.cssbox-body,
+.cssbox-head,
+.cssbox-head h2 { 
+  background: transparent url(i/img.php.png) no-repeat bottom right;
+  opacity: .9;
+}
+ 
+.cssbox { 
+  float: left;
+  margin: 20px auto;
+  /* The gap on the right edge of the image (not content padding). */ 
+  padding-right: 15px; /* Use to position the box. */ 
+  /* Intended total box width - padding-right(next). */ 
+  position: absolute;
+  top: 0;
+  width: 335px !important; /* IE Win = width - padding */
+  width: 320px; 
+} 
 
-  .topbar {
-    overflow: auto; 
-    width: 100% }
+/* Set the top-right image. */ 
+.cssbox-head {
+  background-position: top right; 
+  /* Pull the right image over on top of border. */ 
+  margin-right: -15px; 
+  /* Right-image-gap + right-inside padding. */ 
+  padding-right: 40px;
+} 
 
-  .logo {
-    position: absolute;
-    top: 2em;
-    left: 10em; }
-  
-  /* set the image to use and establish the lower-right position */ 
-  .cssbox, .cssbox_body, .cssbox_head, .cssbox_head h2 { 
-    background: transparent url(i/img.php.png) no-repeat bottom right } 
-  .cssbox { 
-  /* intended total box width - padding-right(next) */ 
-    position:absolute;
-    top: 0em;
-    float: left;
-    width: 335px !important; /* IE Win = width - padding */
-    width: 320px; 
-  /* the gap on the right edge of the image (not content padding) */ 
-    padding-right: 15px; /* use to position the box */ 
-    margin: 20px auto } 
-  
-  /* set the top-right image */ 
-  .cssbox_head{ background-position:top right; 
-  /* pull the right image over on top of border */ 
-    margin-right: -15px; 
-  /* right-image-gap + right-inside padding */ 
-    padding-right: 40px} 
-
-  /* set the top-left image */ 
-  .cssbox_head h2 { 
-    background-position:top left; 
-    margin: 0; /* reset main site styles*/ 
-    border: 0; /* ditto */ 
+/* Set the top-left image. */ 
+.cssbox-head h2 { 
+  background-position: top left; 
+  border: 0; /* Ditto. */ 
+  height: auto !important; 
+  height: 1%;
+  margin: 0; /* Reset main site styles. */ 
   /* padding-left = image gap + interior padding ... no padding-right */ 
-    padding: 25px 0 15px 40px; 
-    height: auto !important; 
-    height: 1% } /* IE Holly Hack */ 
+  padding: 25px 0 15px 40px; 
+} /* IE Holly Hack */ 
 
-  /* set the lower-left corner image */ 
-  .cssbox_body { 
-    background-position: bottom left; 
-    margin-right:25px; /* interior-padding right */ 
-    padding:15px 0 15px 40px } /* mirror .cssbox_head right/left */ 
+/* Set the lower-left corner image. */ 
+.cssbox-body { 
+  background-position: bottom left; 
+  margin-right: 25px; /* interior-padding right */ 
+  padding: 15px 0 15px 40px;
+} /* mirror .cssbox-head right/left */ 
 
-  #nav, #nav ul {
-    float: left;
-    width: 100%;
-    list-style: none;
-    line-height: 1;
-    background: #8EAFD1;
-    font-weight: bold;
-    padding: 0;
-    border: solid #FFFFFF;
-    border-width: 1px 0;
-    margin: 0 0 0em 0; }
-  #nav a {
-    display: block;
-    width: auto;
-    color: #FFFFFF;
-    text-decoration: none;
-    text-align:center;
-    padding: 0.25em 2em; }
-  #nav li {
-    float: left;
-    padding: 0;
-    width: auto; }
-  #nav li ul {
-    position: absolute;
-    left: -999em;
-    height: auto;
-    w\idth: 11.25em;
-    font-weight: bold;
-    border-width: 0.25em;
-    margin: 0; }
-  #nav li li {
-    padding-right: 1em;
-    background:#5CA8B1; }
-  #nav li li:hover {
-    padding-right: 1em;
-    background: #D8F0F0; }
-  #nav li ul a {
-    w\idth: 6.25em; }
-  #nav li:hover ul {
-    left: auto; }
-  #nav li:hover {
-    background: #C0D8D8; }
-  #nav li a:hover {
-    color: #333333; }
+/* The main navbar. */
+#nav,
+#nav ul {
+  background: #8eafd1;
+  border: solid white;
+  border-width: 1px 0;
+  float: left;
+  font-weight: bold;
+  line-height: 1;
+  list-style: none;
+  margin: 0 0 0 0;
+  padding: 0;
+  width: 100%;
+}
+#nav a {
+  color: white;
+  display: block;
+  padding: 0.25em 2em;
+  text-decoration: none;
+  text-align:center;
+  width: auto;
+}
+#nav li {
+  float: left;
+  padding: 0;
+  width: auto;
+}
+#nav li ul {
+  border-width: 0.25em;
+  font-weight: bold;
+  height: auto;
+  left: -999em;
+  margin: 0;
+  position: absolute;
+  w\idth: 11.25em;
+}
+#nav li li {
+  background: #5ca8b1;
+  padding-right: 1em;
+}
+#nav li li:hover {
+  background: #d8f0f0;
+  padding-right: 1em;
+}
+#nav li ul a {
+  w\idth: 6.25em;
+}
+#nav li:hover ul {
+  left: auto;
+}
+#nav li:hover {
+  background: #c0d8d8;
+}
+#nav li a:hover {
+  color: #333;
+}
 
-  h1 {
-    font-family: Verdana, Helvetica, Arial, SunSans-Regular, sans-serif }
-  h2 {
-    font-family: Verdana, Helvetica, Arial, SunSans-Regular, sans-serif }
-  
-  #subnav, #subnav ul {
-    float: left;
-    width: 100%;
-    list-style: none;
-    line-height: 1;
-    background: #eceff6;
-    font-weight: normal;
-    padding: 0;
-    border: solid #FFFFFF;
-    border-width: 1px 0;
-    margin: 0 0 1em 0; }
-  #subnav a {
-    display: block;
-    width: auto;
-    color: #333333;
-    text-decoration: none;
-    text-align: center;
-    padding: 0.25em 2em; }
-  #subnav li {
-    float: left;
-    padding: 0;
-    width: auto; }
-  #subnav li ul {
-    position: absolute;
-    left: -999em;
-    height: auto;
-    w\idth: 11.25em;
-    font-weight: bold;
-    border-width: 0.25em;
-    margin: 0; }
-  #subnav li:hover {
-    background: #8EAFD1;
-    color: #333333; }
-  #subnav li a:hover {
-    color: #333333; }
+/* Subnavbar. */
+#subnav,
+#subnav ul {
+  background: #eceff6;
+  border: solid white;
+  border-width: 1px 0;
+  float: left;
+  font-weight: normal;
+  line-height: 1;
+  list-style: none;
+  margin: 0 0 1em 0;
+  padding: 0;
+  width: 100%;
+}
+#subnav a {
+  color: #333;
+  display: block;
+  padding: 0.25em 2em;
+  text-align: center;
+  text-decoration: none;
+  width: auto;
+}
+#subnav li {
+  float: left;
+  padding: 0;
+  width: auto;
+}
+#subnav li ul {
+  border-width: 0.25em;
+  font-weight: bold;
+  height: auto;
+  left: -999em;
+  margin: 0;
+  position: absolute;
+  w\idth: 11.25em;
+}
+#subnav li:hover {
+  background: #8eafd1;
+  color: #333;
+}
+#subnav li a:hover {
+  color: #333;
+}
+ 
+/* Copyright info, etc. on bottom of page. */
+address {
+  border-top: thin dotted;
+  font-size:.8em;
+  margin-top: 1em;
+  padding-top: 1em;
+}
 
-  .electivelist {
-    font-family: Verdana, Helvetica, Arial, sans-serif; }
-  
-  address {
-    font-size:.8em;
-    margin-top: 1em;
-    padding-top: 1em;
-    border-top: thin dotted }
+/* Table used for traits and schools. */
+#traits {
+  border-collapse: collapse;
+  font: .9em Verdana, Helvetica, Arial, sans-serif;
+  width: 100%;
+}
+#traits td,
+#traits th {
+  border: 0;
+  font-size: 1em;
+  padding: 15px 8px 2px 7px;
+}
+#traits th {
+  background-color: #a7c942;
+  color: white;
+  font-size: 1.1em;
+  padding-top: 5px;
+  padding-bottom: 4px;
+  text-align: left;
+}
+#traits tr td {
+  background-color: white;
+  color: #333333;
+}
+#traits tr.alt td {
+  background-color: #d2e4fc;
+  color: #333;
+}
+#traits tr.selected td {
+  background-color: #d6adff;
+  color: #333;
+}
 
-  #traits {
-    font-family: Verdana, Helvetica, Arial, sans-serif;
-    width: 100%;
-    border-collapse: collapse; }
-  #traits td, #traits th {
-    font-size: 1em;
-    border: 0px solid #98bf21;
-    padding: 15px 8px 2px 7px; }
-  #traits th {
-    font-size: 1.1em;
-    text-align: left;
-    padding-top: 5px;
-    padding-bottom: 4px;
-    background-color: #A7C942;
-    color:#ffffff; }
-  #traits tr td {
-    color: #333333;
-    background-color: #ffffff; }
-  #traits tr.alt td {
-    color: #333333;
-    background-color: #D2E4FC; }
-  #traits tr.selected td {
-    color: #333333;
-    background-color: #D6ADFF; }
-
-  #events {
-    font-family:Verdana, Helvetica, Arial, sans-serif;
-    width: 100%;
-    border-collapse:collapse; }
-  #events td, #events th {
-    font-size: 1em;
-    border: 0px solid #98bf21;
-    padding: 15px 8px 2px 7px; }
-  #events th {
-    font-size: 1.2em;
-    text-align: left;
-    padding-top: 5px;
-    padding-bottom: 4px;
-    background-color: #A7C942;
-    color: #ffffff; }
-  #events tr.eventname td {
-    font-size: 1.2em;
-    padding-top: 5px;
-    padding-bottom: 4px;
-    background-color: #8CC0FA; }  
-  #events tr.eventdescription td {
-    font-size: .8em;
-    padding-top: 0px;
-    padding-bottom: 4px;
-    background-color: #8CC0FA; }  
-  #events tr td {
-    color: #333333;
-    background-color: #ffffff; 
-    padding-top: 0px;}
+/* Table used for events and items. */
+#events {
+  border-collapse: collapse;
+  font: .9em Verdana, Helvetica, Arial, sans-serif;
+  width: 100%;
+}
+#events td,
+#events th {
+  border: 0;
+  font-size: 1em;
+  padding: 15px 8px 2px 7px;
+}
+#events th {
+  background-color: #a7c942;
+  color: white;
+  font-size: 1.2em;
+  padding-top: 5px;
+  padding-bottom: 4px;
+  text-align: left;
+}
+#events tr.eventname td {
+  background-color: #8cc0fa;
+  font-size: 1.2em;
+  padding-top: 5px;
+  padding-bottom: 4px;
+} 
+#events tr.eventdescription td {
+  background-color: #8cc0fa;
+  font-size: .8em;
+  padding-top: 0;
+  padding-bottom: 4px;
+} 
+#events tr td {
+  background-color: white; 
+  color: #333;
+  padding-top: 0;
+}

@@ -178,7 +178,7 @@ function temp()
 <p>"Unlike your typical Western overscheduling soccer mom, the Chinese mother believes that...the only activities your children should be permitted to do are those in which they can eventually win a medal; and...that medal must be gold."<br><br>
 <a href="#piano">Piano</a> <a href="#violin">Violin</a> <a href="#athletics">Athletics</a> <a href="#dance">Dance</a> <a href="#language">Language</a> <a href="#science">Science</a> <a href="#math">Math</a>
 <div id='eventResult'></div>
-<div class="electivelist" id='eventList'>a</div>
+<div id='eventList'>a</div>
 $time
 <div id='info'>b</div>
 <div id='info1'>c</div>
