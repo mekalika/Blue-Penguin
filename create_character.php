@@ -70,17 +70,28 @@
     $result = queryMysql('SELECT studentID, round, gradeLevel FROM ' .
                          'characters WHERE name=' . "('$name')");
     $row = mysql_fetch_array($result);
+    $studentID = $row['studentID'];
+    $round = $row['round'];
+    $gradeLevel = $row['gradeLevel']; 
 
-    // TODO: Initiate current grades.
+
+    $result = queryMysql('SELECT gradeID FROM grades WHERE gradeLevel=' .
+                         "$gradeLevel");
+    while($row = mysql_fetch_array($result)) {
+      $gradeID = $row['gradeID'];
+      // Initiate current grades to 0.
+      $result2 = queryMysql('INSERT INTO charGrades VALUES' .
+                           "($studentID, $gradeID, 0)"); 
+    }
 
     // Determine schoolType based on grade.
-    if ($row['gradeLevel'] == -1) {
+    if ($gradeLevel == -1) {
       $schoolType = 'Preschool';
     }
-    elseif ($row['gradeLevel'] > -1 && $row['gradeLevel'] < 6) {
+    elseif ($gradeLevel > -1 && $gradeLevel < 6) {
       $schoolType = 'Elementary';
     }
-    elseif ($row['gradeLevel'] >= 6 && $row['gradeLevel'] < 9) {
+    elseif ($gradeLevel >= 6 && $gradeLevel < 9) {
       $schoolType = 'Middle';
     }
     else {
@@ -90,7 +101,6 @@
     // Enroll character in lowest school based on grade.
     $result = queryMysql("SELECT schoolID FROM schools WHERE friendsReq=1 AND schoolType='$schoolType'");
     $schoolID = mysql_result($result, 0);
-    $studentID = $row['studentID'];
     queryMysql("INSERT INTO charSchool VALUES ($studentID, $schoolID)");
 
     $skills = array('pianoEXP', 'violinEXP', 'athleticsEXP', 'danceEXP',
@@ -98,7 +108,7 @@
                     'chineseEXP');
     // If creating a character midgame, determine skills based on average
     // skills of active characters in this round.
-    if ($row['gradeLevel'] != -1) {
+    if ($gradeLevel != -1) {
       // Give user 10 * (grade + 1) number of skill points.
       $numSkillPoints = 10 * ($row['gradeLevel'] + 1);
       queryMysql('UPDATE characters SET skillPoints=' . 
@@ -109,7 +119,6 @@
       $numChars = mysql_result($result, 0);
       foreach ($skills as $skill) {
         $total = 0;
-        $round = $row['round'];
         $result = queryMysql("SELECT $skill FROM characters WHERE name!=" .
                              "'$name' AND round='$round' AND " .
                              "lastAction>='$minActiveCharTime'");

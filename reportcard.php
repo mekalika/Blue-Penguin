@@ -144,7 +144,8 @@ _HTML;
       $gradeID	= $row['gradeID'];
       $subject	= $row['subject'];
       // Get percent from charGrades table
-      $query = "SELECT percent FROM charGrades WHERE gradeID=$gradeID";
+      $query = "SELECT percent FROM charGrades WHERE gradeID=$gradeID AND " .
+               "studentID=$studentID";
       $result2 = queryMysql($query); 
       $percent = mysql_result($result2, 0);
       $letterGrade = getLetterGrade($percent);

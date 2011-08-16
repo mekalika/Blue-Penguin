@@ -155,7 +155,7 @@ function validateForm() {
 
   </script>
  </head>
-
+ <div id="container">
 <body>
 <center>
 <div align="center">
@@ -213,8 +213,8 @@ yours!<br /><br />
 <center><a href="blog.html">Blog</a>
         <a href="forums.html">Forums</a>
         <a href="help.html">Help</a>
-<address>Copyright &copy 2011 M.G.Twice. All Rights Reserved.</address>
+<address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
 </center>
-
+</div>
 </body>
 </html>
