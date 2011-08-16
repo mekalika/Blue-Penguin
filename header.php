@@ -83,7 +83,7 @@
 <body>
 
 <!-- ID Card -->
-<div class="topbar">
+<div id="topbar">
 <img src="images/harvard_logo.jpg">
 <div class="cssbox"> 
 <div class="cssbox-head"><h2 align="left">$characterName</h2></div> 

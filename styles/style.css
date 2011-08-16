@@ -47,7 +47,7 @@ body {
 }
 
 /* Contains the header. */
-.topbar {
+#topbar {
   overflow: auto; 
   width: 100%;
 }
