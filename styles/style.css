@@ -20,15 +20,12 @@
  *   #d6adff Strong lilac for selected rows in tables. 
  */
 
-A:link {
-  color: #3b5998;
-}
+A:link,
 A:visited {
   color: #3b5998;
 }
-h1 {
-  font-family: Verdana, Helvetica, Arial, SunSans-Regular, sans-serif;
-}
+
+h1,
 h2 {
   font-family: Verdana, Helvetica, Arial, SunSans-Regular, sans-serif;
 }

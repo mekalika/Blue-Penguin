@@ -92,16 +92,12 @@ function temp() {
 </script>
 
 <!-- Subnavigation menu -->
-<div id="subnavbar">
-<span class="inbar">
-<ul>
-  <li><a href="reportcard.php"><span>Report Card</span></a>
-  <li><a href="items.html"><span>Items</span></a>
-  <li><a href="traits.php"><span>My Traits</span></a>
-  <li><a href="school.php"><span>My School</span></a>
+<ul id="subnav">
+  <li><a href="reportcard.php">Report Card</a>
+  <li><a href="items.html">Items</a>
+  <li><a href="traits.php">My Traits</a>
+  <li><a href="school.php">My School</a>
 </ul>
-</span>
-</div>
 
 <!-- Schools -->
 <h2>Schools</h2>

@@ -156,14 +156,10 @@ window.onLoad = getItems($playerID)
 </script>
 
 <!-- Subnavigation menu -->
-<div id="subnavbar">
-<span class="inbar">
-<ul>
-  <li><a href="schoolsupplies.html"><span>School supplies</span></a>
-  <li><a href='javascript:;' onclick='getItems($playerID)'><span>Hobbies</span></a>
+<ul id="subnav">
+  <li><a href="schoolsupplies.html">School supplies</a>
+  <li><a href='javascript:;' onclick='getItems($playerID)'>Hobbies</a>
 </ul>
-</span>
-</div>
 
 <!-- TODO: think about this page -->
 
@@ -171,9 +167,7 @@ window.onLoad = getItems($playerID)
 <h2>Hobby Superstore</h2>
 <p>Here you can purchase the supplies and equipment you need for your electives!
 
-<div class="electivelist">
-<a href="#piano">Piano</a> <a href="#violin">Violin</a> <a href="#athletics">Athletics</a> <a href="#dance">Dance</a> <a href="#language">Language</a> <a href="#science">Science</a> <a href="#math">Math</a>
-</div><br>
+<a href="#piano">Piano</a> <a href="#violin">Violin</a> <a href="#athletics">Athletics</a> <a href="#dance">Dance</a> <a href="#language">Language</a> <a href="#science">Science</a> <a href="#math">Math</a><br>
 <div id='itemList'></div>
 <div id='info'></div>
 <div id='info1'></div>
