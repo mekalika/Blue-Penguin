@@ -1,5 +1,5 @@
 <?php // header.php
-// Copyright 2011 M.G.Twice. All Rights Reserved.
+// Copyright 2011 Bearslug Games. All Rights Reserved.
 
 /**
   * @fileoverview: Fills in the ID card and the Site Nav.

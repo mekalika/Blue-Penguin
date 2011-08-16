@@ -268,18 +268,31 @@ _HTML;
       echo "$progressWidth";
         echo <<<_HTML
 px;background-color:#2FB2A0;">$exp/$expNextLevel 
-    </div></div><br><br>
+    </div></div>
 _HTML;
+    // TODO: Will make prettier later.
+    // TODO: Also need to add levels, but looks too ugly right now.
+    //	     Need to design layout for this page...
+    if ($skillName == 'Piano') {
+      echo 'Just press the buttons! It not that hard.<br><br>';
+    }
+    elseif ($skillName == 'Violin') {
+      echo 'Only one finger bleeding. Keep practicing!<br><br>';
+    } 
+    elseif ($skillName == 'Chinese') {
+      echo 'Gotta write that letter to Grandma.<br><br>';
+    }
+    else {
+      echo '<br><br>';
+    }
   }
   echo <<<_HTML
-
-<p>Progress bars and levels for skills. BONUS: add pithy descriptions for each skill.
 
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> 
         <a href="forums.html">Forums</a>
         <a href="help.html">Help</a>
-<address>Copyright &copy 2011 Bearslug Entertainment. All Rights Reserved.</address>
+<address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
 </center>
 
 <form action="logout.php" method="post"><pre>

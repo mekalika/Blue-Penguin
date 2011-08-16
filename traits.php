@@ -148,7 +148,7 @@ earned from doggedly forcing your kids to study and practice to improve their tr
 <div class="electivelist" id='traitsList'>a</div>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
-<address>Copyright &copy 2011. Bearslug Entertainment. All Rights Reserved.</address>
+<address>Copyright &copy 2011. Bearslug Games. All Rights Reserved.</address>
 </center>
 _HTML;
 

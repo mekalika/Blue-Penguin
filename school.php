@@ -107,7 +107,7 @@ district? The more Tiger Mom friends you have, the better!"
 <div class="electivelist" id='schoolList'>a</div>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
-<address>Copyright &copy 2011 M.G.Twice. All Rights Reserved.</address>
+<address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
 </center>
 _HTML;
 

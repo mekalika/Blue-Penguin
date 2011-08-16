@@ -1,5 +1,5 @@
 <?php // events.php
-// Copyright 2011 M.G.Twice. All Rights Reserved.
+// Copyright 2011 Bearslug Games. All Rights Reserved.
 
 /**
   * @fileoverview: Fills in the ID card, and loads events based on grade,
@@ -186,6 +186,13 @@ $time
 <a href="refresh_header.php">test2</a>
 <div id="test" name="countdownTimer" title=500></div><br>
 <div id="test2" name="countdownTimer" title=300></div><br>
+
+<!-- Sign and date the page, it's only polite! -->
+<center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
+<address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
+</center>
+</body>
+</html>
 _HTML;
 
   mysql_close($db_server);

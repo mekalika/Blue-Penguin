@@ -1,5 +1,5 @@
 <?php // events.php
-// Copyright 2011 M.G.Twice. All Rights Reserved.
+// Copyright 2011 Bearslug Games. All Rights Reserved.
 
 /**
   * @fileoverview: Fills in the ID card, and loads events based on grade,
@@ -161,8 +161,6 @@ window.onLoad = getItems($playerID)
   <li><a href='javascript:;' onclick='getItems($playerID)'>Hobbies</a>
 </ul>
 
-<!-- TODO: think about this page -->
-
 <!-- Events -->
 <h2>Hobby Superstore</h2>
 <p>Here you can purchase the supplies and equipment you need for your electives!
@@ -173,7 +171,7 @@ window.onLoad = getItems($playerID)
 <div id='info1'></div>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
-<address>Copyright &copy 2011 M.G.Twice. All Rights Reserved.</address>
+<address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
 </center>
 </body>
 </html>
