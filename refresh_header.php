@@ -58,18 +58,18 @@
     $currPride = min($currPride + floor($prideTime/$RT),$maxPride);
     $currBattle = min($currBattle + floor($battleTime/$RT),$maxBattle);
     
-    // Reset timer if stat is full
-    if ($currMotivation == $maxMotivation)
-      $motivationTime = 0;
-    if ($currPride == $maxPride)
-      $prideTime = 0;
-    if ($currBattle == $maxBattle)
-      $battleTime = 0;
-    
     // Calculate time left after stat replenishment
     $motivationTime %= $RT;
     $prideTime %= $RT;
     $battleTime %= $RT;
+    
+    // Set time left to -1 if stat is full
+    if ($currMotivation == $maxMotivation)
+      $motivationTime = -1;
+    if ($currPride == $maxPride)
+      $prideTime = -1;
+    if ($currBattle == $maxBattle)
+      $battleTime = -1;
   }
   else {
     header( 'Location: logout.php' );

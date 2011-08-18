@@ -34,9 +34,13 @@ downtimePassed = 0;
 motivationTimePassed = 0;
 prideTimePassed = 0;
 battleTimePassed = 0;
-tick();
 startMotivationTimer();
+startPrideTimer();
+startBattleTimer();
 replenishMotivation(updateMotivationTimer());
+replenishPride(updatePrideTimer());
+replenishBattle(updateBattleTimer());
+tick();
 
 function updateTimers()
 {
@@ -48,6 +52,11 @@ function updateTimers()
   updateMotivationTimer();
   updatePrideTimer();
   updateBattleTimer();
+  
+  // debug stuff
+  document.getElementById('motivationTime').innerHTML = document.getElementById('motivationTimer').title;
+  document.getElementById('prideTime').innerHTML = document.getElementById('prideTimer').title;
+  document.getElementById('battleTime').innerHTML = document.getElementById('battleTimer').title;
 }
 
 function updateCountdownTimers()
@@ -63,66 +72,94 @@ function updateCountdownTimers()
 function startMotivationTimer()
 {
   motivationTimePassed = Number(document.getElementById('motivationTimer').title);
-  document.getElementById('motivationTimer').title = 0;
+  if (motivationTimePassed >= 0)
+  {
+    document.getElementById('motivationTimer').title = 0;
+  }
 }
 
 function startPrideTimer()
 {
   prideTimePassed = Number(document.getElementById('prideTimer').title);
-  document.getElementById('prideTimer').title = 0;
+  if (prideTimePassed >= 0)
+  {
+    document.getElementById('prideTimer').title = 0;
+    alert("test1");
+  }
 }
 
 function startBattleTimer()
 {
   battleTimePassed = Number(document.getElementById('battleTimer').title);
-  document.getElementById('battleTimer').title = 0;
+  if (battleTimePassed >= 0)
+  {
+    document.getElementById('battleTimer').title = 0;
+  }
 }
 
 function updateMotivationTimer()
 {
   timers = document.getElementById('motivationTimer');
-  idleTime = Number(timers.title) + motivationTimePassed;
-  timeLeft = RT - idleTime % RT;
-  timers.innerHTML = formatCountupTime(timeLeft);
-  if (document.getElementById('info') != null)
-    document.getElementById('info').innerHTML = Number(timers.title)+" "+motivationTimePassed+" "+timeLeft;
-  if (timeLeft==RT)
+  if (Number(timers.title) >= 0)
   {
-    replenishMotivation(idleTime);
-    motivationTimePassed = 0;
-    timers.title = 0;
+    idleTime = Number(timers.title) + motivationTimePassed;
+    timeLeft = RT - idleTime % RT;
+    timers.innerHTML = formatCountupTime(timeLeft);
+    if (document.getElementById('info') != null)
+      document.getElementById('info').innerHTML = Number(timers.title)+" "+motivationTimePassed+" "+timeLeft;
+    if (timeLeft==RT)
+    {
+      replenishMotivation(idleTime);
+      motivationTimePassed = 0;
+    }
+    return(idleTime);
   }
-  return(idleTime);
+  else
+  {
+    return 0;
+  }
 }
 
 function updatePrideTimer()
 {
   timers = document.getElementById('prideTimer');
-  idleTime = Number(timers.title) + prideTimePassed;
-  timeLeft = RT - idleTime % RT;
-  timers.innerHTML = formatCountupTime(timeLeft);
-  if (timeLeft==RT)
+  if (Number(timers.title) >= 0)
   {
-    replenishPride(idleTime);
-    prideTimePassed = 0;
-    timers.title = 0;
+    idleTime = Number(timers.title) + prideTimePassed;
+    timeLeft = RT - idleTime % RT;
+    timers.innerHTML = formatCountupTime(timeLeft);
+    if (timeLeft==RT)
+    {
+      replenishPride(idleTime);
+      prideTimePassed = 0;
+    }
+    return(idleTime);
   }
-  return(idleTime);
+  else
+  {
+    return 0;
+  }
 }
 
 function updateBattleTimer()
 {
   timers = document.getElementById('battleTimer');
-  idleTime = Number(timers.title) + battleTimePassed;
-  timeLeft = RT - idleTime % RT;
-  timers.innerHTML = formatCountupTime(timeLeft);
-  if (timeLeft==RT)
+  if (Number(timers.title) >= 0)
   {
-    replenishBattle(idleTime);
-    battleTimePassed = 0;
-    timers.title = 0;
+    idleTime = Number(timers.title) + battleTimePassed;
+    timeLeft = RT - idleTime % RT;
+    timers.innerHTML = formatCountupTime(timeLeft);
+    if (timeLeft==RT)
+    {
+      replenishBattle(idleTime);
+      battleTimePassed = 0;
+    }
+    return(idleTime);
   }
-  return(idleTime);
+  else
+  {
+    return 0;
+  }
 }
 
 function replenishMotivation(timeRested)
@@ -134,6 +171,18 @@ function replenishMotivation(timeRested)
   currMotivation = Math.min(currMotivation + Math.floor(timeRested / RT), maxMotivation);
   // Update current motivation
   document.getElementById('currMotivation').innerHTML = currMotivation;
+  
+  // If motivation is full, set time offset to -1
+  timer = document.getElementById('motivationTimer');
+  if (currMotivation == maxMotivation)
+  {
+    timer.title = -1;
+    timer.innerHTML = "full";
+  }
+  else
+  {
+    timer.title = 0;
+  }
 }
 
 function replenishPride(timeRested)
@@ -145,6 +194,19 @@ function replenishPride(timeRested)
   currPride = Math.min(currPride + Math.floor(timeRested / RT), maxPride);
   // Update current pride
   document.getElementById('currPride').innerHTML = currPride;
+  
+  // If pride is full, set time offset to -1
+  timer = document.getElementById('prideTimer');
+  if (currPride == maxPride)
+  {
+    timer.title = -1;
+    timer.innerHTML = "full";
+  }
+  else
+  {
+    timer.title = 0;
+    alert("test2");
+  }
 }
 
 function replenishBattle(timeRested)
@@ -156,6 +218,18 @@ function replenishBattle(timeRested)
   currBattle = Math.min(currBattle + Math.floor(timeRested / RT), maxBattle);
   // Update current battle
   document.getElementById('currBattle').innerHTML = currBattle;
+  
+  // If battle is full, set time offset to -1
+  timer = document.getElementById('battleTimer');
+  if (currBattle == maxBattle)
+  {
+    timer.title = -1;
+    timer.innerHTML = "full";
+  }
+  else
+  {
+    timer.title = 0;
+  }
 }
 
 function tick()

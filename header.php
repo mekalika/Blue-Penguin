@@ -71,6 +71,14 @@
   $motivationTime %= $RT;
   $prideTime %= $RT;
   $battleTime %= $RT;
+  
+  // Set time left to -1 if stat is full
+  if ($currMotivation == $maxMotivation)
+    $motivationTime = -1;
+  if ($currPride == $maxPride)
+    $prideTime = -1;
+  if ($currBattle == $maxBattle)
+    $battleTime = -1;
 
   echo <<<_HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
