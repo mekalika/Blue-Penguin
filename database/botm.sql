@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 07. August 2011 um 19:15
+-- Erstellungszeit: 20. August 2011 um 15:27
 -- Server Version: 5.5.9
 -- PHP-Version: 5.3.5
 
@@ -31,13 +31,15 @@ CREATE TABLE `accounts` (
   `studentID` int(10) unsigned NOT NULL,
   PRIMARY KEY (`playerID`),
   KEY `studentID` (`studentID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Daten für Tabelle `accounts`
 --
 
 INSERT INTO `accounts` VALUES(1, 'a', 1);
+INSERT INTO `accounts` VALUES(2, 'a', 3);
+INSERT INTO `accounts` VALUES(3, 'a', 4);
 
 -- --------------------------------------------------------
 
@@ -91,17 +93,22 @@ CREATE TABLE `characters` (
   `violinEXP` smallint(5) unsigned NOT NULL DEFAULT '0',
   `pianoEXP` smallint(5) unsigned NOT NULL DEFAULT '0',
   `lastAction` int(10) unsigned DEFAULT NULL,
+  `battleTimer` int(10) unsigned DEFAULT NULL,
+  `motivationTimer` int(10) unsigned DEFAULT NULL,
+  `prideTimer` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`studentID`),
   UNIQUE KEY `name_2` (`name`),
   KEY `name` (`name`),
   KEY `inappropriate` (`inappropriate`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Daten für Tabelle `characters`
 --
 
-INSERT INTO `characters` VALUES('Sarah', '1', -1, NULL, 19200, 3, 3, 10, 10, 100, 100, 0, 0, 0, NULL, 0, 1, 0.959807, 1, 0.789093, 1, 1.30098, 1, 1.08273, 1, 0.96106, 1, 0.974285, 1, 0.731602, 1, 0.731791, 1, 0.9175, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1312769408);
+INSERT INTO `characters` VALUES('Sarah', '1', -1, NULL, 15495, 10, 3, 24, 7, 200, 100, 0, 0, 0, NULL, 0, 1, 0.959807, 1, 0.789093, 1, 1.30098, 1, 1.08273, 1, 0.96106, 1, 0.974285, 1, 0.731602, 1, 0.731791, 1, 0.9175, 1, 0, 0, 0, 0, 0, 0, 0, 0, 15, 1313787641, NULL, NULL, NULL);
+INSERT INTO `characters` VALUES('Linda', '1', -1, NULL, 20000, 3, 3, 10, 10, 100, 100, 0, 0, 0, NULL, 0, 3, 0.964409, 1, 0.894824, 1, 1.77659, 1, 1.11041, 1, 0.726525, 1, 1.0935, 1, 1.31435, 1, 0.947718, 1, 1.14196, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1313461738, NULL, NULL, NULL);
+INSERT INTO `characters` VALUES('Tiffany', '1', -1, NULL, 20000, 3, 3, 10, 10, 100, 100, 0, 0, 0, NULL, 0, 4, 0.733803, 1, 1.21288, 1, 0.81258, 1, 0.666021, 1, 0.880516, 1, 0.830584, 1, 0.815427, 1, 1.21858, 1, 0.785224, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1313707605, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -122,6 +129,7 @@ CREATE TABLE `charEvents` (
 -- Daten für Tabelle `charEvents`
 --
 
+INSERT INTO `charEvents` VALUES(1, 1, 1313297929, 3);
 
 -- --------------------------------------------------------
 
@@ -141,6 +149,17 @@ CREATE TABLE `charGrades` (
 -- Daten für Tabelle `charGrades`
 --
 
+INSERT INTO `charGrades` VALUES(1, 1, 100);
+INSERT INTO `charGrades` VALUES(1, 2, 40);
+INSERT INTO `charGrades` VALUES(1, 3, 0);
+INSERT INTO `charGrades` VALUES(1, 4, 95);
+INSERT INTO `charGrades` VALUES(1, 5, 90);
+INSERT INTO `charGrades` VALUES(3, 1, 0);
+INSERT INTO `charGrades` VALUES(4, 1, 0);
+INSERT INTO `charGrades` VALUES(4, 2, 0);
+INSERT INTO `charGrades` VALUES(4, 3, 0);
+INSERT INTO `charGrades` VALUES(4, 4, 0);
+INSERT INTO `charGrades` VALUES(4, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -160,6 +179,8 @@ CREATE TABLE `charSchool` (
 --
 
 INSERT INTO `charSchool` VALUES(1, 6);
+INSERT INTO `charSchool` VALUES(3, 6);
+INSERT INTO `charSchool` VALUES(4, 6);
 
 -- --------------------------------------------------------
 
@@ -168,7 +189,7 @@ INSERT INTO `charSchool` VALUES(1, 6);
 --
 
 CREATE TABLE `events` (
-  `eventName` varchar(20) NOT NULL,
+  `eventName` varchar(40) DEFAULT NULL,
   `eventCost` smallint(5) unsigned NOT NULL DEFAULT '0',
   `motivationReq` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `eventDescription` varchar(200) DEFAULT NULL,
@@ -191,7 +212,7 @@ CREATE TABLE `events` (
 -- Daten für Tabelle `events`
 --
 
-INSERT INTO `events` VALUES('Practice piano', 235, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 5, NULL, NULL, NULL, NULL, 1, '', 0, 0, -1);
+INSERT INTO `events` VALUES('Practice Piano with $name', 235, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 5, NULL, NULL, NULL, NULL, 1, '', 0, 0, -1);
 
 -- --------------------------------------------------------
 
@@ -329,6 +350,7 @@ CREATE TABLE `purchases` (
 --
 
 INSERT INTO `purchases` VALUES(1, 1);
+INSERT INTO `purchases` VALUES(1, 2);
 
 -- --------------------------------------------------------
 
