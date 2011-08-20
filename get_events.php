@@ -7,10 +7,12 @@
     $playerID = sanitizeString($_POST['playerID']);
     
     // Get grade level from playerID
-    $query = "SELECT characters.studentID,gradeLevel FROM accounts,characters
-              WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
+    $query = "SELECT name, characters.studentID,gradeLevel FROM " . 
+             "accounts,characters WHERE playerID=$playerID " .
+             " AND accounts.studentID=characters.studentID";
     $result = queryMysql($query);
     $row = mysql_fetch_array($result);
+    $name = $row['name']; 
     $studentID  = $row['studentID'];
     $gradeLevel = $row['gradeLevel'];
     
@@ -19,9 +21,6 @@
               LEFT JOIN charEvents ON events.eventID=charEvents.eventID
               AND charEvents.studentID=$studentID WHERE events.eGradeLevel<=$gradeLevel";
     $result = queryMysql($query);
-    
-    echo "Player ID: $playerID<br>";
-    echo "Grade Level: $gradeLevel<br>";
 
     $time = time();
     while($row=mysql_fetch_array($result)) {
@@ -53,6 +52,9 @@
         $timerName = "countdownTimer";
       }
 
+    // Hack to replace $name in eventName with character's name.
+    $eventName = str_replace('$name', $name, $eventName);
+
     echo <<<_HTML
 <table id="events">
   <tr class="eventname">
@@ -80,7 +82,7 @@
   <tr>
     <td>$skillC</td>
     <td></td>
-    <td><a href="do_event.php">test</a></td>
+    <td></td>
   </tr>
 </table><br><br>
 _HTML;
