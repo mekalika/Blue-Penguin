@@ -109,11 +109,11 @@
 <!-- Site navigation menu -->
 <ul id="nav">
   <li><a href="main.php">Home</a>
-  <li><a href="events.php">Events</a>
+  <li><a href="events_academic.php">Events</a>
     <ul>
-      <li><a href="life.html">Life</a>
-      <li><a href="academics.html">Academics</a>
-      <li><a href="events.php">Electives</a>
+      <li><a href="events_academic.php">Academic</a>
+      <li><a href="events_elective.php">Elective</a>
+      <li><a href="events_life.php">Life</a>
     </ul>
   <li><a href="shop.php">Shop</a>
   <li><a href="compete.html">Compete</a>

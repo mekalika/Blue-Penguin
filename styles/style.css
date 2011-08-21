@@ -232,10 +232,12 @@ select {
 }
 #subnav li:hover {
   background: #8eafd1;
-  color: #333;
 }
 #subnav li a:hover {
   color: #333;
+}
+#subnav li.selected {
+  background: #8cc0fa;
 }
  
 /* Copyright info, etc. on bottom of page. */

@@ -100,8 +100,8 @@ function reportName(studentID) {
 
   <!-- Subnavigation menu -->
   <ul id="subnav">
-    <li><a href="reportcard.php">Report Card</a>
-    <li><a href="items.html">Items</a>
+    <li class="selected"><a href="reportcard.php">Report Card</a>
+    <li><a href="items.php">Items</a>
     <li><a href="traits.php">My Traits</a>
     <li><a href="school.php">My School</a>
   </ul>

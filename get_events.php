@@ -2,9 +2,10 @@
   require_once 'botm_functions.php';
   session_start();
 
-  if (isset($_POST['playerID']))
+  if (isset($_POST['playerID']) && isset($_POST['type']))
   {
     $playerID = sanitizeString($_POST['playerID']);
+    $type = sanitizeString($_POST['type']);
     
     // Get grade level from playerID
     $query = "SELECT name, characters.studentID,gradeLevel FROM " . 
@@ -17,9 +18,10 @@
     $gradeLevel = $row['gradeLevel'];
     
     // Get all events below current grade level, join events and charEvents table
-    $query = "SELECT events.*,charEvents.timeReady,charEvents.timesDone FROM events
-              LEFT JOIN charEvents ON events.eventID=charEvents.eventID
-              AND charEvents.studentID=$studentID WHERE events.eGradeLevel<=$gradeLevel";
+    $query = "SELECT events.*,charEvents.timeReady,charEvents.timesDone FROM" .
+             " events LEFT JOIN charEvents ON events.eventID=" .
+             "charEvents.eventID AND charEvents.studentID=$studentID WHERE " .
+             "events.eGradeLevel<=$gradeLevel AND events.type='$type'";
     $result = queryMysql($query);
 
     $time = time();
