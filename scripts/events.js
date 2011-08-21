@@ -36,7 +36,7 @@ function getEvents(playerID, type)
   request.send(params)
 }
 
-function doEvent(playerID, eventID)
+function doEvent(playerID, eventID, type)
 {
   params = "playerID=" + playerID + "&eventID=" + eventID
   request = new ajaxRequest()
@@ -58,7 +58,7 @@ function doEvent(playerID, eventID)
           resetCountupTimers()
           
           // refresh events list
-          getEvents(playerID)
+          getEvents(playerID, type)
           
           // Display stat increases
           document.getElementById('eventResult').innerHTML = this.responseText
