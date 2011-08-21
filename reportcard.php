@@ -221,16 +221,17 @@ _HTML;
       $gradeID	= $row['gradeID'];
       $subject	= $row['subject'];
       // Get percent from charGrades table
-      $query = "SELECT percent FROM charGrades WHERE gradeID=$gradeID";
+      $query = "SELECT percent FROM charGrades WHERE gradeID=$gradeID AND studentID=$studentID";
       $result2 = queryMysql($query); 
-      $percent = mysql_result($result2, 0);
-      if ($percent == NULL) {  // Gray out grade.
+      $num_results = mysql_num_rows($result2);
+      if ($num_results == 0) {  // Gray out grade.
         echo <<<_HTML
 <font color ="#999999">$subject</font>
 <br>
 _HTML;
       }
       else {  // Normal color.
+        $percent = mysql_result($result2, 0);
         $letterGrade = getLetterGrade($percent); 
         echo "$subject: $letterGrade ($percent%)<br>";
       }

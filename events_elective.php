@@ -12,7 +12,7 @@
   echo <<<_HTML
 <script type="text/javascript" src="scripts/events.js"></script>
 <script>
-window.onload = getEvents($playerID, "E")
+window.onload = getEvents($playerID, 'E')
 </script>
 
 <!-- Subnavigation menu -->
