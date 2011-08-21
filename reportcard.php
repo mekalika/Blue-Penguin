@@ -2,7 +2,6 @@
 // Copyright 2011 Bearslug Entertainment. All Rights Reserved.
   require_once 'header.php';
   require_once 'botm_functions.php';
-  session_start();
 
   // TODO: Andrew will make this more awesome.
   function getLevelFromEXP($exp) {

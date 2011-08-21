@@ -12,6 +12,14 @@
     $result = queryMysql($query);
 
     echo <<< _HTML
+<!-- Subnavigation menu -->
+<ul id="subnav">
+  <li><a href="reportcard.php">Report Card</a>
+  <li class="selected"><a href="items.php">Items</a>
+  <li><a href="traits.php">My Traits</a>
+  <li><a href="school.php">My School</a>
+</ul>
+
 <!-- Items -->
 <h2>Items</h2>
 <p>These are your tools of the trade for raising the perfect tiger cub.<br><br>
