@@ -7,7 +7,9 @@
     $playerID = sanitizeString($_POST['playerID']);
     
     // Get item list
-    $query = "SELECT *,items.itemID FROM items LEFT JOIN purchases ON purchases.itemID=items.itemID";
+    $query = "SELECT items.*,accounts.studentID FROM items LEFT JOIN purchases
+              ON purchases.itemID=items.itemID LEFT JOIN accounts ON
+              purchases.studentID=accounts.studentID AND accounts.playerID=$playerID";
     $result = queryMysql($query);
     
     while($row=mysql_fetch_array($result))

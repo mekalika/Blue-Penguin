@@ -7,7 +7,7 @@
     $playerID = sanitizeString($_SESSION['playerID']);
     
     // Get all items the player has purchased
-    $query = "SELECT * FROM accounts LEFT JOIN purchases ON accounts.studentID=purchases.studentID
+    $query = "SELECT * FROM purchases LEFT JOIN accounts ON accounts.studentID=purchases.studentID
               LEFT JOIN items ON purchases.itemID=items.itemID WHERE playerID=$playerID";
     $result = queryMysql($query);
 
@@ -18,7 +18,8 @@
 _HTML;
 
     $time = time();
-    while($row=mysql_fetch_array($result)) {
+    while($row=mysql_fetch_array($result))
+    {
       $studentID        = $row['studentID'];
       $itemID           = $row['itemID'];
       $itemName         = $row['itemName'];
