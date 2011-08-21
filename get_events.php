@@ -37,6 +37,7 @@
       $skillB           = $row['skillB'];
       $skillC           = $row['skillC'];
       $timesDone        = $row['timesDone'];
+      $type             = $row['type'];
       
       $timerName = "NULL";
       $timeLeft=0;
@@ -79,7 +80,7 @@
   <tr>
     <td>$skillB</td>
     <td>Motivation: $motivationReq</td>
-    <td><input type="button" value="Do event" onClick="doEvent($playerID,$eventID)"></td>
+    <td><input type="button" value="Do event" onClick="doEvent($playerID,$eventID,'$type')"></td>
   </tr>
   <tr>
     <td>$skillC</td>
