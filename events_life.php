@@ -8,9 +8,9 @@
 
   // Log in to MySQL
   require_once 'header.php';
-  require_once 'events.php';
 
   echo <<<_HTML
+<script type="text/javascript" src="scripts/events.js"></script>
 <script>
 window.onload = getEvents($playerID, "L")
 </script>

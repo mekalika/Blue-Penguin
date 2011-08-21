@@ -4,7 +4,7 @@
   <title>Battle of the Tiger Moms Start Playing</title>
   
   <meta name="description" content="Battle of the Tiger Moms. By M.G.Twice.">
-  <meta name="copyright" content="2011© M.G.Twice">
+  <meta name="copyright" content="2011© Bearslug Games">
   <meta name="keywords" content="games, facebook, google plus, fun, tiger mom">
 
   <link rel="stylesheet" type="text/css" href="styles/style.css"/>

@@ -1,4 +1,3 @@
-<?php // events.php
 // Copyright 2011 Bearslug Games. All Rights Reserved.
 
 /**
@@ -6,11 +5,6 @@
   *                checking whether the event is available or not (time-wise).
   */
 
-  // Log in to MySQL
-  require_once 'header.php';
-
-  echo <<<_HTML
-<script>
 function getEvents(playerID, type)
 {
   params = "playerID=" + playerID  + "&type=" + type
@@ -164,8 +158,3 @@ function temp()
 {
   document.getElementById('cash').innerHTML = "yes"
 }
-</script>
-_HTML;
-
-  mysql_close($db_server);
-?>
