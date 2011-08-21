@@ -38,7 +38,7 @@ function getEvents(playerID, type)
 
 function doEvent(playerID, eventID, type)
 {
-  params = "playerID=" + playerID + "&eventID=" + eventID
+  params = "playerID=" + playerID + "&eventID=" + eventID + "&type=" + type
   request = new ajaxRequest()
   request.open("POST", "do_event.php", true)
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")

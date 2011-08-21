@@ -2,10 +2,11 @@
   require_once 'botm_functions.php';
   session_start();
 
-  if (isset($_POST['playerID']) && isset($_POST['eventID']))
+  if (isset($_POST['playerID']) && isset($_POST['eventID']) && isset($_POST['type']))
   {
     $playerID = sanitizeString($_POST['playerID']);
     $eventID = sanitizeString($_POST['eventID']);
+    $type = sanitizeString($_POST['type']);
     
     // Get grade level from playerID
     $query = "SELECT characters.studentID,gradeLevel FROM accounts,characters
