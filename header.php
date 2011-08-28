@@ -108,23 +108,23 @@
 
 <!-- Site navigation menu -->
 <ul id="nav">
-  <li><a href="main.php">Home</a>
-  <li><a href="events_academic.php">Events</a>
+  <li><a href="main.php"><img src="images/icon_home.gif" height=12 width=12/> Home</a>
+  <li><a href="events_academic.php"><img src="images/icon_events.gif" height=12 width=12/> Events</a>
     <ul>
       <li><a href="events_academic.php">Academic</a>
       <li><a href="events_elective.php">Elective</a>
       <li><a href="events_life.php">Life</a>
     </ul>
-  <li><a href="shop.php">Shop</a>
-  <li><a href="compete.html">Compete</a>
-  <li><a href="reportcard.php">Stats</a>
+  <li><a href="shop.php"><img src="images/icon_shop.gif" height=12 width=18/> Shop</a>
+  <li><a href="compete.html"><img src="images/icon_compete.gif" height=12 width=14/> Compete</a>
+  <li><a href="reportcard.php"><img src="images/icon_stats.gif" height=12 width=12/> Stats</a>
     <ul>
       <li><a href="reportcard.php">Report Card</a>
       <li><a href="items.php">My Items</a>
       <li><a href="traits.php">My Traits</a>
       <li><a href="school.php">School</a>
     </ul>
-  <li><a href="district.html">District</a>
+  <li><a href="district.html"><img src="images/icon_district.gif" height=12 width=12/> District</a>
 </ul>
 </div>
 <script type="text/javascript" src="timer.js"></script>
