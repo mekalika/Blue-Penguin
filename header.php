@@ -108,23 +108,23 @@
 
 <!-- Site navigation menu -->
 <ul id="nav">
-  <li><a href="main.php"><img src="images/icon_home.gif" height=12 width=12/> Home</a>
-  <li><a href="events_academic.php"><img src="images/icon_events.gif" height=12 width=12/> Events</a>
+  <li onMouseOver="document.images['icon_home'].src='images/icon_home1.gif'" onMouseOut="document.images['icon_home'].src='images/icon_home.gif'"><a href="main.php"><img name="icon_home" src="images/icon_home.gif" height=12 width=12/> Home</a>
+  <li onMouseOver="document.images['icon_events'].src='images/icon_events1.gif'" onMouseOut="document.images['icon_events'].src='images/icon_events.gif'"><a href="events_academic.php"><img name="icon_events" src="images/icon_events.gif" height=12 width=12/> Events</a>
     <ul>
       <li><a href="events_academic.php">Academic</a>
       <li><a href="events_elective.php">Elective</a>
       <li><a href="events_life.php">Life</a>
     </ul>
-  <li><a href="shop.php"><img src="images/icon_shop.gif" height=12 width=18/> Shop</a>
-  <li><a href="compete.html"><img src="images/icon_compete.gif" height=12 width=14/> Compete</a>
-  <li><a href="reportcard.php"><img src="images/icon_stats.gif" height=12 width=12/> Stats</a>
+  <li onMouseOver="document.images['icon_shop'].src='images/icon_shop1.gif'" onMouseOut="document.images['icon_shop'].src='images/icon_shop.gif'"><a href="shop.php"><img name="icon_shop" src="images/icon_shop.gif" height=12 width=18/> Shop</a>
+  <li onMouseOver="document.images['icon_compete'].src='images/icon_compete1.gif'" onMouseOut="document.images['icon_compete'].src='images/icon_compete.gif'"><a href="compete.html"><img name="icon_compete" src="images/icon_compete.gif" height=12 width=14/> Compete</a>
+  <li onMouseOver="document.images['icon_stats'].src='images/icon_stats1.gif'" onMouseOut="document.images['icon_stats'].src='images/icon_stats.gif'"><a href="reportcard.php"><img name="icon_stats" src="images/icon_stats.gif" height=12 width=12/> Stats</a>
     <ul>
       <li><a href="reportcard.php">Report Card</a>
       <li><a href="items.php">My Items</a>
       <li><a href="traits.php">My Traits</a>
       <li><a href="school.php">School</a>
     </ul>
-  <li><a href="district.html"><img src="images/icon_district.gif" height=12 width=12/> District</a>
+  <li onMouseOver="document.images['icon_district'].src='images/icon_district1.gif'" onMouseOut="document.images['icon_district'].src='images/icon_district.gif'"><a href="district.html"><img name="icon_district" src="images/icon_district.gif" height=12 width=12/> District</a>
 </ul>
 </div>
 <script type="text/javascript" src="timer.js"></script>
