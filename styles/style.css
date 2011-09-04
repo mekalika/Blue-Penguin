@@ -283,7 +283,7 @@ address {
 
 /* Table used for events. */
 #events {
-  border: 1px solid #446CA4;
+  border: 1px solid #5ca8b1;
   border-collapse: collapse;
   font: .9em Verdana, Helvetica, Arial, sans-serif;
   width: 100%;
@@ -295,7 +295,7 @@ address {
   padding: 15px 8px 2px 7px;
 }
 #events th {
-  background-color: #446CA4;
+  background-color: #5ca8b1;
   color: white;
   font-size: .8em;
   padding-top: 5px;
@@ -303,14 +303,14 @@ address {
   text-align: left;
 }
 #events tr.eventname td {
-  background-color: #d2e4fc;
-  color: #446CA4;
+  background-color: #d8f0f0;
+  color: #333;
   font-size: 1.3em;
   padding-top: 5px;
   padding-bottom: 4px;
 } 
 #events tr.eventdescription td {
-  background-color: #d2e4fc;
+  background-color: #d8f0f0;
   font-size: .8em;
   padding-top: 0;
   padding-bottom: 4px;
