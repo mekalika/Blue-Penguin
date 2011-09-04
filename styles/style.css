@@ -88,54 +88,40 @@ select {
   padding: 2px;
 }
 
-/* ID card. */
-/* Set the image to use and establish the lower-right position. */ 
-.cssbox,
-.cssbox-body,
-.cssbox-head,
-.cssbox-head h2 { 
-  background: transparent url(i/img.php.png) no-repeat bottom right;
-  opacity: .9;
+#announce {
+  background: #d8f0f0;
+  border: 1px solid #333;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  width: 80%;
 }
- 
-.cssbox { 
+#announce p.date {
+  font-style: italic;
+}
+#announce p.signature {
+  font-style: italic;
+  text-align: right;
+}
+
+/* ID card. */
+#cssbox { 
+  background: #eceff6;
+  border-radius: 15px;
   float: left;
-  margin: 20px auto;
-  /* The gap on the right edge of the image (not content padding). */ 
-  padding-right: 15px; /* Use to position the box. */ 
-  /* Intended total box width - padding-right(next). */ 
+  margin-left: 12px;
+  margin-top: 25px;
+  opacity: .95;
+  padding-left: 15px;
   position: absolute;
   top: 0;
-  width: 335px !important; /* IE Win = width - padding */
-  width: 320px; 
+  width: 300px !important; /* IE Win = width - padding */
+  width: 250px; 
 } 
-
-/* Set the top-right image. */ 
-.cssbox-head {
-  background-position: top right; 
-  /* Pull the right image over on top of border. */ 
-  margin-right: -15px; 
-  /* Right-image-gap + right-inside padding. */ 
-  padding-right: 40px;
-} 
-
-/* Set the top-left image. */ 
-.cssbox-head h2 { 
-  background-position: top left; 
-  border: 0; /* Ditto. */ 
-  height: auto !important; 
-  height: 1%;
-  margin: 0; /* Reset main site styles. */ 
-  /* padding-left = image gap + interior padding ... no padding-right */ 
-  padding: 25px 0 15px 40px; 
-} /* IE Holly Hack */ 
-
-/* Set the lower-left corner image. */ 
-.cssbox-body { 
-  background-position: bottom left; 
-  margin-right: 25px; /* interior-padding right */ 
-  padding: 15px 0 15px 40px;
-} /* mirror .cssbox-head right/left */ 
+#cssbox ul {
+  list-style: none;
+}
 
 /* The main navbar. */
 #nav,

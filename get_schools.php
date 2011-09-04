@@ -90,7 +90,7 @@ _HTML;
         }
         else {
           echo <<<_HTML
-  <td>Unlocks when district size reaches $friendsReq</td>
+  <td>Need $friendsReq friends</td>
 </tr>
 _HTML;
         }
@@ -125,7 +125,7 @@ _HTML;
         }
         else {
           echo <<<_HTML
-  <td>Unlocks when district size reaches $friendsReq</td>
+  <td>Need $friendsReq friends</td>
 </tr>
 _HTML;
         }
