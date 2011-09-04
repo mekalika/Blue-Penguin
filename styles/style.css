@@ -283,6 +283,7 @@ address {
 
 /* Table used for events. */
 #events {
+  border: 1px solid #446CA4;
   border-collapse: collapse;
   font: .9em Verdana, Helvetica, Arial, sans-serif;
   width: 100%;
@@ -294,21 +295,22 @@ address {
   padding: 15px 8px 2px 7px;
 }
 #events th {
-  background-color: #a7c942;
+  background-color: #446CA4;
   color: white;
-  font-size: 1.2em;
+  font-size: .8em;
   padding-top: 5px;
   padding-bottom: 4px;
   text-align: left;
 }
 #events tr.eventname td {
-  background-color: #8cc0fa;
-  font-size: 1.2em;
+  background-color: #d2e4fc;
+  color: #446CA4;
+  font-size: 1.3em;
   padding-top: 5px;
   padding-bottom: 4px;
 } 
 #events tr.eventdescription td {
-  background-color: #8cc0fa;
+  background-color: #d2e4fc;
   font-size: .8em;
   padding-top: 0;
   padding-bottom: 4px;

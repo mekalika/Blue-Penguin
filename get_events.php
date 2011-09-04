@@ -87,7 +87,7 @@
     <td></td>
     <td></td>
   </tr>
-</table><br><br>
+</table><br>
 _HTML;
     }
     echo <<<_HTML
