@@ -12,6 +12,7 @@
               purchases.studentID=accounts.studentID AND accounts.playerID=$playerID";
     $result = queryMysql($query);
     
+    $alt = 0;
     while($row=mysql_fetch_array($result))
     {
       $itemName         = $row['itemName'];
@@ -28,26 +29,60 @@
       if(is_null($studentID))
         $buttonString = "<input type=\"button\" value=\"Purchase\" onClick=\"buyItem($playerID,$itemID)\">";
       else
-        $buttonString = "Purchased";
-
+        $buttonString = "<i>Purchased</i>";
+    
+      if ($alt % 2 == 0) {
     echo <<<_HTML
-<table id="events">
-<tr class="eventname">
-  <td colspan="2">$itemName</td>
-  <td width = 15%>$$price</td>  
+<table id="items">
+<tr class="itemname">
+  <td><img src="images/gr_piano.jpg"></td>
+  <td width = 75%>
+    <table width=100%>
+      <tr>
+        <td><strong>$itemName</strong><br>$$price</td>
+      </tr>
+      <tr class="itemdescription">
+        <td>$description</td>
+      </tr>
+      <tr>
+        <td align=right>$buttonString</td>
+      </tr>
+    </table>
+  </td>
 </tr>
-<tr class="eventdescription">
-<td colspan="3">$description</td></tr>
 <tr>
-  <td colspan="3"></td>
+  <th colspan="2">Extra notes</th></td>
 </tr>
-<tr>
-  <td width = 15%><img src="images/$picture"></td>
-  <td>$itemType</td>
-  <td>$buttonString</td>
-</tr>
-</table><br><br>
+</table><br>
 _HTML;
+      }
+      else {
+    echo <<<_HTML
+<table id="altitems">
+<tr class="altitemname">
+  <td><img src="images/pianokeys.jpg"></td>
+  <td width = 75%>
+    <table width=100%>
+      <tr>
+        <td><strong>$itemName</strong><br>$$price</td>
+      </tr>
+      <tr class="altitemdescription">
+        <td>$description</td>
+      </tr>
+      <tr>
+        <td align=right>$buttonString</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+  <th colspan="2">Extra notes</th></td>
+</tr>
+</table><br>
+_HTML;
+      
+      }
+      $alt++;
     }
   }
   else

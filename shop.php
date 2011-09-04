@@ -163,12 +163,13 @@ window.onLoad = getItems($playerID)
 
 <!-- Events -->
 <h2>Hobby Superstore</h2>
-<p>Here you can purchase the supplies and equipment you need for your electives!
-
-<a href="#piano">Piano</a> <a href="#violin">Violin</a> <a href="#athletics">Athletics</a> <a href="#dance">Dance</a> <a href="#language">Language</a> <a href="#science">Science</a> <a href="#math">Math</a><br>
+<p>Here you can purchase the supplies and equipment you need for your electives!<br>
+<center>
+<a href="#piano">Piano</a> <a href="#violin">Violin</a> <a href="#athletics">Athletics</a> <a href="#dance">Dance</a> <a href="#language">Language</a> <a href="#science">Science</a> <a href="#math">Math</a><br><br>
 <div id='itemList'></div>
 <div id='info'></div>
 <div id='info1'></div>
+</center>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
 <address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>

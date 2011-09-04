@@ -281,7 +281,7 @@ address {
   color: #333;
 }
 
-/* Table used for events and items. */
+/* Table used for events. */
 #events {
   border-collapse: collapse;
   font: .9em Verdana, Helvetica, Arial, sans-serif;
@@ -318,3 +318,73 @@ address {
   color: #333;
   padding-top: 0;
 }
+
+/* Tables used for items. */
+#items {
+  border: 1px solid #333;
+  border-collapse: collapse;
+  font: .9em Verdana, Helvetica, Arial, sans-serif;
+  width: 80%;
+}
+#items td,
+#items th {
+  border: 0;
+  font-size: 1em;
+  padding: 15px 8px 2px 7px;
+}
+#items th {
+  background-color: #8cc0fa;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 4px;
+  text-align: left;
+}
+#items tr.itemname td {
+  background-color: #d2e4fc;
+  font-size: 1.2em;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-top: 8px;
+} 
+#items tr.itemdescription td {
+  background-color: white;
+  border: 1px solid #8cc0fa;
+  font-size: .8em;
+  padding-top: 0;
+  padding-bottom: 4px;
+} 
+
+
+#altitems {
+  border: 1px solid #333;
+  border-collapse: collapse;
+  font: .9em Verdana, Helvetica, Arial, sans-serif;
+  width: 80%;
+}
+#altitems td,
+#altitems th {
+  border: 0;
+  font-size: 1em;
+  padding: 15px 8px 2px 7px;
+}
+#altitems th {
+  background-color: #5ca8b1;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 4px;
+  text-align: left;
+}
+#altitems tr.altitemname td {
+  background-color: #d8f0f0;
+  font-size: 1.2em;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-top: 8px;
+} 
+#altitems tr.altitemdescription td {
+  background-color: white;
+  border: 1px solid #5ca8b1;
+  font-size: .8em;
+  padding-top: 0;
+  padding-bottom: 4px;
+} 

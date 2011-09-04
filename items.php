@@ -26,8 +26,8 @@
 _HTML;
 
     $time = time();
-    while($row=mysql_fetch_array($result))
-    {
+    $alt = 0;
+    while($row=mysql_fetch_array($result)) {
       $studentID        = $row['studentID'];
       $itemID           = $row['itemID'];
       $itemName         = $row['itemName'];
@@ -39,24 +39,58 @@ _HTML;
       $itemSkill        = $row['itemSkill'];
       $price            = $row['price'];
       
+      if ($alt % 2 == 0) {
       echo <<<_HTML
-<table id="events">
-<tr class="eventname">
-  <td colspan="2">$itemName</td>
-  <td width = 15%>$$price</td>  
+<table id="items">
+<tr class="itemname">
+  <td><img src="images/gr_piano.jpg"></td>
+  <td width = 75%>
+    <table width=100%>
+      <tr>
+        <td><strong>$itemName</strong><br>$$price</td>
+      </tr>
+      <tr class="itemdescription">
+        <td>$description</td>
+      </tr>
+      <tr>
+      </tr>
+    </table>
+  </td>
 </tr>
-<tr class="eventdescription">
-<td colspan="3">$description</td></tr>
 <tr>
-  <td colspan="3"></td>
+  <th colspan="2">Extra notes</th></td>
 </tr>
-<tr>
-  <td width = 15%><img src="images/$picture"></td>
-  <td>$itemType</td>
-  <td>Purchased</td>
-</tr>
-</table><br><br>
+</table><br>
+
 _HTML;
+      }
+    else {
+  echo <<<_HTML
+<table id="altitems">
+<tr class="altitemname">
+  <td><img src="images/gr_piano.jpg"></td>
+  <td width = 75%>
+    <table width=100%>
+      <tr>
+        <td><strong>$itemName</strong><br>$$price</td>
+      </tr>
+      <tr class="altitemdescription">
+        <td>$description</td>
+      </tr>
+      <tr>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+  <th colspan="2">Extra notes</th></td>
+</tr>
+</table><br>
+
+_HTML;
+
+      }
+      $alt++;
     }
   }
   else
