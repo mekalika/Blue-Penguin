@@ -349,6 +349,7 @@ address {
 #items tr.itemdescription td {
   background-color: white;
   border: 1px solid #8cc0fa;
+  border-radius: 8px 0;
   font-size: .8em;
   padding-top: 0;
   padding-bottom: 4px;
@@ -384,6 +385,7 @@ address {
 #altitems tr.altitemdescription td {
   background-color: white;
   border: 1px solid #5ca8b1;
+  border-radius: 8px 0;
   font-size: .8em;
   padding-top: 0;
   padding-bottom: 4px;
