@@ -21,7 +21,8 @@
     $query = "SELECT events.*,charEvents.timeReady,charEvents.timesDone FROM" .
              " events LEFT JOIN charEvents ON events.eventID=" .
              "charEvents.eventID AND charEvents.studentID=$studentID WHERE " .
-             "events.eGradeLevel<=$gradeLevel AND events.type='$type'";
+             "events.eGradeLevel=$gradeLevel AND events.type='$type' " .
+             "ORDER BY events.eventCost, events.motivationReq";
     $result = queryMysql($query);
 
     $time = time();
