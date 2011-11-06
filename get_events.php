@@ -78,7 +78,7 @@
 _HTML;
       if ($eventCost == 0) {
         echo <<<_HTML
-<td>Motivation: $motivationReq</td>"
+<td>Motivation: $motivationReq</td>
 <td></td>
 </tr>
 <tr>
