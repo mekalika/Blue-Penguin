@@ -8,13 +8,13 @@
     $type = sanitizeString($_POST['type']);
     
     // Get grade level from playerID
-    $query = "SELECT name, characters.studentID,gradeLevel FROM " . 
+    $query = "SELECT name, characters.studentID,gradeLevel FROM " .
              "accounts,characters WHERE playerID=$playerID " .
              " AND accounts.studentID=characters.studentID";
     $result = queryMysql($query);
     $row = mysql_fetch_array($result);
-    $name = $row['name']; 
-    $studentID  = $row['studentID'];
+    $name = $row['name'];
+    $studentID = $row['studentID'];
     $gradeLevel = $row['gradeLevel'];
     
     // Get all events below current grade level, join events and charEvents table
@@ -27,18 +27,18 @@
 
     $time = time();
     while($row=mysql_fetch_array($result)) {
-      $eventID          = $row['eventID'];
-      $eventName        = $row['eventName'];
-      $eventCost        = $row['eventCost'];
-      $motivationReq    = $row['motivationReq'];
-      $timeLimit        = $row['timeLimit'];
-      $timeReady        = $row['timeReady'];
+      $eventID = $row['eventID'];
+      $eventName = $row['eventName'];
+      $eventCost = $row['eventCost'];
+      $motivationReq = $row['motivationReq'];
+      $timeLimit = $row['timeLimit'];
+      $timeReady = $row['timeReady'];
       $eventDescription = $row['eventDescription'];
-      $skillA           = $row['skillA'];
-      $skillB           = $row['skillB'];
-      $skillC           = $row['skillC'];
-      $timesDone        = $row['timesDone'];
-      $type             = $row['type'];
+      $skillA = $row['skillA'];
+      $skillB = $row['skillB'];
+      $skillC = $row['skillC'];
+      $timesDone = $row['timesDone'];
+      $type = $row['type'];
       
       $timerName = "NULL";
       $timeLeft=0;
@@ -61,33 +61,54 @@
 
     echo <<<_HTML
 <table id="events">
-  <tr class="eventname">
-    <td colspan="2">$eventName</td>
-    <td><div name=$timerName title=$timeLeft>$eventTime</div></td>
-  </tr>
-  <tr class="eventdescription">
-    <td colspan="3">$eventDescription</td>
-  </tr>
-  <tr>
-    <th width=20%>Skills trained</th>
-    <th width=60%>Requirements</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>$skillA</td>
-    <td>Cost: $$eventCost</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>$skillB</td>
-    <td>Motivation: $motivationReq</td>
-    <td><input type="button" value="Do event" onClick="doEvent($playerID,$eventID,'$type')"></td>
-  </tr>
-  <tr>
-    <td>$skillC</td>
-    <td></td>
-    <td></td>
-  </tr>
+<tr class="eventname">
+<td colspan="2">$eventName</td>
+<td><div name=$timerName title=$timeLeft>$eventTime</div></td>
+</tr>
+<tr class="eventdescription">
+<td colspan="3">$eventDescription</td>
+</tr>
+<tr>
+<th width=20%>Skills trained</th>
+<th width=60%>Requirements</th>
+<th></th>
+</tr>
+<tr>
+<td>$skillA</td>
+_HTML;
+      if ($eventCost == 0) {
+        echo <<<_HTML
+<td>Motivation: $motivationReq</td>"
+<td></td>
+</tr>
+<tr>
+<td>$skillB</td>
+<td></td>
+_HTML;
+      }
+      else {
+        echo <<<_HTML
+<td>Cost: $$eventCost</td>
+<td></td>
+</tr>
+<tr>
+<td>$skillB</td>
+_HTML;
+        if ($motivationReq == 0) {
+          echo "<td></td>";
+        }
+        else {
+          echo "<td>Motivation: $motivationReq</td>";
+        }
+      }
+      echo <<<_HTML
+<td><input type="button" value="Do event" onClick="doEvent($playerID,$eventID,'$type')"></td>
+</tr>
+<tr>
+<td>$skillC</td>
+<td></td>
+<td></td>
+</tr>
 </table><br>
 _HTML;
     }
