@@ -240,10 +240,10 @@ _HTML;
   echo "</table>";
 
   // Skill information.
-  $skillEXPs = array('pianoEXP', 'violinEXP', 'athleticsEXP', 'danceEXP',
+  $skillEXPs = array('cultureEXP', 'pianoEXP', 'violinEXP', 'athleticsEXP', 'danceEXP',
                      'languageEXP', 'scienceEXP', 'mathEXP', 'historyEXP',
                      'chineseEXP');
-  $skills = array('Piano', 'Violin', 'Athletics', 'Dance',
+  $skills = array('Culture', 'Piano', 'Violin', 'Athletics', 'Dance',
                   'Language', 'Science', 'Math', 'History',
                   'Chinese');
 
