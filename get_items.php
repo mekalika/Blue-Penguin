@@ -9,7 +9,7 @@
     // Get item list
     $query = "SELECT items.*,accounts.studentID FROM items LEFT JOIN purchases
               ON purchases.itemID=items.itemID LEFT JOIN accounts ON
-              purchases.studentID=accounts.studentID AND accounts.playerID=$playerID";
+              purchases.studentID=accounts.studentID AND accounts.playerID=$playerID ORDER BY items.itemType,items.price";
     $result = queryMysql($query);
     
     $alt = 0;
@@ -35,7 +35,7 @@
     echo <<<_HTML
 <table id="items">
 <tr class="itemname">
-  <td><img src="images/gr_piano.jpg"></td>
+  <td><img src="$picture" width="128" height="128"></td>
   <td width = 75%>
     <table width=100%>
       <tr>
@@ -60,7 +60,7 @@ _HTML;
     echo <<<_HTML
 <table id="altitems">
 <tr class="altitemname">
-  <td><img src="images/pianokeys.jpg"></td>
+  <td><img src="$picture" width="128" height="128"></td>
   <td width = 75%>
     <table width=100%>
       <tr>
