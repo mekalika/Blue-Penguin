@@ -10,6 +10,7 @@
   require_once 'header.php';
 
   echo <<<_HTML
+<script src="scripts/sliding.js"></script>
 <script>
 function getItems(playerID)
 {
@@ -156,20 +157,22 @@ window.onLoad = getItems($playerID)
 </script>
 
 <!-- Subnavigation menu -->
-<ul id="subnav">
-  <li class="selected"><a href="#piano">Piano</a>
-  <li><a href="#violin">Violin</a>
-  <li><a href="#athletics">Athletics</a>
-  <li><a href="#dance">Dance</a>
-  <li><a href="#language">Language</a>
-  <li><a href="#science">Science</a>
-  <li><a href="#math">Math</a>
-</ul>
 
 <!-- Events -->
 <h2>Hobby Superstore</h2>
 <p>Here you can purchase the supplies and equipment you need for your electives!<br>
 <center>
+<div class="control-panel">
+<ul class="control-list">
+  <li id="1">Athletics</li>
+  <li id="2">Dance</li>
+  <li id="3">Language</li>
+  <li id="4">Math</li>
+  <li id="5">Piano</li>
+  <li id="6">Science</li>
+  <li id="7">Violin</li>
+</ul>
+</div>
 <div id='itemList'></div>
 <div id='info'></div>
 <div id='info1'></div>

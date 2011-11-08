@@ -13,6 +13,8 @@
     $result = queryMysql($query);
     
     $alt = 0;
+    $prevItemType = '';
+    echo '<div id="wrapper"><div class="gliding">';
     while($row=mysql_fetch_array($result))
     {
       $itemName         = $row['itemName'];
@@ -30,7 +32,16 @@
         $buttonString = "<input type=\"button\" value=\"Purchase\" onClick=\"buyItem($playerID,$itemID)\">";
       else
         $buttonString = "<i>Purchased</i>";
-    
+
+      if ($prevItemType != $itemType) {
+        if ($prevItemType != '') {
+          echo '</span>';
+        }
+        echo '<span class="gliding-content">';
+        echo "<h2>$itemType</h2>";
+        $prevItemType = $itemType;
+      }
+
       if ($alt % 2 == 0) {
     echo <<<_HTML
 <table id="items">
@@ -84,6 +95,7 @@ _HTML;
       }
       $alt++;
     }
+  echo "</div></div>";
   }
   else
   {
