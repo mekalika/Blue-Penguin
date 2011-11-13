@@ -396,6 +396,7 @@ address {
   margin: .25em;
   padding: 3px;
   color:#fff;
+  cursor: pointer;
   background: #89B8E2;
   border:#3F70BC
   /*border-radius: 8px 0;*/

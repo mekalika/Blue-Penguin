@@ -27,13 +27,6 @@ window.onload = getEvents($playerID, "L")
 "You need more character! When I was a kid..."<br>
 <div id='eventResult'></div>
 <div id='eventList'>a</div>
-$time
-<div id='info'>b</div>
-<div id='info1'>c</div>
-<a href='javascript:;' onclick='temp();'>test</a>
-<a href="refresh_header.php">test2</a>
-<div id="test" name="countdownTimer" title=500></div><br>
-<div id="test2" name="countdownTimer" title=300></div><br>
 
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>

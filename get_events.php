@@ -22,10 +22,14 @@
              " events LEFT JOIN charEvents ON events.eventID=" .
              "charEvents.eventID AND charEvents.studentID=$studentID WHERE " .
              "events.eGradeLevel=$gradeLevel AND events.type='$type' " .
-             "ORDER BY events.eventCost, events.motivationReq";
+             "ORDER BY events.category, events.eventCost, events.motivationReq";
     $result = queryMysql($query);
 
     $time = time();
+    $prevEventCategory = '';
+    if ($type != 'L') {
+      echo '<div id="wrapper"><div class="gliding">';
+    }
     while($row=mysql_fetch_array($result)) {
       $eventID = $row['eventID'];
       $eventName = $row['eventName'];
@@ -38,6 +42,7 @@
       $skillB = $row['skillB'];
       $skillC = $row['skillC'];
       $timesDone = $row['timesDone'];
+      $category = $row['category'];
       $type = $row['type'];
       
       $timerName = "NULL";
@@ -56,10 +61,18 @@
         $timerName = "countdownTimer";
       }
 
-    // Hack to replace $name in eventName with character's name.
-    $eventName = str_replace('$name', $name, $eventName);
+      // Hack to replace $name in eventName with character's name.
+      $eventName = str_replace('$name', $name, $eventName);
+      if ($prevEventCategory != $category && $category != '') {
+        if ($prevEventCategory != '') {
+          echo '</span>';
+        }
+        echo '<span class="gliding-content">';
+        echo "<h2>$category</h2>";
+        $prevEventCategory = $category;
+      }
 
-    echo <<<_HTML
+      echo <<<_HTML
 <table id="events">
 <tr class="eventname">
 <td colspan="2">$eventName</td>
@@ -112,10 +125,9 @@ _HTML;
 </table><br>
 _HTML;
     }
-    echo <<<_HTML
-<script type="text/javascript" src="timer.js"></script>
-Time: $time
-_HTML;
+    if ($type != 'L') {
+      echo "</div></div>";
+    }
   }
   else
   {

@@ -10,6 +10,7 @@
   require_once 'header.php';
 
   echo <<<_HTML
+<script src="scripts/sliding.js"></script>
 <script type="text/javascript" src="scripts/events.js"></script>
 <script>
 window.onload = getEvents($playerID, 'E')
@@ -25,16 +26,21 @@ window.onload = getEvents($playerID, 'E')
 <!-- Events -->
 <h2>Elective Events</h2>
 <p>"Unlike your typical Western overscheduling soccer mom, the Chinese mother believes that...the only activities your children should be permitted to do are those in which they can eventually win a medal; and...that medal must be gold."<br><br>
-<a href="#piano">Piano</a> <a href="#violin">Violin</a> <a href="#athletics">Athletics</a> <a href="#dance">Dance</a> <a href="#language">Language</a> <a href="#science">Science</a> <a href="#math">Math</a>
+<center>
+<div class="control-panel">
+<ul class="control-list">
+  <li id="1">Athletics</li>
+  <li id="2">Dance</li>
+  <li id="3">Language</li>
+  <li id="4">Math</li>
+  <li id="5">Piano</li>
+  <li id="6">Science</li>
+  <li id="7">Violin</li>
+</ul>
+</div>
 <div id='eventResult'></div>
 <div id='eventList'>a</div>
-$time
-<div id='info'>b</div>
-<div id='info1'>c</div>
-<a href='javascript:;' onclick='temp();'>test</a>
-<a href="refresh_header.php">test2</a>
-<div id="test" name="countdownTimer" title=500></div><br>
-<div id="test2" name="countdownTimer" title=300></div><br>
+</center>
 
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
