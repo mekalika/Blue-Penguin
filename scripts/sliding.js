@@ -24,7 +24,8 @@ function findGliding()
 	var glidingDiv = document.getElementsByTagName('div');
 	for(var i =0; i < glidingDiv.length; i++)
 	{
-		if(glidingDiv[i].className=='gliding')
+		if(glidingDiv[i].className=='gliding' ||
+                  glidingDiv[i].className=='glidingreport')
 		{
 			gliding = glidingDiv[i];
 		}

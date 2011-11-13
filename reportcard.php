@@ -69,6 +69,7 @@
   }
 
 echo <<<_HTML
+<script src="scripts/sliding.js"></script>
 <script>
 function reportName(studentID) {
   params = "studentID=" + studentID
@@ -124,8 +125,19 @@ _HTML;
 
   echo <<<_HTML
 <!-- Main content -->
-<p><strong>Basic info</strong><br>
-Name: $name<br>
+<h1>$name</h1>
+<div class="control-panel">
+<ul class="control-list">
+  <li id="1">Grades</li>
+  <li id="2">Skills</li>
+  <li id="3">Transcript</li>
+</ul>
+</div>
+<hr>
+<img src="images/asian_girl_profile" width="209" height="329" align="left" style="margin-right:10px">
+<div id="report-wrapper"><div class="glidingreport">
+<span class="gliding-report-content">
+
 Grade Level: $gradeString<br>
 School: $schoolName<br>
 District Size: 27<br> <!-- TODO -->
@@ -193,7 +205,65 @@ px;background-color:#2962A7;color:#FFFFFF"><strong>$letterGrade ($percent%) </st
 _HTML;
       }
     } 
+    echo '</span><span class="gliding-report-content">';
 
+
+  // Skill information.
+  $skillEXPs = array('cultureEXP', 'pianoEXP', 'violinEXP', 'athleticsEXP', 'danceEXP',
+                     'languageEXP', 'scienceEXP', 'mathEXP',
+                     'chineseEXP');
+  $skills = array('Culture', 'Piano', 'Violin', 'Athletics', 'Dance',
+                  'Language', 'Science', 'Math',
+                  'Chinese');
+  $images = array('culture.png', 'piano.png', 'violin.png', 'athletics.png',
+                  'language.png', 'science.png', 'math.png');
+
+  echo "<table cellpadding=\"5\"><tr>";
+  foreach ($skillEXPs as $skillEXP) {
+    $query = "SELECT $skillEXP FROM characters WHERE studentID=$studentID";
+    $result = queryMysql($query);
+    $exp = mysql_result($result, 0);
+    $currLevel = getLevelFromEXP($exp);
+    $expCurrLevel = getEXPForLevel($currLevel);
+    $expNextLevel = getEXPForLevel($currLevel + 1);
+    $expDiff = $expNextLevel - $expCurrLevel;
+    $expPercent = floor((($exp - $expCurrLevel) / $expDiff) * 100);
+    $progressWidth = 100 * ($expPercent / 100);
+
+    // Get name of skill for printing.
+    $index = array_search($skillEXP, $skillEXPs);
+    $skillName = $skills[$index];
+    $image_file = 'images/' . $images[$index];
+
+     echo <<<_HTML
+<td width="160"><div style="margin-left:auto; margin-right:auto;text-align:center"><img src="$image_file"><br></div><div style="margin-left:auto;margin-right:auto;width:100px;padding:2px;background-color:white;border:1px solid black;text-align:center">
+    <div style="width:
+_HTML;
+      echo "$progressWidth";
+        echo <<<_HTML
+px;background-color:#2FB2A0;">$exp/$expNextLevel 
+    </div></td>
+_HTML;
+     if ($index == 2 || $index == 5) {
+       echo '</tr><tr>';
+     }
+    // TODO: Will make prettier later.
+    // TODO: Also need to add levels, but looks too ugly right now.
+    //	     Need to design layout for this page...
+/*    if ($skillName == 'Piano') {
+      echo 'Just press the buttons! It not that hard.<br><br>';
+    }
+    elseif ($skillName == 'Violin') {
+      echo 'Only one finger bleeding. Keep practicing!<br><br>';
+    } 
+    elseif ($skillName == 'Chinese') {
+      echo 'Gotta write that letter to Grandma.<br><br>';
+    }
+    else { 
+      echo '<br><br>';
+    } */
+  }
+  echo '</tr></table></span><span class="gliding-report-content">';
   // Overview of grades
   echo "<table cellpadding=\"5\">";
   for ($grade = -1; $grade <= 12; $grade++) {
@@ -204,7 +274,7 @@ _HTML;
 <tr><td width="140px"><strong>$gradeString</strong><br>
 _HTML;
     } 
-    elseif ($grade == 4 || $grade == 9) {
+    elseif ($grade == 3 || $grade == 9) {
       echo <<<_HTML
 </td></tr><tr><td width="140px"><strong>$gradeString</strong><br>
 _HTML;
@@ -237,56 +307,7 @@ _HTML;
       }
     }
   }
-  echo "</table>";
-
-  // Skill information.
-  $skillEXPs = array('cultureEXP', 'pianoEXP', 'violinEXP', 'athleticsEXP', 'danceEXP',
-                     'languageEXP', 'scienceEXP', 'mathEXP', 'historyEXP',
-                     'chineseEXP');
-  $skills = array('Culture', 'Piano', 'Violin', 'Athletics', 'Dance',
-                  'Language', 'Science', 'Math', 'History',
-                  'Chinese');
-
-  foreach ($skillEXPs as $skillEXP) {
-    $query = "SELECT $skillEXP FROM characters WHERE studentID=$studentID";
-    $result = queryMysql($query);
-    $exp = mysql_result($result, 0);
-    $currLevel = getLevelFromEXP($exp);
-    $expCurrLevel = getEXPForLevel($currLevel);
-    $expNextLevel = getEXPForLevel($currLevel + 1);
-    $expDiff = $expNextLevel - $expCurrLevel;
-    $expPercent = floor((($exp - $expCurrLevel) / $expDiff) * 100);
-    $progressWidth = 300 * ($expPercent / 100);
-
-    // Get name of skill for printing.
-    $index = array_search($skillEXP, $skillEXPs);
-    $skillName = $skills[$index];
-    
-     echo <<<_HTML
-<div style="float: left;width:90px">$skillName:<pre></div><div style="float:left;width:300px;padding:2px;background-color:white;border:1px solid black;text-align:center">
-    <div style="width:
-_HTML;
-      echo "$progressWidth";
-        echo <<<_HTML
-px;background-color:#2FB2A0;">$exp/$expNextLevel 
-    </div></div>
-_HTML;
-    // TODO: Will make prettier later.
-    // TODO: Also need to add levels, but looks too ugly right now.
-    //	     Need to design layout for this page...
-    if ($skillName == 'Piano') {
-      echo 'Just press the buttons! It not that hard.<br><br>';
-    }
-    elseif ($skillName == 'Violin') {
-      echo 'Only one finger bleeding. Keep practicing!<br><br>';
-    } 
-    elseif ($skillName == 'Chinese') {
-      echo 'Gotta write that letter to Grandma.<br><br>';
-    }
-    else {
-      echo '<br><br>';
-    }
-  }
+  echo '</table></span></div></div>';
   echo <<<_HTML
 
 <!-- Sign and date the page, it's only polite! -->

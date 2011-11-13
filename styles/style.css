@@ -27,7 +27,7 @@ A:visited {
 
 h1,
 h2 {
-  font-family: Verdana, Helvetica, Arial, SunSans-Regular, sans-serif;
+  font-family: Helvetica, Arial, SunSans-Regular, sans-serif;
 }
 
 body {
@@ -384,6 +384,10 @@ address {
   width: 760px;
   overflow: hidden;
 }
+#report-wrapper {
+  width: 500px;
+  overflow: hidden;
+}
 
 /*control panel*/
 .control-panel ul{
@@ -410,6 +414,12 @@ address {
   position: relative;
   left: 0;
 }
+.glidingreport {
+  width: 6000px;
+  height: 460px;
+  position: relative;
+  left: 0;
+}
 .gliding-content {
   width: 760px;
   height: 2000px;
@@ -417,3 +427,9 @@ address {
   padding: 0;
   margin: 0; }
 
+.gliding-report-content {
+  width: 760px;
+  height: 460px;
+  float: left;
+  padding: 0;
+  margin: 0; }
