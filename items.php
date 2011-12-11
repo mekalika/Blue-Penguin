@@ -5,7 +5,7 @@
   if (isset($_SESSION['playerID']))
   {
     $playerID = sanitizeString($_SESSION['playerID']);
-    
+
     // Get all items the player has purchased
     $query = "SELECT * FROM purchases LEFT JOIN accounts ON accounts.studentID=purchases.studentID
 LEFT JOIN items ON purchases.itemID=items.itemID WHERE playerID=$playerID";
@@ -38,12 +38,12 @@ _HTML;
       $rank = $row['rank'];
       $itemSkill = $row['itemSkill'];
       $price = $row['price'];
-      
+
       if ($alt % 2 == 0) {
       echo <<<_HTML
 <table id="items">
 <tr class="itemname">
-<td><img src="images/gr_piano.jpg"></td>
+<td><img src="$picture" width="128" height="128"></td>
 <td width = 75%>
 <table width=100%>
 <tr>
@@ -68,7 +68,7 @@ _HTML;
   echo <<<_HTML
 <table id="altitems">
 <tr class="altitemname">
-<td><img src="images/gr_piano.jpg"></td>
+<td><img src="$picture" width="128" height="128"></td>
 <td width = 75%>
 <table width=100%>
 <tr>
@@ -97,7 +97,7 @@ _HTML;
   {
     //header( 'Location: logout.php' );
   }
-  
+
   mysql_close($db_server);
 ?>
 
