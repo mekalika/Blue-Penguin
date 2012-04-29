@@ -92,7 +92,7 @@
 
 <!-- ID Card -->
 <div id="topbar">
-<img src="images/harvard_logo.jpg">
+<img src="images/logo.gif">
 <div id="cssbox"> 
 <h2 align="left">$characterName</h2> 
 <ul class = "stats">
