@@ -9,7 +9,7 @@ function getEvents(playerID, type)
 {
   params = "playerID=" + playerID  + "&type=" + type
   request = new ajaxRequest()
-  request.open("POST", "get_events.php", true)
+  request.open("POST", "get_events.php", false)
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
   request.setRequestHeader("Content-length", params.length)
   request.setRequestHeader("Connection", "close")
@@ -36,7 +36,7 @@ function getEvents(playerID, type)
   request.send(params)
 }
 
-function doEvent(playerID, eventID, type)
+function doEvent(playerID, eventID, type, eventIndex)
 {
   params = "playerID=" + playerID + "&eventID=" + eventID + "&type=" + type
   request = new ajaxRequest()
@@ -61,7 +61,14 @@ function doEvent(playerID, eventID, type)
           getEvents(playerID, type)
           
           // Display stat increases
-          document.getElementById('eventResult').innerHTML = this.responseText
+          //document.getElementById('eventResult').innerHTML = this.responseText
+          //test(eventIndex)
+          x = document.getElementById(eventIndex)
+          y = x.innerHTML
+          height = x.clientHeight
+          code = "<div style=\"display:inline-block; height:" + height + "px;\">" + this.responseText + "</div>"
+          x.innerHTML = code
+          setTimeout(function(){x.innerHTML = y}, 2000)
           
           // debug
           //document.getElementById('info1').innerHTML = this.responseText
@@ -157,4 +164,19 @@ function ajaxRequest()
 function temp()
 {
   document.getElementById('cash').innerHTML = "yes"
+}
+
+function test(eventIndex)
+{
+  //document.getElementById('eventResult').innerHTML = "test"
+  //document.getElementById(eventIndex).innerHTML = "TEST"
+  //x=document.getElementById(eventIndex)
+  //y=x.parentNode.removeChild(x)
+  //document.getElementById('eventResult').innerHTML = y.nodeType
+  x = document.getElementById(eventIndex)
+  y = x.innerHTML
+  height = x.clientHeight
+  code = "<div style=\"display:inline-block; height:" + height + "px;\">" + height + "</div>"
+  x.innerHTML = code
+  window.setTimeout(function(){x.innerHTML = y}, 2000)
 }

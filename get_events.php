@@ -30,6 +30,7 @@
     if ($type != 'L') {
       echo '<div id="wrapper"><div class="gliding">';
     }
+    $index = 0;
     while($row=mysql_fetch_array($result)) {
       $eventID = $row['eventID'];
       $eventName = $row['eventName'];
@@ -73,9 +74,10 @@
       }
 
       echo <<<_HTML
+<div id=$index>
 <table id="events">
 <tr class="eventname">
-<td colspan="2">$eventName</td>
+<td colspan="2">$index $eventName</td>
 <td><div name=$timerName title=$timeLeft>$eventTime</div></td>
 </tr>
 <tr class="eventdescription">
@@ -115,15 +117,17 @@ _HTML;
         }
       }
       echo <<<_HTML
-<td><input type="button" value="Do event" onClick="doEvent($playerID,$eventID,'$type')"></td>
+<td><input type="button" value="Do event" onClick="doEvent($playerID,$eventID,'$type',$index)">
+<input type="button" value="test" onClick="test($index)"></td>
 </tr>
 <tr>
 <td>$skillC</td>
 <td></td>
 <td></td>
 </tr>
-</table><br>
+</table></div><br>
 _HTML;
+      $index++;
     }
     if ($type != 'L') {
       echo "</div></div>";

@@ -11,9 +11,6 @@
 
   echo <<<_HTML
 <script type="text/javascript" src="scripts/events.js"></script>
-<script>
-window.onload = getEvents($playerID, "L")
-</script>
 <!-- Subnavigation menu -->
 <ul id="subnav">
   <li><a href="events_academic.php">Academics</a>
@@ -27,7 +24,9 @@ window.onload = getEvents($playerID, "L")
 "You need more character! When I was a kid..."<br>
 <div id='eventResult'></div>
 <div id='eventList'>a</div>
-
+<script>
+window.onload = getEvents($playerID, "L")
+</script>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
 <address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
