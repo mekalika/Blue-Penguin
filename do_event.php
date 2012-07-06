@@ -100,6 +100,23 @@
       $cash -= $eventCost;
       $currMotivation -= $motivationReq;
       
+      // Find item bonuses
+      $query = "SELECT itembonus.bonus,items.itemName FROM purchases LEFT JOIN itembonus 
+                ON itembonus.itemID=purchases.itemID
+                LEFT JOIN items ON itembonus.itemID=items.itemID WHERE itembonus.eventID=$eventID";
+      $result = queryMysql($query);
+      $itemBonus = 1;
+      $bonusString = "";
+      while($row=mysql_fetch_array($result))
+      {
+        $bonus = $row['bonus'];
+        $itemName = $row['itemName'];
+        $itemBonus *= $bonus;
+        $bonusPercent = (int)(($bonus - 1) * 100);
+        $bonusString .= $itemName . " gives " . $bonusPercent ."% bonus! ";
+      }
+      echo $bonusString . "Total bonus: " . $itemBonus . "<br>";
+      
       // Create query to update skills by concatenating each skill increase
       $skillString = "";
       $skillEXP1 += round((int)$EXPA * (float)$skillMultiplier1);
