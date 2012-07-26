@@ -64,6 +64,8 @@
 
       // Hack to replace $name in eventName with character's name.
       $eventName = str_replace('$name', $name, $eventName);
+      
+      // Sort events into categories for slider
       if ($prevEventCategory != $category && $category != '') {
         if ($prevEventCategory != '') {
           echo '</span>';
@@ -73,8 +75,9 @@
         $prevEventCategory = $category;
       }
 
+      $divName = "event" . "$index";
       echo <<<_HTML
-<div id=$index>
+<div id=$divName>
 <table id="events">
 <tr class="eventname">
 <td colspan="2">$index $eventName</td>
@@ -117,8 +120,8 @@ _HTML;
         }
       }
       echo <<<_HTML
-<td><input type="button" value="Do event" onClick="doEvent($playerID,$eventID,'$type',$index)">
-<input type="button" value="test" onClick="test($index)"></td>
+<td><input type="button" value="Do event" onClick="doEvent($playerID,$eventID,'$type','$divName')">
+<input type="button" value="test" onClick="test('$divName')"></td>
 </tr>
 <tr>
 <td>$skillC</td>

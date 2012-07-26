@@ -12,9 +12,6 @@
   echo <<<_HTML
 <script src="scripts/sliding.js"></script>
 <script type="text/javascript" src="scripts/events.js"></script>
-<script>
-window.onload = getEvents($playerID, 'E')
-</script>
 
 <!-- Subnavigation menu -->
 <ul id="subnav">
@@ -41,7 +38,9 @@ window.onload = getEvents($playerID, 'E')
 <div id='eventResult'></div>
 <div id='eventList'>a</div>
 </center>
-
+<script>
+window.onload = getEvents($playerID, 'E')
+</script>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
 <address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>

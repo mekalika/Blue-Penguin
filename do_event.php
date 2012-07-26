@@ -33,6 +33,7 @@
     $EXPB               = $row['EXPB'];
     $skillC             = $row['skillC'];
     $EXPC               = $row['EXPC'];
+    $category           = $row['category'];
     echo "eventName: $eventName timeLimit: $timeLimit timeReady: $timeReady<br>";
     echo "studentID: $studentID eventID: $eventID<br>";
 
@@ -100,8 +101,8 @@
       $cash -= $eventCost;
       $currMotivation -= $motivationReq;
       
-      // Find item bonuses
-      $query = "SELECT itembonus.bonus,items.itemName FROM purchases LEFT JOIN itembonus 
+      // Find event specific item bonuses (for specific sports like soccer)
+      $query = "SELECT items.bonus,items.itemName FROM purchases LEFT JOIN itembonus 
                 ON itembonus.itemID=purchases.itemID
                 LEFT JOIN items ON itembonus.itemID=items.itemID WHERE itembonus.eventID=$eventID";
       $result = queryMysql($query);
@@ -117,20 +118,37 @@
       }
       echo $bonusString . "Total bonus: " . $itemBonus . "<br>";
       
+      // Find category item bonuses (i.e. math)
+      $query = "SELECT items.bonus,items.itemName FROM purchases LEFT JOIN items
+                ON purchases.itemID=items.itemID WHERE items.itemSkill='$category'";
+      $result = queryMysql($query);
+      $itemBonus2 = 1;
+      $bonusString2 = "";
+      while($row=mysql_fetch_array($result))
+      {
+        $bonus = $row['bonus'];
+        $itemName = $row['itemName'];
+        $itemBonus2 *= $bonus;
+        $bonusPercent = (int)(($bonus-1) * 100);
+        $bonusString .= $itemName . " gives " . $bonusPercent ."% bonus! ";
+      }
+      echo $bonusString . "Total bonus2: " . $itemBonus2 . "<br>";
+      
       // Create query to update skills by concatenating each skill increase
       $skillString = "";
-      $skillEXP1 += round((int)$EXPA * (float)$skillMultiplier1);
+      $skillEXP1 += round((int)$EXPA * (float)($skillMultiplier1 * $itemBonus * $itemBonus2));
       $skillString .= ", " . strtolower($skillA) . "EXP" . "=$skillEXP1";
+      echo "Base=" . $EXPA . " skillMult=" . $skillMultiplier1 . " bonus1=" . $itemBonus . " bonus2=" . $itemBonus2;
       echo "$skillA increased to $skillEXP1!<br>";
       if ($skillB != "")
       {
-        $skillEXP2 += round((int)$EXPB * (float)$skillMultiplier2);
+        $skillEXP2 += round((int)$EXPB * (float)($skillMultiplier2 * $itemBonus * $itemBonus2));
         $skillString .= ", " . strtolower($skillB) . "EXP" . "=$skillEXP2";
         echo "$skillB increased to $skillEXP2!<br>";
       }        
       if ($skillC != "")
       {
-        $skillEXP3 += round((int)$EXPC * (float)$skillMultiplier3);
+        $skillEXP3 += round((int)$EXPC * (float)($skillMultiplier3 * $itemBonus * $itemBonus2));
         $skillString .= ", " . strtolower($skillC) . "EXP" . "=$skillEXP3";
         echo "$skillC increased to $skillEXP3!<br>";
       }
