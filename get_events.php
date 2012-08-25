@@ -70,7 +70,7 @@
         if ($prevEventCategory != '') {
           echo '</span>';
         }
-        echo '<span class="gliding-content">';
+        echo "<span class=\"gliding-content\" title=$category>";
         echo "<h2>$category</h2>";
         $prevEventCategory = $category;
       }

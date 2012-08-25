@@ -5,6 +5,7 @@
  */
 
 document.onclick = contentGlide; //establishes event listner
+trimGlider();
 
 function contentGlide(e)
 {
@@ -64,4 +65,23 @@ function motionGlide(t)
 	
 }
 
-
+function trimGlider()
+{
+        // Take out empty categories
+        categories = document.getElementsByClassName("gliding-content");
+        output = "<ul class=\"control-list\">";
+        for (i=1; i <= categories.length; i++)
+        {
+          output = output + "<li id=\"" + i + "\">" + categories[i-1].title + "</li>";
+        }
+        output = output + "</ul>";
+        document.getElementsByClassName("control-panel")[0].innerHTML = output
+        //document.getElementById("eventResult").innerHTML = output
+        //oldlist = document.getElementsByClassName("control-panel")[0];
+        //container = oldlist.parentNode;
+        //newlist = document.createElement("div");
+        //newlist.className = "control-panel";
+        //newlist.innerHTML = output;
+        //container.insertBefore(newlist, oldlist);
+        //container.removeChild(oldlist);
+}

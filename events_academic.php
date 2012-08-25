@@ -10,7 +10,6 @@
   require_once 'header.php';
 
   echo <<<_HTML
-<script src="scripts/sliding.js"></script>
 <script type="text/javascript" src="scripts/events.js"></script>
 <!-- Subnavigation menu -->
 <ul id="subnav">
@@ -26,11 +25,11 @@ Well, are you doing your job?<br><br>
 <center>
 <div class="control-panel">
 <ul class="control-list">
-  <li id ="1">Chinese</li>
-  <li id ="2">English</li>
-  <li id ="3">History</li>
-  <li id ="4">Math</li>
-  <li id ="5">Science</li>
+  <li id="1">Chinese</li>
+  <li id="2">English</li>
+  <li id="3">History</li>
+  <li id="4">Math</li>
+  <li id="5">Science</li>
 </ul>
 </div>
 <div id='eventResult'></div>
@@ -39,6 +38,7 @@ Well, are you doing your job?<br><br>
 <script>
 window.onload = getEvents($playerID, "A")
 </script>
+<script src="scripts/sliding.js"></script>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
 <address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>

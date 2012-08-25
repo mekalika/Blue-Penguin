@@ -33,11 +33,20 @@
       else
         $buttonString = "<i>Purchased</i>";
 
-      if ($prevItemType != $itemType) {
+      /*if ($prevItemType != $itemType) {
         if ($prevItemType != '') {
           echo '</span>';
         }
-        echo '<span class="gliding-content">';
+        echo '<span class="gliding-content" title=$category>';
+        echo "<h2>$itemType</h2>";
+        $prevItemType = $itemType;
+      }*/
+      // Sort events into categories for slider
+      if ($prevItemType != $itemType && $itemType != '') {
+        if ($prevItemType != '') {
+          echo '</span>';
+        }
+        echo "<span class=\"gliding-content\" title=$itemType>";
         echo "<h2>$itemType</h2>";
         $prevItemType = $itemType;
       }

@@ -163,7 +163,10 @@ function ajaxRequest()
 
 function temp()
 {
-  document.getElementById('cash').innerHTML = "yes"
+  //document.getElementById('cash').innerHTML = "yes"
+  item = document.getElementsByClassName('control-list')
+  list = item[0].childNodes[0]
+  document.getElementById('eventResult').innerHTML = list.id
 }
 
 function test(eventIndex)

@@ -10,13 +10,12 @@
   require_once 'header.php';
 
   echo <<<_HTML
-<script src="scripts/sliding.js"></script>
 <script>
 function getItems(playerID)
 {
   params = "playerID=" + playerID // + "&gradeLevel=" + gradeLevel
   request = new ajaxRequest()
-  request.open("POST", "get_items.php", true)
+  request.open("POST", "get_items.php", false)
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
   request.setRequestHeader("Content-length", params.length)
   request.setRequestHeader("Connection", "close")
@@ -152,8 +151,6 @@ function temp()
 {
   document.getElementById('cash').innerHTML = "yes"
 }
-
-window.onLoad = getItems($playerID)
 </script>
 
 <!-- Subnavigation menu -->
@@ -177,6 +174,10 @@ window.onLoad = getItems($playerID)
 <div id='info'></div>
 <div id='info1'></div>
 </center>
+<script>
+window.onLoad = getItems($playerID)
+</script>
+<script src="scripts/sliding.js"></script>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
 <address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
