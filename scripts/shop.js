@@ -1,15 +1,8 @@
-// Copyright 2011 Bearslug Games. All Rights Reserved.
-
-/**
-  * @fileoverview: Fills in the ID card, and loads events based on grade,
-  *                checking whether the event is available or not (time-wise).
-  */
-
-function getEvents(playerID, type)
+function getItems(playerID)
 {
-  params = "playerID=" + playerID  + "&type=" + type
+  params = "playerID=" + playerID // + "&gradeLevel=" + gradeLevel
   request = new ajaxRequest()
-  request.open("POST", "get_events.php", false)
+  request.open("POST", "get_items.php", false)
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
   request.setRequestHeader("Content-length", params.length)
   request.setRequestHeader("Connection", "close")
@@ -22,11 +15,8 @@ function getEvents(playerID, type)
       {
         if (this.responseText != null)
         {
-          // Write events table to the eventList DIV
-          document.getElementById('eventList').innerHTML = this.responseText
-          
-          // Reset timers
-          resetCountdownTimer()
+          // Write items table to the itemList DIV
+          document.getElementById('itemList').innerHTML = this.responseText
         }
         else alert("Ajax error: No data received")
       }
@@ -36,11 +26,11 @@ function getEvents(playerID, type)
   request.send(params)
 }
 
-function doEvent(playerID, eventID, type, eventIndex)
+function buyItem(playerID, itemID)
 {
-  params = "playerID=" + playerID + "&eventID=" + eventID + "&type=" + type
+  params = "playerID=" + playerID + "&itemID=" + itemID
   request = new ajaxRequest()
-  request.open("POST", "do_event.php", true)
+  request.open("POST", "buy_item.php", true)
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
   request.setRequestHeader("Content-length", params.length)
   request.setRequestHeader("Connection", "close")
@@ -55,23 +45,12 @@ function doEvent(playerID, eventID, type, eventIndex)
         {
           // refresh header
           refreshHeader()
-          resetCountupTimers()
           
-          // refresh events list
-          getEvents(playerID, type)
-          
-          // refresh timers
-          updateTimers()
+          // referesh events list
+          getItems(playerID)
           
           // Display stat increases
-          //document.getElementById('eventResult').innerHTML = this.responseText
-          //test(eventIndex)
-          x = document.getElementById(eventIndex)
-          y = x.innerHTML
-          height = x.clientHeight
-          code = "<div style=\"display:inline-block; height:" + height + "px;\">" + this.responseText + "</div>"
-          x.innerHTML = code
-          setTimeout(function(){x.innerHTML = y}, 20000)
+          document.getElementById('info').innerHTML = this.responseText
           
           // Restore slider page
           setPage()
@@ -79,7 +58,7 @@ function doEvent(playerID, eventID, type, eventIndex)
           // debug
           //document.getElementById('info1').innerHTML = this.responseText
         }
-        else alert("Ajax error1: No data received")
+        else alert("Ajax error: No data received")
       }
       else alert("Ajax error1: " + this.statusText + " " + this.status)
     }
@@ -111,9 +90,6 @@ function refreshHeader()
           maxPride              = this.responseXML.getElementsByTagName('maxpride')
           cash                  = this.responseXML.getElementsByTagName('cash')
           gradeString           = this.responseXML.getElementsByTagName('gradestring')
-          motivationTime        = this.responseXML.getElementsByTagName('motivationTime')
-          prideTime             = this.responseXML.getElementsByTagName('prideTime')
-          battleTime            = this.responseXML.getElementsByTagName('battleTime')
           
           // Update ID card info
           document.getElementById('currMotivation').innerHTML = currMotivation[0].childNodes[0].nodeValue
@@ -122,14 +98,8 @@ function refreshHeader()
           document.getElementById('maxPride').innerHTML = maxPride[0].childNodes[0].nodeValue
           document.getElementById('cash').innerHTML = cash[0].childNodes[0].nodeValue
           document.getElementById('gradeString').innerHTML = gradeString[0].childNodes[0].nodeValue
-          document.getElementById('motivationTimer').title = motivationTime[0].childNodes[0].nodeValue
-          document.getElementById('prideTimer').title = prideTime[0].childNodes[0].nodeValue
-          document.getElementById('battleTimer').title = battleTime[0].childNodes[0].nodeValue
-          
-          // debug
-          //document.getElementById('info1').innerHTML = "success"
         }
-        else alert("Ajax error2: No data received")
+        else alert("Ajax error: No data received")
       }
       else alert("Ajax error2: " + this.statusText + " " + this.status)
     }
@@ -169,13 +139,5 @@ function ajaxRequest()
 
 function temp()
 {
-  //document.getElementById('cash').innerHTML = "yes"
-  item = document.getElementsByClassName('control-list')
-  list = item[0].childNodes[0]
-  document.getElementById('eventResult').innerHTML = list.id
-}
-
-function test(eventIndex)
-{
-  document.getElementById('eventResult').innerHTML = document.getElementById('motivationTimer').title
+  document.getElementById('cash').innerHTML = "yes"
 }

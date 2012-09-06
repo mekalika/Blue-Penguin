@@ -27,15 +27,30 @@
     $eGradeLevel        = $row['eGradeLevel'];
     $timeLimit          = $row['timeLimit'];
     $timeReady          = $row['timeReady'];
-    $skillA             = $row['skillA'];
-    $EXPA               = $row['EXPA'];
-    $skillB             = $row['skillB'];
-    $EXPB               = $row['EXPB'];
-    $skillC             = $row['skillC'];
-    $EXPC               = $row['EXPC'];
+    $skill[0]           = $row['skillA'];
+    $EXP[0]             = $row['EXPA'];
+    $skill[1]           = $row['skillB'];
+    $EXP[1]             = $row['EXPB'];
+    $skill[2]           = $row['skillC'];
+    $EXP[2]             = $row['EXPC'];
     $category           = $row['category'];
     echo "eventName: $eventName timeLimit: $timeLimit timeReady: $timeReady<br>";
     echo "studentID: $studentID eventID: $eventID<br>";
+    
+    // Check if any skills are grades
+    for ($i = 0; $i < 3; $i++)
+    {
+      $temp = explode(" ", $skill[$i]);
+      if (count($temp) > 1)
+      {
+        $isGrade[$i] = 1;
+        $skill[$i] = $temp[0];
+      }
+      else
+      {
+        $isGrade[$i] = 0;
+      }
+    }
 
     // Retreive character properties
     $query = "SELECT * FROM characters WHERE studentID=$studentID";
@@ -54,17 +69,13 @@
     $motivationTimer    = $row['motivationTimer'];
     $prideTimer         = $row['prideTimer'];
     $battleTimer        = $row['battleTimer'];
-    $skillMultiplier1   = $row[strtolower($skillA) . "Multiplier"];
-    $skillEXP1          = $row[strtolower($skillA) . "EXP"];
-    if ($skillB != "")
+    for ($i = 0; $i < 3; $i++)
     {
-      $skillMultiplier2 = $row[strtolower($skillB) . "Multiplier"];
-      $skillEXP2        = $row[strtolower($skillB) . "EXP"];
-    }
-    if ($skillC != "")
-    {
-      $skillMultiplier3 = $row[strtolower($skillC) . "Multiplier"];
-      $skillEXP3        = $row[strtolower($skillC) . "EXP"];
+      if ($skill[$i] != "")
+      {
+        $skillMultiplier[$i] = $row[strtolower($skill[$i]) . "Multiplier"];
+        $skillEXP[$i]        = $row[strtolower($skill[$i]) . "EXP"];
+      }
     }
     $time = time();
     
@@ -116,7 +127,7 @@
         $bonusPercent = (int)(($bonus - 1) * 100);
         $bonusString .= $itemName . " gives " . $bonusPercent ."% bonus! ";
       }
-      echo $bonusString . "Total bonus: " . $itemBonus . "<br>";
+      echo $bonusString . "Total bonus: " . $itemBonus . " ";
       
       // Find category item bonuses (i.e. math)
       $query = "SELECT items.bonus,items.itemName FROM purchases LEFT JOIN items
@@ -136,10 +147,59 @@
       
       // Create query to update skills by concatenating each skill increase
       $skillString = "";
+      for ($i = 0; $i < 3; $i++)
+      {
+        if ($isGrade[$i] != 1 && $skill[$i] != "")
+        {
+          $skillEXP[$i] += round((int)$EXP[$i] * (float)($skillMultiplier[$i] * $itemBonus * $itemBonus2));
+          $skillString .= ", " . strtolower($skill[$i]) . "EXP" . "=$skillEXP[$i]";
+          echo "Base=" . $EXP[$i] . " skillMult=" . $skillMultiplier[$i] . " bonus1=" . $itemBonus . " bonus2=" . $itemBonus2;
+          echo $skill[$i] . " increased to " . $skillEXP[$i] . "!<br>";
+        }
+      }
+      
+      // Create query to update grades by concatenating each grade increase
+      $gradeString = "";
+      for ($i = 0; $i < 3; $i++)
+      {
+        if ($isGrade[$i] == 1)
+        {
+          // Retrieve character grades
+          $query = "SELECT chargrades.percent,grades.gradeID,grades.subject
+                    FROM chargrades, grades WHERE chargrades.gradeID=grades.gradeID
+                    AND chargrades.studentID=$studentID AND grades.gradeLevel=$eGradeLevel
+                    AND grades.subject=\"" . $skill[$i] . "\"";
+          $result = queryMysql($query);
+          $row=mysql_fetch_array($result);
+          $percent[$i] = $row['percent'];
+          $gradeID[$i] = $row['gradeID'];
+          
+          $percent[$i] += round((int)$EXP[$i] * (float)($skillMultiplier[$i] * $itemBonus * $itemBonus2));
+          $percent[$i] = min($percent[$i], 100); // Cap grades at 100%
+          $gradeString .= "";
+          echo "gradeID=" . $gradeID[$i] . " Percent=" . $percent[$i] . " Subject=" . $skill[$i];
+          echo "Base=" . $EXP[$i] . " $skill[$i]" . " grade increased to " . $percent[$i] . "<br>";
+          
+          // Update grade
+          $query = "UPDATE chargrades SET percent=$percent[$i] WHERE gradeID=$gradeID[$i]";
+          $result = queryMysql($query);
+        }
+      }
+      
+      /*// Create query to update skills by concatenating each skill increase
+      $skillString = "";
       $skillEXP1 += round((int)$EXPA * (float)($skillMultiplier1 * $itemBonus * $itemBonus2));
-      $skillString .= ", " . strtolower($skillA) . "EXP" . "=$skillEXP1";
-      echo "Base=" . $EXPA . " skillMult=" . $skillMultiplier1 . " bonus1=" . $itemBonus . " bonus2=" . $itemBonus2;
-      echo "$skillA increased to $skillEXP1!<br>";
+      if ($isGradeA == 1)
+      {
+        
+      }
+      else
+      {
+        $skillString .= ", " . strtolower($skillA) . "EXP" . "=$skillEXP1";
+        echo "Base=" . $EXPA . " skillMult=" . $skillMultiplier1 . " bonus1=" . $itemBonus . " bonus2=" . $itemBonus2;
+        echo "$skillA increased to $skillEXP1!<br>";
+      }
+      
       if ($skillB != "")
       {
         $skillEXP2 += round((int)$EXPB * (float)($skillMultiplier2 * $itemBonus * $itemBonus2));
@@ -151,7 +211,7 @@
         $skillEXP3 += round((int)$EXPC * (float)($skillMultiplier3 * $itemBonus * $itemBonus2));
         $skillString .= ", " . strtolower($skillC) . "EXP" . "=$skillEXP3";
         echo "$skillC increased to $skillEXP3!<br>";
-      }
+      }*/
 
       // Update character stats
       $query = "UPDATE characters SET cash=$cash, currMotivation=$currMotivation,
@@ -191,6 +251,10 @@
         $result = queryMysql($query);
         echo "Updating charevent";
       }
+    }
+    else
+    {
+      echo "You are missing some requirement!<br>";
     }
   }
   

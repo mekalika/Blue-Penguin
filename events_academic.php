@@ -10,6 +10,7 @@
   require_once 'header.php';
 
   echo <<<_HTML
+<script src="scripts/sliding.js"></script>
 <script type="text/javascript" src="scripts/events.js"></script>
 <!-- Subnavigation menu -->
 <ul id="subnav">
@@ -37,8 +38,9 @@ Well, are you doing your job?<br><br>
 </center>
 <script>
 window.onload = getEvents($playerID, "A")
+trimGlider()
+//tick()
 </script>
-<script src="scripts/sliding.js"></script>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
 <address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>

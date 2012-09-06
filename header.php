@@ -74,11 +74,11 @@
   
   // Set time left to -1 if stat is full
   if ($currMotivation == $maxMotivation)
-    $motivationTime = -1;
+    $motivationTime = 0;
   if ($currPride == $maxPride)
-    $prideTime = -1;
+    $prideTime = 0;
   if ($currBattle == $maxBattle)
-    $battleTime = -1;
+    $battleTime = 0;
 
   echo <<<_HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
@@ -131,6 +131,6 @@
   <li onMouseOver="document.images['icon_district'].src='images/icon_district1.gif'" onMouseOut="document.images['icon_district'].src='images/icon_district.gif'"><a href="district.html"><img name="icon_district" src="images/icon_district.gif" height=12 width=12/> District</a>
 </ul>
 </div>
-<script type="text/javascript" src="timer.js"></script>
+<script type="text/javascript" src="scripts/timer.js"></script>
 _HTML;
 ?>

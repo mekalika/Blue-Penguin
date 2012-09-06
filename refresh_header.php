@@ -65,11 +65,11 @@
     
     // Set time left to -1 if stat is full
     if ($currMotivation == $maxMotivation)
-      $motivationTime = -1;
+      $motivationTime = 0;
     if ($currPride == $maxPride)
-      $prideTime = -1;
+      $prideTime = 0;
     if ($currBattle == $maxBattle)
-      $battleTime = -1;
+      $battleTime = 0;
   }
   else {
     header( 'Location: logout.php' );

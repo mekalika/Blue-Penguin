@@ -5,7 +5,7 @@
  */
 
 document.onclick = contentGlide; //establishes event listner
-trimGlider();
+var glidePage = 1; // default to page 1
 
 function contentGlide(e)
 {
@@ -16,8 +16,18 @@ function contentGlide(e)
 		findGliding();
 		var glideMultiple = parseInt(target.id);
 		var tPos = (-760 * (glideMultiple - 1));
+                glidePage = glideMultiple;
+                //document.getElementById('eventResult').innerHTML = "Page: " + glidePage + "\n"
 		motionGlide(tPos);
 	}
+}
+
+function setPage()
+{
+  findGliding();
+  var tPos = (-760 * (glidePage - 1));
+  //document.getElementById('eventResult').innerHTML = "Page restored to " + glidePage + "\n";
+  gliding.style.left = tPos + 'px';
 }
 
 function findGliding()
@@ -75,7 +85,7 @@ function trimGlider()
           output = output + "<li id=\"" + i + "\">" + categories[i-1].title + "</li>";
         }
         output = output + "</ul>";
-        document.getElementsByClassName("control-panel")[0].innerHTML = output
+        document.getElementsByClassName("control-panel")[0].innerHTML = output;
         //document.getElementById("eventResult").innerHTML = output
         //oldlist = document.getElementsByClassName("control-panel")[0];
         //container = oldlist.parentNode;
