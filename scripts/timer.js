@@ -42,6 +42,11 @@ function updateTimers()
   updatePrideTimer();
   updateBattleTimer();
   
+  /*if (document.getElementById('eventResult'))
+  {
+    document.getElementById('eventResult').innerHTML = count;
+  }*/
+  
   // debug stuff
   document.getElementById('motivationTime').innerHTML = document.getElementById('motivationTimer').title;
   document.getElementById('prideTime').innerHTML = document.getElementById('prideTimer').title;
@@ -92,6 +97,8 @@ function startBattleTimer()
 
 function updateMotivationTimer()
 {
+  // Get motivation timer div
+  timers = document.getElementById('motivationTimer');
   // Get current and max motivation
   currMotivation        = Number(document.getElementById('currMotivation').innerHTML);
   maxMotivation         = Number(document.getElementById('maxMotivation').innerHTML);
@@ -120,6 +127,8 @@ function updateMotivationTimer()
 
 function updatePrideTimer()
 {
+  // Get pride timer div
+  timers = document.getElementById('prideTimer');
   // Get current and max pride
   currPride     = Number(document.getElementById('currPride').innerHTML);
   maxPride      = Number(document.getElementById('maxPride').innerHTML);
@@ -148,6 +157,8 @@ function updatePrideTimer()
 
 function updateBattleTimer()
 {
+  // Get battle timer div
+  timers = document.getElementById('battleTimer');
   // Get current and max battle
   currBattle    = Number(document.getElementById('currBattle').innerHTML);
   maxBattle     = Number(document.getElementById('maxBattle').innerHTML);
@@ -174,12 +185,14 @@ function updateBattleTimer()
   }
 }
 
+//var count=0;
 function tick()
 {
   downtimePassed++;
   motivationTimePassed++;
   prideTimePassed++;
   battleTimePassed++;
+  //count++;
   
   updateTimers();
   window.setTimeout("tick()", 1000);

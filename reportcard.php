@@ -274,7 +274,7 @@ _HTML;
 <tr><td width="140px"><strong>$gradeString</strong><br>
 _HTML;
     } 
-    elseif ($grade == 3 || $grade == 9) {
+    elseif ($grade == 3 || $grade == 7 || $grade == 11) {
       echo <<<_HTML
 </td></tr><tr><td width="140px"><strong>$gradeString</strong><br>
 _HTML;

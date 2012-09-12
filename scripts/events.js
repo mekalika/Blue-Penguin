@@ -71,7 +71,7 @@ function doEvent(playerID, eventID, type, eventIndex)
           height = x.clientHeight
           code = "<div style=\"display:inline-block; height:" + height + "px;\">" + this.responseText + "</div>"
           x.innerHTML = code
-          setTimeout(function(){x.innerHTML = y}, 20000)
+          setTimeout(function(){x.innerHTML = y}, 50000)
           
           // Restore slider page
           setPage()
