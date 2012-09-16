@@ -271,17 +271,17 @@ _HTML;
     $gradeString = getGradeString($grade);
     if ($grade == -1) {
       echo <<<_HTML
-<tr><td width="140px"><strong>$gradeString</strong><br>
+<tr><td width="115px"><strong>$gradeString</strong><br>
 _HTML;
     } 
     elseif ($grade == 3 || $grade == 7 || $grade == 11) {
       echo <<<_HTML
-</td></tr><tr><td width="140px"><strong>$gradeString</strong><br>
+</td></tr><tr><td width="115px"><strong>$gradeString</strong><br>
 _HTML;
     }
     else {
       echo <<<_HTML
-</td><td width="140px"><strong>$gradeString</strong><br>
+</td><td width="115px"><strong>$gradeString</strong><br>
 _HTML;
     }
     // Get gradeID, subject from grades table

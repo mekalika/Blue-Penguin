@@ -385,7 +385,8 @@ address {
   overflow: hidden;
 }
 #report-wrapper {
-  width: 500px;
+  /* width should be ~760px minus portrait width */
+  width: 510px;
   overflow: hidden;
 }
 
