@@ -215,8 +215,8 @@ _HTML;
   $skills = array('Culture', 'Piano', 'Violin', 'Athletics', 'Dance',
                   'Language', 'Science', 'Math',
                   'Chinese');
-  $images = array('culture.png', 'piano.png', 'violin.png', 'athletics.png',
-                  'language.png', 'science.png', 'math.png');
+  $images = array('culture_icon.gif', 'piano_icon.gif', 'violin_icon.gif', 'athletics_icon.gif', 'dance_icon.gif',
+                  'language_icon.gif', 'science_icon.gif', 'math_icon.gif', 'chinese_icon.gif');
 
   echo "<table cellpadding=\"5\"><tr>";
   foreach ($skillEXPs as $skillEXP) {
@@ -236,7 +236,7 @@ _HTML;
     $image_file = 'images/' . $images[$index];
 
      echo <<<_HTML
-<td width="160"><div style="margin-left:auto; margin-right:auto;text-align:center"><img src="$image_file"><br></div><div style="margin-left:auto;margin-right:auto;width:100px;padding:2px;background-color:white;border:1px solid black;text-align:center">
+<td width="160"><div style="margin-left:auto; margin-right:auto;text-align:center"><img src="$image_file" width=100px height=100px><br></div><div style="margin-left:auto;margin-right:auto;width:100px;padding:2px;background-color:white;border:1px solid black;text-align:center">
     <div style="width:
 _HTML;
       echo "$progressWidth";
