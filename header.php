@@ -96,9 +96,12 @@
 <div id="cssbox"> 
 <h2 align="left">$characterName</h2> 
 <ul class = "stats">
-  <li>Motivation: <span id="currMotivation">$currMotivation</span>/<span id="maxMotivation">$maxMotivation</span> <span id="motivationTimer" title=$motivationTime>a</span> <span id="motivationTime">$motivationTime</span>
-  <li>Pride: <span id="currPride">$currPride</span>/<span id="maxPride">$maxPride</span> <span id="prideTimer" title=$prideTime>a</span> <span id="prideTime">$prideTime</span>
-  <li> Battle: <span id="currBattle">$currBattle</span>/<span id="maxBattle">$maxBattle</span> <span id="battleTimer" title=$battleTime>a</span> <span id="battleTime">$battleTime</span>
+  <li>Motivation: <span id="currMotivation">$currMotivation</span>/<span id="maxMotivation">$maxMotivation</span>
+    <span id="motivationTimer" title=$motivationTime></span> <!-- <span id="motivationTime">$motivationTime</span> -->
+  <li>Pride: <span id="currPride">$currPride</span>/<span id="maxPride">$maxPride</span>
+    <span id="prideTimer" title=$prideTime></span> <!-- <span id="prideTime">$prideTime</span> -->
+  <li> Battle: <span id="currBattle">$currBattle</span>/<span id="maxBattle">$maxBattle</span>
+    <span id="battleTimer" title=$battleTime></span> <!-- <span id="battleTime">$battleTime</span> -->
   <li>Cash: $<span id="cash">$cash</span>
 </ul>
 <!-- TODO: District is based on friends. -->

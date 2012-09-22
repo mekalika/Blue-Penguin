@@ -48,9 +48,11 @@ function updateTimers()
   }*/
   
   // debug stuff
+  /*
   document.getElementById('motivationTime').innerHTML = document.getElementById('motivationTimer').title;
   document.getElementById('prideTime').innerHTML = document.getElementById('prideTimer').title;
   document.getElementById('battleTime').innerHTML = document.getElementById('battleTimer').title;
+  */
 }
 
 function updateCountdownTimers()
@@ -121,7 +123,7 @@ function updateMotivationTimer()
   }
   else
   {
-    timers.innerHTML = "full";
+    timers.innerHTML = ""; //full
   }
 }
 
@@ -151,7 +153,7 @@ function updatePrideTimer()
   }
   else
   {
-    timers.innerHTML = "full";
+    timers.innerHTML = ""; //full
   }
 }
 
@@ -181,7 +183,7 @@ function updateBattleTimer()
   }
   else
   {
-    timers.innerHTML = "full";
+    timers.innerHTML = ""; //full
   }
 }
 
