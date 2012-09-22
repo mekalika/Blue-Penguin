@@ -99,6 +99,24 @@ _HTML;
   }
 
   mysql_close($db_server);
+  
+  echo <<<_HTML
+<!-- Sign and date the page, it's only polite! -->
+<center><a href="blog.html">Blog</a> 
+        <a href="forums.html">Forums</a>
+        <a href="help.html">Help</a>
+<address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
+</center>
+
+<form action="logout.php" method="post"><pre>
+<input type="submit" value="Logout" />
+</pre></form>
+Player ID: $playerID<br>
+Student ID: $studentID
+
+</body>
+</html>
+_HTML;
 ?>
 
 

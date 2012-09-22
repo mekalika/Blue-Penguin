@@ -5,12 +5,20 @@
 
   // TODO: Andrew will make this more awesome.
   function getLevelFromEXP($exp) {
-    return floor(($exp / 10) + 1);
+    for($i=1; $i<100; $i++)
+    {
+      if ($exp < getEXPforLevel($i+1))
+      {
+        return $i;
+      }
+    }
+    return $i;
   }
 
   // TODO: Andrew will make this more awesome.
   function getEXPforLevel($level) {
-    return ($level * 10) - 10;
+    $level -= 1;
+    return 2*pow($level,3)+4*pow($level,2)+4*$level;
   }
 
   function getGradeString($gradeLevel) {
@@ -228,7 +236,7 @@ _HTML;
     $expNextLevel = getEXPForLevel($currLevel + 1);
     $expDiff = $expNextLevel - $expCurrLevel;
     $expPercent = floor((($exp - $expCurrLevel) / $expDiff) * 100);
-    $progressWidth = 100 * ($expPercent / 100);
+    $progressWidth = 120 * ($expPercent / 100);
 
     // Get name of skill for printing.
     $index = array_search($skillEXP, $skillEXPs);
@@ -236,12 +244,15 @@ _HTML;
     $image_file = 'images/' . $images[$index];
 
      echo <<<_HTML
-<td width="160"><div style="margin-left:auto; margin-right:auto;text-align:center"><img src="$image_file" width=100px height=100px><br></div><div style="margin-left:auto;margin-right:auto;width:100px;padding:2px;background-color:white;border:1px solid black;text-align:center">
+<td width="160" nowrap="nowrap"><div style="margin-left:auto; margin-right:auto;
+  text-align:center"><img src="$image_file" width=120px height=120px><br></div>
+<div style="margin-left:auto;margin-right:auto;width:120px;padding:2px;
+  background-color:white;border:1px solid black;text-align:center">
     <div style="width:
 _HTML;
       echo "$progressWidth";
         echo <<<_HTML
-px;background-color:#2FB2A0;">$exp/$expNextLevel 
+px;background-color:#2FB2A0;">Level $currLevel: $exp/$expNextLevel 
     </div></td>
 _HTML;
      if ($index == 2 || $index == 5) {
