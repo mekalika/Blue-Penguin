@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9.2
+-- version 3.4.3.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Erstellungszeit: 06. November 2011 um 20:00
--- Server Version: 5.5.9
--- PHP-Version: 5.3.5
+-- Host: 127.0.0.1
+-- Generation Time: Sep 21, 2012 at 11:10 PM
+-- Server version: 5.5.15
+-- PHP Version: 5.3.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,16 +17,16 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Datenbank: `botm`
+-- Database: `botm`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `accounts`
+-- Table structure for table `accounts`
 --
 
-CREATE TABLE `accounts` (
+CREATE TABLE IF NOT EXISTS `accounts` (
   `playerID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `password` varchar(20) NOT NULL,
   `studentID` int(10) unsigned NOT NULL,
@@ -33,21 +34,13 @@ CREATE TABLE `accounts` (
   KEY `studentID` (`studentID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
---
--- Daten für Tabelle `accounts`
---
-
-INSERT INTO `accounts` VALUES(1, 'a', 1);
-INSERT INTO `accounts` VALUES(2, 'a', 3);
-INSERT INTO `accounts` VALUES(3, 'a', 4);
-
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `characters`
+-- Table structure for table `characters`
 --
 
-CREATE TABLE `characters` (
+CREATE TABLE IF NOT EXISTS `characters` (
   `name` varchar(20) NOT NULL,
   `gender` binary(1) NOT NULL,
   `gradeLevel` tinyint(2) NOT NULL DEFAULT '-1',
@@ -105,21 +98,13 @@ CREATE TABLE `characters` (
   KEY `inappropriate` (`inappropriate`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
---
--- Daten für Tabelle `characters`
---
-
-INSERT INTO `characters` VALUES('Sarah', '1', -1, NULL, 13825, 10, 10, 24, 24, 200, 200, 0, 0, 0, NULL, 0, 1, 0.959807, 1, 0.789093, 1, 1.30098, 1, 1.08273, 1, 0.96106, 1, 0.974285, 1, 0.731602, 1, 0.731791, 1, 0.9175, 1, 1, 1, 37, 0, 0, 0, 0, 0, 0, 0, 25, 0, 1320627496, 1315417706, 1315417706, 1315417706);
-INSERT INTO `characters` VALUES('Linda', '1', -1, NULL, 20000, 3, 3, 10, 10, 100, 100, 0, 0, 0, NULL, 0, 3, 0.964409, 1, 0.894824, 1, 1.77659, 1, 1.11041, 1, 0.726525, 1, 1.0935, 1, 1.31435, 1, 0.947718, 1, 1.14196, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1313461738, NULL, NULL, NULL);
-INSERT INTO `characters` VALUES('Tiffany', '1', -1, NULL, 20000, 3, 3, 10, 10, 100, 100, 0, 0, 0, NULL, 0, 4, 0.733803, 1, 1.21288, 1, 0.81258, 1, 0.666021, 1, 0.880516, 1, 0.830584, 1, 0.815427, 1, 1.21858, 1, 0.785224, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1313707605, NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `charEvents`
+-- Table structure for table `charevents`
 --
 
-CREATE TABLE `charEvents` (
+CREATE TABLE IF NOT EXISTS `charevents` (
   `studentID` int(10) unsigned NOT NULL,
   `eventID` int(10) unsigned NOT NULL,
   `timeReady` int(10) unsigned DEFAULT NULL,
@@ -128,21 +113,13 @@ CREATE TABLE `charEvents` (
   KEY `eventID` (`eventID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `charEvents`
---
-
-INSERT INTO `charEvents` VALUES(1, 1, 1315104050, 5);
-INSERT INTO `charEvents` VALUES(1, 17, 1315460906, 4);
-INSERT INTO `charEvents` VALUES(1, 35, 1314574269, 1);
-
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `charGrades`
+-- Table structure for table `chargrades`
 --
 
-CREATE TABLE `charGrades` (
+CREATE TABLE IF NOT EXISTS `chargrades` (
   `studentID` int(10) unsigned NOT NULL,
   `gradeID` int(10) unsigned NOT NULL,
   `percent` float NOT NULL DEFAULT '0',
@@ -150,59 +127,35 @@ CREATE TABLE `charGrades` (
   KEY `gradeID` (`gradeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `charGrades`
---
-
-INSERT INTO `charGrades` VALUES(1, 1, 100);
-INSERT INTO `charGrades` VALUES(1, 2, 40);
-INSERT INTO `charGrades` VALUES(1, 3, 0);
-INSERT INTO `charGrades` VALUES(1, 4, 95);
-INSERT INTO `charGrades` VALUES(1, 5, 90);
-INSERT INTO `charGrades` VALUES(3, 1, 0);
-INSERT INTO `charGrades` VALUES(4, 1, 0);
-INSERT INTO `charGrades` VALUES(4, 2, 0);
-INSERT INTO `charGrades` VALUES(4, 3, 0);
-INSERT INTO `charGrades` VALUES(4, 4, 0);
-INSERT INTO `charGrades` VALUES(4, 5, 0);
-
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `charSchool`
+-- Table structure for table `charschool`
 --
 
-CREATE TABLE `charSchool` (
+CREATE TABLE IF NOT EXISTS `charschool` (
   `studentID` int(10) unsigned NOT NULL,
   `schoolID` int(10) unsigned NOT NULL,
   KEY `studentID` (`studentID`),
   KEY `schoolID` (`schoolID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `charSchool`
---
-
-INSERT INTO `charSchool` VALUES(1, 6);
-INSERT INTO `charSchool` VALUES(3, 6);
-INSERT INTO `charSchool` VALUES(4, 6);
-
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `events`
+-- Table structure for table `events`
 --
 
-CREATE TABLE `events` (
-  `eventName` varchar(50) DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `events` (
+  `eventName` varchar(70) DEFAULT NULL,
   `eventCost` smallint(5) unsigned NOT NULL DEFAULT '0',
   `motivationReq` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `eventDescription` varchar(200) DEFAULT NULL,
-  `skillA` varchar(10) DEFAULT NULL,
+  `skillA` varchar(15) DEFAULT NULL,
   `EXPA` tinyint(3) unsigned DEFAULT NULL,
-  `skillB` varchar(10) DEFAULT NULL,
+  `skillB` varchar(15) DEFAULT NULL,
   `EXPB` tinyint(3) unsigned DEFAULT NULL,
-  `skillC` varchar(10) DEFAULT NULL,
+  `skillC` varchar(15) DEFAULT NULL,
   `EXPC` tinyint(3) unsigned DEFAULT NULL,
   `eventID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` char(1) NOT NULL,
@@ -211,120 +164,710 @@ CREATE TABLE `events` (
   `eGradeLevel` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`eventID`),
   KEY `eventName` (`eventName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=689 ;
 
 --
--- Daten für Tabelle `events`
+-- Dumping data for table `events`
 --
 
-INSERT INTO `events` VALUES('Practice Piano with $name', 235, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 5, NULL, NULL, NULL, NULL, 1, 'E', '0', 0, -1);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Nanny', 500, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 20, NULL, NULL, NULL, NULL, 2, 'L', '0', -1, 0);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Nanny', 500, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 20, NULL, NULL, NULL, NULL, 3, 'L', '0', -1, 1);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Nanny', 500, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 20, NULL, NULL, NULL, NULL, 4, 'L', '0', -1, 2);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Nanny', 500, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 20, NULL, NULL, NULL, NULL, 5, 'L', '0', -1, 3);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Nanny', 500, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 20, NULL, NULL, NULL, NULL, 6, 'L', '0', -1, 4);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Nanny', 0, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 20, NULL, NULL, NULL, NULL, 7, 'L', '0', -1, 5);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Nanny', 500, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 20, NULL, NULL, NULL, NULL, 8, 'L', '0', -1, 6);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Nanny', 500, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 20, NULL, NULL, NULL, NULL, 15, 'L', '0', -1, -1);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 5, NULL, NULL, NULL, NULL, 16, 'L', '', 0, NULL);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 10, NULL, NULL, NULL, NULL, 17, 'L', '', 43200, -1);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 10, NULL, NULL, NULL, NULL, 18, 'L', '', 43200, 0);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 10, NULL, NULL, NULL, NULL, 19, 'L', '', 43200, 1);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 10, NULL, NULL, NULL, NULL, 20, 'L', '', 43200, 2);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 10, NULL, NULL, NULL, NULL, 21, 'L', '', 43200, 3);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 10, NULL, NULL, NULL, NULL, 22, 'L', '', 43200, 4);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 10, NULL, NULL, NULL, NULL, 23, 'L', '', 43200, 5);
-INSERT INTO `events` VALUES('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 10, NULL, NULL, NULL, NULL, 24, 'L', '', 43200, 6);
-INSERT INTO `events` VALUES('Give $name a Haircut at Home', 0, 3, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 5, NULL, NULL, NULL, NULL, 25, 'L', '', 21600, -1);
-INSERT INTO `events` VALUES('Give $name a Haircut at Home', 0, 3, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 5, NULL, NULL, NULL, NULL, 26, 'L', '', 21600, 0);
-INSERT INTO `events` VALUES('Give $name a Haircut at Home', 0, 3, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 5, NULL, NULL, NULL, NULL, 27, 'L', '', 21600, 1);
-INSERT INTO `events` VALUES('Give $name a Haircut at Home', 0, 3, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 5, NULL, NULL, NULL, NULL, 28, 'L', '', 21600, 2);
-INSERT INTO `events` VALUES('Give $name a Haircut at Home', 0, 3, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 5, NULL, NULL, NULL, NULL, 29, 'L', '', 21600, 3);
-INSERT INTO `events` VALUES('Give $name a Haircut at Home', 0, 3, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 5, NULL, NULL, NULL, NULL, 30, 'L', '', 21600, 4);
-INSERT INTO `events` VALUES('Give $name a Haircut at Home', 0, 3, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 5, NULL, NULL, NULL, NULL, 31, 'L', '', 21600, 5);
-INSERT INTO `events` VALUES('Give $name a Haircut at Home', 0, 3, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 5, NULL, NULL, NULL, NULL, 32, 'L', '', 21600, 6);
-INSERT INTO `events` VALUES('Give $name a Haircut at Home', 0, 3, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 5, NULL, NULL, NULL, NULL, 33, 'L', '', 21600, 7);
-INSERT INTO `events` VALUES('Give $name a Haircut at Home', 0, 3, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 5, NULL, NULL, NULL, NULL, 34, 'L', '', 21600, 8);
-INSERT INTO `events` VALUES('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, NULL, NULL, NULL, NULL, 35, 'L', '', 1800, -1);
-INSERT INTO `events` VALUES('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, NULL, NULL, NULL, NULL, 36, 'L', '', 1800, 0);
-INSERT INTO `events` VALUES('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, NULL, NULL, NULL, NULL, 37, 'L', '', 1800, 1);
-INSERT INTO `events` VALUES('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, NULL, NULL, NULL, NULL, 38, 'L', '', 1800, 2);
-INSERT INTO `events` VALUES('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, NULL, NULL, NULL, NULL, 39, 'L', '', 1800, 3);
-INSERT INTO `events` VALUES('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, NULL, NULL, NULL, NULL, 40, 'L', '', 1800, 4);
-INSERT INTO `events` VALUES('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, NULL, NULL, NULL, NULL, 41, 'L', '', 1800, 5);
-INSERT INTO `events` VALUES('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, NULL, NULL, NULL, NULL, 42, 'L', '', 1800, 6);
-INSERT INTO `events` VALUES('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, NULL, NULL, NULL, NULL, 43, 'L', '', 1800, 7);
-INSERT INTO `events` VALUES('Forbid $name from Having a Playdate', 0, 4, 'You want playtime? OK - time to play violin.', 'Culture', 10, NULL, NULL, NULL, NULL, 44, 'L', '', 21600, -1);
-INSERT INTO `events` VALUES('Forbid $name from Having a Playdate', 0, 4, 'You want playtime? OK - time to play violin.', 'Culture', 10, NULL, NULL, NULL, NULL, 45, 'L', '', 21600, 0);
-INSERT INTO `events` VALUES('Forbid $name from Having a Playdate', 0, 4, 'You want playtime? OK - time to play violin.', 'Culture', 10, NULL, NULL, NULL, NULL, 46, 'L', '', 21600, 1);
-INSERT INTO `events` VALUES('Forbid $name from Having a Playdate', 0, 4, 'You want playtime? OK - time to play violin.', 'Culture', 10, NULL, NULL, NULL, NULL, 47, 'L', '', 21600, 2);
-INSERT INTO `events` VALUES('Forbid $name from Having a Playdate', 0, 4, 'You want playtime? OK - time to play violin.', 'Culture', 10, NULL, NULL, NULL, NULL, 48, 'L', '', 21600, 3);
-INSERT INTO `events` VALUES('Forbid $name from Having a Playdate', 0, 4, 'You want playtime? OK - time to play violin.', 'Culture', 10, NULL, NULL, NULL, NULL, 49, 'L', '', 21600, 4);
-INSERT INTO `events` VALUES('Forbid $name from Having a Playdate', 0, 4, 'You want playtime? OK - time to play violin.', 'Culture', 10, NULL, NULL, NULL, NULL, 50, 'L', '', 21600, 5);
-INSERT INTO `events` VALUES('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, NULL, NULL, NULL, NULL, 51, 'L', '', 21600, 4);
-INSERT INTO `events` VALUES('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, NULL, NULL, NULL, NULL, 52, 'L', '', 21600, 5);
-INSERT INTO `events` VALUES('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, NULL, NULL, NULL, NULL, 53, 'L', '', 21600, 6);
-INSERT INTO `events` VALUES('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, NULL, NULL, NULL, NULL, 54, 'L', '', 21600, 7);
-INSERT INTO `events` VALUES('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, NULL, NULL, NULL, NULL, 55, 'L', '', 21600, 8);
-INSERT INTO `events` VALUES('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, NULL, NULL, NULL, NULL, 56, 'L', '', 21600, 9);
-INSERT INTO `events` VALUES('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, NULL, NULL, NULL, NULL, 57, 'L', '', 21600, 10);
-INSERT INTO `events` VALUES('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, NULL, NULL, NULL, NULL, 58, 'L', '', 21600, 11);
-INSERT INTO `events` VALUES('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, NULL, NULL, NULL, NULL, 59, 'L', '', 21600, 12);
-INSERT INTO `events` VALUES('Forbid $name from Being in a School Play', 0, 5, '"To be or not to be... Why not A? That is the question."', 'Culture', 20, NULL, NULL, NULL, NULL, 60, 'L', '', 86400, 1);
-INSERT INTO `events` VALUES('Forbid $name from Being in a School Play', 0, 5, '"To be or not to be... Why not A? That is the question."', 'Culture', 20, NULL, NULL, NULL, NULL, 61, 'L', '', 86400, 2);
-INSERT INTO `events` VALUES('Forbid $name from Being in a School Play', 0, 5, '"To be or not to be... Why not A? That is the question."', 'Culture', 20, NULL, NULL, NULL, NULL, 62, 'L', '', 86400, 3);
-INSERT INTO `events` VALUES('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Culture', 1, NULL, NULL, NULL, NULL, 63, 'L', '', 120, -1);
-INSERT INTO `events` VALUES('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Culture', 1, NULL, NULL, NULL, NULL, 64, 'L', '', 120, 0);
-INSERT INTO `events` VALUES('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Culture', 1, NULL, NULL, NULL, NULL, 65, 'L', '', 120, 1);
-INSERT INTO `events` VALUES('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Culture', 1, NULL, NULL, NULL, NULL, 66, 'L', '', 120, 2);
-INSERT INTO `events` VALUES('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Culture', 1, NULL, NULL, NULL, NULL, 67, 'L', '', 120, 3);
-INSERT INTO `events` VALUES('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Culture', 1, NULL, NULL, NULL, NULL, 68, 'L', '', 120, 4);
-INSERT INTO `events` VALUES('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Culture', 1, NULL, NULL, NULL, NULL, 69, 'L', '', 120, 5);
-INSERT INTO `events` VALUES('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Culture', 1, NULL, NULL, NULL, NULL, 70, 'L', '', 120, 6);
-INSERT INTO `events` VALUES('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Culture', 1, NULL, NULL, NULL, NULL, 71, 'L', '', 120, 7);
-INSERT INTO `events` VALUES('Yell at $name for A- on Homework', 0, 5, 'You got an A minus? Good job...minus.', 'Random', 20, NULL, NULL, NULL, NULL, 72, 'L', '', 50400, 6);
-INSERT INTO `events` VALUES('Yell at $name for A- on Homework', 0, 5, 'You got an A minus? Good job...minus.', 'Random', 20, NULL, NULL, NULL, NULL, 73, 'L', '', 50400, 7);
-INSERT INTO `events` VALUES('Yell at $name for A- on Homework', 0, 5, 'You got an A minus? Good job...minus.', 'Random', 20, NULL, NULL, NULL, NULL, 74, 'L', '', 50400, 8);
-INSERT INTO `events` VALUES('Yell at $name for A- on Homework', 0, 5, 'You got an A minus? Good job...minus.', 'Random', 20, NULL, NULL, NULL, NULL, 75, 'L', '', 50400, 9);
-INSERT INTO `events` VALUES('Yell at $name for A- on Homework', 0, 5, 'You got an A minus? Good job...minus.', 'Random', 20, NULL, NULL, NULL, NULL, 76, 'L', '', 50400, 10);
-INSERT INTO `events` VALUES('Yell at $name for A- on Homework', 0, 5, 'You got an A minus? Good job...minus.', 'Random', 20, NULL, NULL, NULL, NULL, 77, 'L', '', 50400, 11);
-INSERT INTO `events` VALUES('Yell at $name for A- on Homework', 0, 5, 'You got an A minus? Good job...minus.', 'Random', 20, NULL, NULL, NULL, NULL, 78, 'L', '', 50400, 12);
-INSERT INTO `events` VALUES('Visit Hao "Got into Harvard" in Faraway Town', 300, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 5, NULL, NULL, NULL, NULL, 79, 'L', '', 18000, 7);
-INSERT INTO `events` VALUES('Visit Hao "Got into Harvard" in Faraway Town', 300, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 5, NULL, NULL, NULL, NULL, 80, 'L', '', 18000, 8);
-INSERT INTO `events` VALUES('Visit Hao "Got into Harvard" in Faraway Town', 300, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 5, NULL, NULL, NULL, NULL, 81, 'L', '', 18000, 9);
-INSERT INTO `events` VALUES('Visit Hao "Got into Harvard" in Faraway Town', 300, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 5, NULL, NULL, NULL, NULL, 82, 'L', '', 18000, 10);
-INSERT INTO `events` VALUES('Visit Hao "Got into Harvard" in Faraway Town', 300, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 5, NULL, NULL, NULL, NULL, 83, 'L', '', 18000, 11);
-INSERT INTO `events` VALUES('Visit Hao "Got into Harvard" in Faraway Town', 300, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 5, NULL, NULL, NULL, NULL, 84, 'L', '', 18000, 12);
-INSERT INTO `events` VALUES('Forbid $name from Going to School Dance', 0, 2, 'But you busy! Chinese school is Friday night.', 'Culture', 2, NULL, NULL, NULL, NULL, 85, 'L', '', 300, 7);
-INSERT INTO `events` VALUES('Forbid $name from Going to School Dance', 0, 2, 'But you busy! Chinese school is Friday night.', 'Culture', 2, NULL, NULL, NULL, NULL, 86, 'L', '', 300, 8);
-INSERT INTO `events` VALUES('Forbid $name from Going to School Dance', 0, 2, 'But you busy! Chinese school is Friday night.', 'Culture', 2, NULL, NULL, NULL, NULL, 87, 'L', '', 300, 9);
-INSERT INTO `events` VALUES('Forbid $name from Going to School Dance', 0, 2, 'But you busy! Chinese school is Friday night.', 'Culture', 2, NULL, NULL, NULL, NULL, 88, 'L', '', 300, 10);
-INSERT INTO `events` VALUES('Forbid $name from Going to School Dance', 0, 2, 'But you busy! Chinese school is Friday night.', 'Culture', 2, NULL, NULL, NULL, NULL, 89, 'L', '', 300, 11);
-INSERT INTO `events` VALUES('Forbid $name from Going to School Dance', 0, 2, 'But you busy! Chinese school is Friday night.', 'Culture', 2, NULL, NULL, NULL, NULL, 90, 'L', '', 300, 12);
-INSERT INTO `events` VALUES('Lecture: "Only Date Asians"', 0, 1, 'No, you cannot marry outside the race. Kids will only be 50%!', 'Culture', 1, NULL, NULL, NULL, NULL, 91, 'L', '', 600, 8);
-INSERT INTO `events` VALUES('Lecture: "Only Date Asians"', 0, 1, 'No, you cannot marry outside the race. Kids will only be 50%!', 'Culture', 1, NULL, NULL, NULL, NULL, 92, 'L', '', 600, 9);
-INSERT INTO `events` VALUES('Lecture: "Only Date Asians"', 0, 1, 'No, you cannot marry outside the race. Kids will only be 50%!', 'Culture', 1, NULL, NULL, NULL, NULL, 93, 'L', '', 600, 10);
-INSERT INTO `events` VALUES('Lecture: "Only Date Asians"', 0, 1, 'No, you cannot marry outside the race. Kids will only be 50%!', 'Culture', 1, NULL, NULL, NULL, NULL, 94, 'L', '', 600, 11);
-INSERT INTO `events` VALUES('Lecture: "Only Date Asians"', 0, 1, 'No, you cannot marry outside the race. Kids will only be 50%!', 'Culture', 1, NULL, NULL, NULL, NULL, 95, 'L', '', 600, 12);
-INSERT INTO `events` VALUES('Lecture: "No Dating Until Done With College"', 0, 1, '16: Too young to date. 26: Why aren''t you married?', 'Culture', 1, NULL, NULL, NULL, NULL, 96, 'L', '', 2100, 8);
-INSERT INTO `events` VALUES('Lecture: "No Dating Until Done With College"', 0, 1, '16: Too young to date. 26: Why aren''t you married?', 'Culture', 1, NULL, NULL, NULL, NULL, 97, 'L', '', 2100, 9);
-INSERT INTO `events` VALUES('Lecture: "No Dating Until Done With College"', 0, 1, '16: Too young to date. 26: Why aren''t you married?', 'Culture', 1, NULL, NULL, NULL, NULL, 98, 'L', '', 2100, 10);
-INSERT INTO `events` VALUES('Lecture: "No Dating Until Done With College"', 0, 1, '16: Too young to date. 26: Why aren''t you married?', 'Culture', 1, NULL, NULL, NULL, NULL, 99, 'L', '', 2100, 11);
-INSERT INTO `events` VALUES('Lecture: "No Dating Until Done With College"', 0, 1, '16: Too young to date. 26: Why aren''t you married?', 'Culture', 1, NULL, NULL, NULL, NULL, 100, 'L', '', 2100, 12);
-INSERT INTO `events` VALUES('Break Up $name''s Relationship', 0, 5, 'You''re already a huge fatty without getting pregnant too!', 'Random', 20, NULL, NULL, NULL, NULL, 101, 'L', '', 86400, 10);
-INSERT INTO `events` VALUES('Break Up $name''s Relationship', 0, 5, 'You''re already a huge fatty without getting pregnant too!', 'Random', 20, NULL, NULL, NULL, NULL, 102, 'L', '', 86400, 11);
-INSERT INTO `events` VALUES('Break Up $name''s Relationship', 0, 5, 'You''re already a huge fatty without getting pregnant too!', 'Random', 20, NULL, NULL, NULL, NULL, 103, 'L', '', 86400, 12);
-INSERT INTO `events` VALUES('Drill Multiplication Tables with $name', 100, 1, 'Do your times table six times a day seven times a week. How many times is that?', 'Math Grade', 1, 'Math', 1, '', 0, 107, 'A', 'AcademicMa', -1, 1);
-INSERT INTO `events` VALUES('Drill Multiplication Tables with $name', 100, 1, 'Do your times table six times a day seven times a week. How many times is that?', 'Math Grade', 1, 'Math', 1, '', 0, 108, 'A', 'AcademicMa', -1, 1);
-INSERT INTO `events` VALUES('Drill Multiplication Tables with $name', 100, 1, 'Do your times table six times a day seven times a week. How many times is that?', 'Math Grade', 1, 'Math', 1, '', 0, 109, 'A', 'AcademicMa', -1, 2);
+INSERT INTO `events` (`eventName`, `eventCost`, `motivationReq`, `eventDescription`, `skillA`, `EXPA`, `skillB`, `EXPB`, `skillC`, `EXPC`, `eventID`, `type`, `category`, `timeLimit`, `eGradeLevel`) VALUES
+('Lecture About Checking Answers Three Times When Taking Tests', 100, 1, '99 isn''t a score. It''s a temperature!', 'Math Grade', 5, 'Math', 2, 'Science', 2, 1, 'A', 'Math', 0, 4),
+('Lecture About Checking Answers Three Times When Taking Tests', 100, 1, '99 isn''t a score. It''s a temperature!', 'Math Grade', 5, 'Math', 2, 'Science', 2, 2, 'A', 'Math', 0, 5),
+('Lecture About Checking Answers Three Times When Taking Tests', 100, 1, '99 isn''t a score. It''s a temperature!', 'Math Grade', 5, 'Math', 2, 'Science', 2, 3, 'A', 'Math', 0, 6),
+('Lecture About Checking Answers Three Times When Taking Tests', 100, 2, '99 isn''t a score. It''s a temperature!', 'Math Grade', 10, 'Math', 3, 'Science', 3, 4, 'A', 'Math', 0, 7),
+('Lecture About Checking Answers Three Times When Taking Tests', 100, 2, '99 isn''t a score. It''s a temperature!', 'Math Grade', 10, 'Math', 3, 'Science', 3, 5, 'A', 'Math', 0, 8),
+('Attend Kunom Math', 400, 1, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 10, 'Math', 20, '', 0, 6, 'A', 'Math', 1200, -1),
+('Attend Kunom Math', 400, 1, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 10, 'Math', 20, '', 0, 7, 'A', 'Math', 1200, 0),
+('Attend Kunom Math', 400, 1, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 15, 'Math', 25, '', 0, 8, 'A', 'Math', 1200, 1),
+('Attend Kunom Math', 600, 2, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 15, 'Math', 45, '', 0, 9, 'A', 'Math', 1200, 2),
+('Attend Kunom Math', 600, 2, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 20, 'Math', 60, '', 0, 10, 'A', 'Math', 1200, 3),
+('Attend Kunom Math', 600, 2, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 20, 'Math', 60, '', 0, 11, 'A', 'Math', 1200, 4),
+('Attend Kunom Math', 1000, 3, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 20, 'Math', 60, '', 0, 12, 'A', 'Math', 1200, 5),
+('Attend Kunom Math', 1000, 3, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 15, 'Math', 40, '', 0, 13, 'A', 'Math', 1200, 6),
+('Attend Kunom Math', 1000, 3, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 15, 'Math', 40, '', 0, 14, 'A', 'Math', 1200, 7),
+('Attend Kunom Math', 1500, 4, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 10, 'Math', 20, '', 0, 15, 'A', 'Math', 1200, 8),
+('Attend Kunom Math', 1500, 4, 'Yummy math drills just the way you like them, nom nom nom.', 'Math Grade', 10, 'Math', 20, '', 0, 16, 'A', 'Math', 1200, 9),
+('Check $name''s HW and Create Problems To Solve', 100, 1, 'I got 99 problems but math ain''t one', 'Math Grade', 5, 'Math', 2, '', 0, 17, 'A', 'Math', 0, -1),
+('Check $name''s HW and Create Problems To Solve', 100, 1, 'I got 99 problems but math ain''t one', 'Math Grade', 5, 'Math', 2, '', 0, 18, 'A', 'Math', 0, 0),
+('Check $name''s HW and Create Problems To Solve', 100, 1, 'I got 99 problems but math ain''t one', 'Math Grade', 5, 'Math', 2, '', 0, 19, 'A', 'Math', 0, 1),
+('Check $name''s HW and Create Problems To Solve', 100, 1, 'I got 99 problems but math ain''t one', 'Math Grade', 5, 'Math', 3, '', 0, 20, 'A', 'Math', 0, 2),
+('Check $name''s HW and Create Problems To Solve', 100, 2, 'I got 99 problems but math ain''t one', 'Math Grade', 10, 'Math', 5, '', 0, 21, 'A', 'Math', 0, 3),
+('Check $name''s HW and Create Problems To Solve', 100, 2, 'I got 99 problems but math ain''t one', 'Math Grade', 10, 'Math', 5, '', 0, 22, 'A', 'Math', 0, 4),
+('Check $name''s HW and Create Problems To Solve', 100, 2, 'I got 99 problems but math ain''t one', 'Math Grade', 10, 'Math', 7, '', 0, 23, 'A', 'Math', 0, 5),
+('Check $name''s HW and Create Problems To Solve', 100, 2, 'I got 99 problems but math ain''t one', 'Math Grade', 10, 'Math', 7, '', 0, 24, 'A', 'Math', 0, 6),
+('Check $name''s HW and Create Problems To Solve', 100, 3, 'I got 99 problems but math ain''t one', 'Math Grade', 15, 'Math', 10, '', 0, 25, 'A', 'Math', 0, 7),
+('Check $name''s HW and Create Problems To Solve', 100, 3, 'I got 99 problems but math ain''t one', 'Math Grade', 15, 'Math', 10, '', 0, 26, 'A', 'Math', 0, 8),
+('Check $name''s HW and Create Problems To Solve', 100, 3, 'I got 99 problems but math ain''t one', 'Math Grade', 15, 'Math', 12, '', 0, 27, 'A', 'Math', 0, 9),
+('Check $name''s HW and Create Problems To Solve', 100, 4, 'I got 99 problems but math ain''t one', 'Math Grade', 10, 'Math', 10, '', 0, 28, 'A', 'Math', 0, 10),
+('Check $name''s HW and Create Problems To Solve', 100, 4, 'I got 99 problems but math ain''t one', 'Math Grade', 10, 'Math', 7, '', 0, 29, 'A', 'Math', 0, 11),
+('Check $name''s HW and Create Problems To Solve', 100, 5, 'I got 99 problems but math ain''t one', 'Math Grade', 10, 'Math', 5, '', 0, 30, 'A', 'Math', 0, 12),
+('Hire Private Math Tutor for $name', 1000, 1, 'How else you get ahead? Einstein read Euclid''s Elements at age 10.', 'Math Grade', 10, 'Math', 30, '', 0, 31, 'A', 'Math', 1500, 9),
+('Hire Private Math Tutor for $name', 1000, 1, 'How else you get ahead? Einstein read Euclid''s Elements at age 10.', 'Math Grade', 10, 'Math', 30, '', 0, 32, 'A', 'Math', 1500, 10),
+('Hire Private Math Tutor for $name', 2000, 1, 'How else you get ahead? Einstein read Euclid''s Elements at age 10.', 'Math Grade', 15, 'Math', 40, '', 0, 33, 'A', 'Math', 1500, 11),
+('Hire Private Math Tutor for $name', 2000, 1, 'How else you get ahead? Einstein read Euclid''s Elements at age 10.', 'Math Grade', 15, 'Math', 40, '', 0, 34, 'A', 'Math', 1500, 12),
+('Make $name take Calculus at Community College', 1000, 1, 'Get more credits for college', 'Math Grade', 20, 'Math', 80, '', 0, 35, 'A', 'Math', 3600, 9),
+('Make $name prepare for AP Calculus', 500, 2, 'Every kid get a 5', 'Math Grade', 20, 'Math', 40, '', 0, 36, 'A', 'Math', 1800, 9),
+('Make $name take Differential Equations at Community College', 1000, 1, 'Get more credits for college', 'Math Grade', 20, 'Math', 80, '', 0, 37, 'A', 'Math', 3600, 10),
+('Make $name prepare for AP Statistics', 500, 2, 'Every kid get a 5', 'Math Grade', 20, 'Math', 40, '', 0, 38, 'A', 'Math', 1800, 10),
+('Make $name take Linear Algebra at Community College', 1000, 1, 'Get more credits for college', 'Math Grade', 20, 'Math', 80, '', 0, 39, 'A', 'Math', 3600, 11),
+('Make $name take Statistics and Probability at Community College', 1000, 1, 'Get more credits for college', 'Math Grade', 20, 'Math', 80, '', 0, 40, 'A', 'Math', 3600, 12),
+('Make $name take Calculus at Stanford EPGY', 3000, 3, 'After this class you go to Stanford for real', 'Math Grade', 30, 'Math', 250, 'Random', 50, 41, 'A', 'Math', 86400, 9),
+('Make $name take Linear Algebra and Differential Equations at Stanford ', 3000, 4, 'After this class you go to Stanford for real', 'Math Grade', 40, 'Math', 255, 'Random', 80, 42, 'A', 'Math', 86400, 10),
+('Make $name take Real and Complex Analysis at Stanford EPGY', 4000, 5, 'After this class you go to Stanford for real', 'Math Grade', 40, 'Math', 255, 'Random', 120, 43, 'A', 'Math', 86400, 11),
+('Make $name take Partial Differential Equations at Stanford EPGY', 5000, 6, 'Even Tiger Mom doesn''t know this math...', 'Math Grade', 50, 'Math', 255, 'Random', 150, 44, 'A', 'Math', 86400, 12),
+('Sign up $name for Mathcounts', 200, 1, 'Be a mathlete!', 'Math', 20, '', 0, '', 0, 45, 'A', 'Math', 1200, 6),
+('Sign up $name for Mathcounts', 200, 1, 'Be a mathlete!', 'Math', 20, '', 0, '', 0, 46, 'A', 'Math', 1200, 7),
+('Sign up $name for Mathcounts', 200, 1, 'Be a mathlete!', 'Math', 20, '', 0, '', 0, 47, 'A', 'Math', 1200, 8),
+('Take AMC 8 exam', 300, 1, 'Make sure you qualify for AIME', 'Math', 30, '', 0, '', 0, 48, 'A', 'Math', 3600, 7),
+('Take AMC 8 exam', 300, 1, 'Make sure you qualify for AIME', 'Math', 30, '', 0, '', 0, 49, 'A', 'Math', 3600, 8),
+('Take AMC 10 exam', 300, 2, 'Make sure you qualify for AIME', 'Math', 45, '', 0, '', 0, 50, 'A', 'Math', 3600, 9),
+('Take AMC 10 exam', 300, 2, 'Make sure you qualify for AIME', 'Math', 45, '', 0, '', 0, 51, 'A', 'Math', 3600, 10),
+('Take AMC 12 exam', 300, 3, 'Make sure you qualify for AIME', 'Math', 60, '', 0, '', 0, 52, 'A', 'Math', 3600, 11),
+('Take AMC 12 exam', 300, 3, 'Make sure you qualify for AIME', 'Math', 60, '', 0, '', 0, 53, 'A', 'Math', 3600, 12),
+('Qualify for AIME', 500, 2, 'Make sure you qualify for USAMO', 'Math', 70, '', 0, '', 0, 54, 'A', 'Math', 3600, 9),
+('Qualify for AIME', 500, 2, 'Make sure you qualify for USAMO', 'Math', 70, '', 0, '', 0, 55, 'A', 'Math', 3600, 10),
+('Qualify for AIME', 500, 2, 'Make sure you qualify for USAMO', 'Math', 70, '', 0, '', 0, 56, 'A', 'Math', 3600, 11),
+('Qualify for AIME', 500, 2, 'Make sure you qualify for USAMO', 'Math', 70, '', 0, '', 0, 57, 'A', 'Math', 3600, 12),
+('Qualify for USAMO', 1000, 3, 'Bring back gold medal!', 'Math', 250, '', 0, '', 0, 58, 'A', 'Math', 86400, 9),
+('Qualify for USAMO', 1000, 3, 'Bring back gold medal!', 'Math', 250, '', 0, '', 0, 59, 'A', 'Math', 86400, 10),
+('Qualify for USAMO', 1000, 3, 'Bring back gold medal!', 'Math', 250, '', 0, '', 0, 60, 'A', 'Math', 86400, 11),
+('Qualify for USAMO', 1000, 3, 'Bring back gold medal!', 'Math', 250, '', 0, '', 0, 61, 'A', 'Math', 86400, 12),
+('Let $name play Number Munchers', 100, 2, 'Try to beat my high score', 'Math', 15, '', 0, '', 0, 62, 'A', 'Math', 300, -1),
+('Let $name play Number Munchers', 100, 2, 'Try to beat my high score', 'Math', 15, '', 0, '', 0, 63, 'A', 'Math', 300, 0),
+('Let $name play Number Munchers', 100, 2, 'Try to beat my high score', 'Math', 15, '', 0, '', 0, 64, 'A', 'Math', 300, 1),
+('Let $name play Number Munchers', 100, 2, 'Try to beat my high score', 'Math', 15, '', 0, '', 0, 65, 'A', 'Math', 300, 2),
+('Let $name play Number Munchers', 100, 2, 'Try to beat my high score', 'Math', 15, '', 0, '', 0, 66, 'A', 'Math', 300, 3),
+('Let $name play Number Munchers', 100, 2, 'Try to beat my high score', 'Math', 15, '', 0, '', 0, 67, 'A', 'Math', 300, 4),
+('Let $name play Number Munchers', 100, 2, 'Try to beat my high score', 'Math', 15, '', 0, '', 0, 68, 'A', 'Math', 300, 5),
+('Make $name count over 10', 0, 1, 'Don''t use your fingers this time', 'Math', 3, '', 0, '', 0, 69, 'A', 'Math', 0, -1),
+('Make $name add numbers', 0, 1, 'Just like adding money', 'Math', 3, '', 0, '', 0, 70, 'A', 'Math', 0, 0),
+('Practice arithmetic with $name', 0, 1, 'Add, subtract, multiply, differentiate', 'Math', 3, '', 0, '', 0, 71, 'A', 'Math', 0, 1),
+('Teach $name tricks for doing multiplication tables', 0, 1, 'Anything times 0 is 0', 'Math', 3, '', 0, '', 0, 72, 'A', 'Math', 0, 2),
+('Teach $name division', 0, 1, 'What is 0 divided by 0?', 'Math', 3, '', 0, '', 0, 73, 'A', 'Math', 0, 3),
+('Practice converting fractions with $name', 0, 1, 'How much pizza you eat?', 'Math', 4, '', 0, '', 0, 74, 'A', 'Math', 0, 4),
+('Review exponents with $name', 0, 1, 'You help calculate mortgage interest', 'Math', 4, '', 0, '', 0, 75, 'A', 'Math', 0, 5),
+('Give extra algebra problems to $name', 0, 1, 'How many chicken and cow on farm?', 'Math', 4, '', 0, '', 0, 76, 'A', 'Math', 0, 6),
+('Teach $name geometry tricks', 0, 1, 'Square wrapper for wonton, circle wrapper for dumpling', 'Math', 4, '', 0, '', 0, 77, 'A', 'Math', 0, 7),
+('Practice trigonometry problems with $name', 0, 1, 'Everything you need know about triangle', 'Math', 4, '', 0, '', 0, 78, 'A', 'Math', 0, 8),
+('Make Ice Cube Popsicles with $name', 200, 1, 'So much cheaper than ice cream', 'Science Grade', 5, 'Science', 5, 'Culture', 5, 79, 'A', 'Science', 0, -1),
+('Teach $name About The Five Senses', 100, 1, 'Look what I say or you taste spanking', 'Science Grade', 5, 'Science', 5, '', 0, 80, 'A', 'Science', 0, -1),
+('Raise Tadpole With $name', 300, 2, 'Then we have spicy frog legs', 'Science Grade', 15, 'Science', 5, '', 0, 81, 'A', 'Science', 1200, -1),
+('Grow Bean Sprout With $name', 200, 2, 'Take long time to grow', 'Science Grade', 10, 'Science', 5, '', 0, 82, 'A', 'Science', 1200, 0),
+('Make ABC Nature Book with $name', 200, 1, 'A is for ant? No ants in house!', 'Science Grade', 5, 'Science', 5, '', 0, 83, 'A', 'Science', 0, 0),
+('Make Ice Cream with $name', 300, 1, 'But you can''t eat it, chubby.', 'Science Grade', 5, 'Science', 10, '', 0, 84, 'A', 'Science', 1200, 0),
+('Play with Balloons Together', 200, 1, 'Don''t let balloon touch floor!', 'Science Grade', 3, 'Science', 3, '', 0, 85, 'A', 'Science', 0, 1),
+('Take $name To The Planetarium', 500, 1, 'There are 9 planets', 'Science Grade', 10, 'Science', 10, '', 0, 86, 'A', 'Science', 0, 1),
+('Go To The Tech Museum With $name', 500, 1, 'More fun than school', 'Science Grade', 10, 'Science', 20, '', 0, 87, 'A', 'Science', 0, 1),
+('Go To Exploratorium With $name', 500, 1, 'More fun than school', 'Science Grade', 15, 'Science', 30, '', 0, 88, 'A', 'Science', 0, 2),
+('Read Science Book With $name', 100, 1, 'Learn about dinosaurs!', 'Science Grade', 5, 'Science', 2, '', 0, 89, 'A', 'Science', 0, 2),
+('Read Science Book With $name', 100, 1, 'Learn about animals!', 'Science Grade', 5, 'Science', 2, '', 0, 90, 'A', 'Science', 0, 3),
+('Read Science Book With $name', 100, 2, 'Learn about electricity!', 'Science Grade', 5, 'Science', 5, '', 0, 91, 'A', 'Science', 0, 4),
+('Read Science Book With $name', 100, 2, 'Learn about plants!', 'Science Grade', 5, 'Science', 5, '', 0, 92, 'A', 'Science', 0, 5),
+('Track The Moon''s Phases With $name', 100, 2, 'Big moon means mid-autumn festival', 'Science Grade', 5, 'Science', 5, '', 0, 93, 'A', 'Science', 0, 2),
+('Go to Zoo With $name', 500, 1, 'See the animals', 'Science Grade', 15, 'Science', 5, '', 0, 94, 'A', 'Science', 0, 3),
+('Raise Crayfish with $name', 300, 2, 'They look like sea bugs', 'Science Grade', 10, 'Science', 10, '', 0, 95, 'A', 'Science', 1200, 3),
+('Make Volcano with $name', 400, 1, 'But don''t make a mess!', 'Science Grade', 5, 'Science', 5, '', 0, 96, 'A', 'Science', 0, 4),
+('Make Dried Fruit with $name', 200, 1, 'A tasty experiment', 'Science Grade', 5, 'Science', 5, 'Culture', 5, 97, 'A', 'Science', 0, 4),
+('Make a Potato Battery with $name', 200, 1, 'Can''t mess this up because you need the other potatoes for cooking.', 'Science Grade', 5, 'Science', 5, '', 0, 98, 'A', 'Science', 0, 5),
+('Make a Homemade Thermometer with $name', 300, 1, 'Now measure temperature of all the things!', 'Science Grade', 5, 'Science', 10, '', 0, 99, 'A', 'Science', 0, 5),
+('Make Report About Dinosaurs with $name', 100, 1, 'Which dinosaur is favorite?', 'Science Grade', 5, 'Science', 5, '', 0, 100, 'A', 'Science', 0, 6),
+('Make Marshmallow Toothpick Tower With $name', 200, 1, 'Just a little bit taller...', 'Science Grade', 5, 'Science', 3, 'Math', 2, 101, 'A', 'Science', 0, 6),
+('Learn About the Tides with $name', 400, 1, 'Which tide we get clams?', 'Science Grade', 10, 'Science', 5, '', 0, 102, 'A', 'Science', 0, 6),
+('Make $name Study for Biology Test', 100, 3, 'Never to early to study to become doctor.', 'Science Grade', 10, 'Science', 5, '', 0, 103, 'A', 'Science', 0, 7),
+('Make Report About Cell Diseases with $name', 200, 2, 'Never to early to study to become doctor.', 'Science Grade', 10, 'Science', 10, '', 0, 104, 'A', 'Science', 0, 7),
+('Make $name Study for Physical Science Test', 100, 3, 'Science is so interesting!', 'Science Grade', 10, 'Science', 5, 'Math', 5, 105, 'A', 'Science', 0, 8),
+('Make Report About Planets with $name', 300, 2, 'Which planet is favorite?', 'Science Grade', 10, 'Science', 10, '', 0, 106, 'A', 'Science', 0, 8),
+('Make $name take AP Physics: Mechanics and AP Physics: Electricity and ', 3000, 3, 'After this class you go to Stanford for real', 'Science Grade', 30, 'Science', 250, 'Random', 50, 107, 'A', 'Science', 86400, 9),
+('Make $name take Intro Biology at Community College', 1000, 1, 'Get more credits for college', 'Science Grade', 20, 'Science', 80, '', 0, 108, 'A', 'Science', 3600, 9),
+('Make $name prepare for AP Biology', 500, 2, 'Every kid get a 5', 'Science Grade', 20, 'Science', 40, '', 0, 109, 'A', 'Science', 1800, 9),
+('Make $name take Biotechnology course at Stanford Summer School', 3000, 4, 'After this class you go to Stanford for real', 'Science Grade', 40, 'Science', 255, 'Random', 80, 110, 'A', 'Science', 86400, 10),
+('Make $name take Intro Chem at Community College', 1000, 1, 'Never too early to study to become doctor.', 'Science Grade', 20, 'Science', 80, '', 0, 111, 'A', 'Science', 3600, 10),
+('Make $name prepare for AP Computer Science', 500, 2, 'Every kid get a 5', 'Science Grade', 20, 'Science', 40, '', 0, 112, 'A', 'Science', 1800, 10),
+('Make $name take Particle Physics at Stanford Summer School', 4000, 5, 'After this class you go to Stanford for real', 'Science Grade', 40, 'Science', 255, 'Random', 120, 113, 'A', 'Science', 86400, 11),
+('Make $name take Anatomy at Community College', 1000, 1, 'Never too early to study to become doctor.', 'Science Grade', 20, 'Science', 80, '', 0, 114, 'A', 'Science', 3600, 11),
+('Make $name prepare for AP Chemistry', 500, 2, 'Every kid get a 5', 'Science Grade', 20, 'Science', 40, '', 0, 115, 'A', 'Science', 1800, 11),
+('Make $name take Intro to Quantum Mechanics at Stanford EPGY', 6000, 5, 'After this class you go to Stanford for real', 'Science Grade', 50, 'Science', 255, 'Random', 150, 116, 'A', 'Science', 86400, 12),
+('Make $name take Organic Chemistry at Community College', 1000, 1, 'Get more credits for college', 'Science Grade', 20, 'Science', 80, '', 0, 117, 'A', 'Science', 3600, 12),
+('Make $name prepare for AP Physics', 500, 2, 'Every kid get a 5', 'Science Grade', 20, 'Science', 40, '', 0, 118, 'A', 'Science', 1800, 12),
+('Make $name participate in Odyssey of the Mind', 200, 2, 'Let parents help you solve problems', 'Science', 20, '', 0, '', 0, 119, 'A', 'Science', 1800, 0),
+('Make $name participate in Odyssey of the Mind', 200, 2, 'Let parents help you solve problems', 'Science', 20, '', 0, '', 0, 120, 'A', 'Science', 1800, 1),
+('Make $name participate in Odyssey of the Mind', 200, 2, 'Let parents help you solve problems', 'Science', 20, '', 0, '', 0, 121, 'A', 'Science', 1800, 2),
+('Make $name participate in Odyssey of the Mind', 200, 2, 'Let parents help you solve problems', 'Science', 20, '', 0, '', 0, 122, 'A', 'Science', 1800, 3),
+('Make $name participate in Oddysey of the Mind', 200, 2, 'Let parents help you solve problems', 'Science', 20, '', 0, '', 0, 123, 'A', 'Science', 1800, 4),
+('Make $name participate in Odyssey of the Mind', 200, 2, 'Let parents help you solve problems', 'Science', 20, '', 0, '', 0, 124, 'A', 'Science', 1800, 5),
+('Make $name participate in Odyssey of the Mind', 200, 3, 'Let parents help you solve problems', 'Science', 30, '', 0, '', 0, 125, 'A', 'Science', 1800, 6),
+('Make $name participate in Odyssey of the Mind', 200, 3, 'Let parents help you solve problems', 'Science', 30, '', 0, '', 0, 126, 'A', 'Science', 1800, 7),
+('Make $name participate in Odyssey of the Mind', 200, 3, 'Let parents help you solve problems', 'Science', 30, '', 0, '', 0, 127, 'A', 'Science', 1800, 8),
+('Make $name compete in Tech Challenge', 100, 3, 'Let parents help you win', 'Science', 30, '', 0, '', 0, 128, 'A', 'Science', 3600, 5),
+('Make $name compete in Tech Challenge', 100, 3, 'Let parents help you win', 'Science', 30, '', 0, '', 0, 129, 'A', 'Science', 3600, 6),
+('Make $name compete in Tech Challenge', 100, 4, 'Let parents help you win', 'Science', 40, '', 0, '', 0, 130, 'A', 'Science', 3600, 7),
+('Make $name compete in Tech Challenge', 100, 4, 'Let parents help you win', 'Science', 40, '', 0, '', 0, 131, 'A', 'Science', 3600, 8),
+('Make $name compete in Tech Challenge', 100, 5, 'Let parents help you win', 'Science', 50, '', 0, '', 0, 132, 'A', 'Science', 3600, 9),
+('Make $name compete in Tech Challenge', 100, 5, 'Let parents help you win', 'Science', 50, '', 0, '', 0, 133, 'A', 'Science', 3600, 10),
+('Make $name compete in Tech Challenge', 100, 5, 'Let parents help you win', 'Science', 50, '', 0, '', 0, 134, 'A', 'Science', 3600, 11),
+('Make $name compete in Tech Challenge', 100, 5, 'Let parents help you win', 'Science', 50, '', 0, '', 0, 135, 'A', 'Science', 3600, 12),
+('Make $name compete in Science Bowl', 500, 2, 'Press buzzer fast like video game', 'Science', 40, '', 0, '', 0, 136, 'A', 'Science', 600, 9),
+('Make $name compete in Science Bowl', 500, 2, 'Press buzzer fast like video game', 'Science', 40, '', 0, '', 0, 137, 'A', 'Science', 600, 10),
+('Make $name compete in Science Bowl', 500, 2, 'Press buzzer fast like video game', 'Science', 50, '', 0, '', 0, 138, 'A', 'Science', 600, 11),
+('Make $name compete in Science Bowl', 500, 2, 'Press buzzer fast like video game', 'Science', 50, '', 0, '', 0, 139, 'A', 'Science', 600, 12),
+('Compete in Intel Science Talent Search', 1000, 8, 'Win scholarship!', 'Science', 255, '', 0, '', 0, 140, 'A', 'Science', 86400, 12),
+('Create an exhibit for school science fair', 100, 1, 'Not another butterfly life cycle...', 'Science', 5, '', 0, '', 0, 141, 'A', 'Science', 300, 0),
+('Create an exhibit for school science fair', 100, 1, 'Not another butterfly life cycle...', 'Science', 5, '', 0, '', 0, 142, 'A', 'Science', 300, 1),
+('Create an exhibit for school science fair', 100, 1, 'Not another butterfly life cycle...', 'Science', 5, '', 0, '', 0, 143, 'A', 'Science', 300, 2),
+('Create an exhibit for school science fair', 100, 1, 'Not another butterfly life cycle...', 'Science', 5, '', 0, '', 0, 144, 'A', 'Science', 300, 3),
+('Create an exhibit for school science fair', 100, 1, 'Not another butterfly life cycle...', 'Science', 5, '', 0, '', 0, 145, 'A', 'Science', 300, 4),
+('Create an exhibit for school science fair', 100, 1, 'Not another butterfly life cycle...', 'Science', 5, '', 0, '', 0, 146, 'A', 'Science', 300, 5),
+('Create an exhibit for school science fair', 100, 1, 'Not another butterfly life cycle...', 'Science', 5, '', 0, '', 0, 147, 'A', 'Science', 300, 6),
+('Teach $name Alphabet', 100, 1, 'Only 26 letters, this not so hard!', 'English Grade', 4, 'Language', 4, '', 0, 148, 'A', 'English', 0, -1),
+('Read Stories with $name', 200, 1, 'These books have pictures', 'English Grade', 8, 'Language', 8, '', 0, 149, 'A', 'English', 0, -1),
+('Read Stories with $name', 200, 1, 'These books have pictures', 'English Grade', 8, 'Language', 8, '', 0, 150, 'A', 'English', 0, 0),
+('Read Stories with $name', 300, 1, 'These books have pictures', 'English Grade', 8, 'Language', 8, '', 0, 151, 'A', 'English', 0, 1),
+('Read Stories with $name', 300, 1, 'These books have pictures', 'English Grade', 8, 'Language', 8, '', 0, 152, 'A', 'English', 0, 2),
+('Read Stories with $name', 400, 1, 'These books have pictures', 'English Grade', 10, 'Language', 10, '', 0, 153, 'A', 'English', 0, 3),
+('Read Stories with $name', 400, 1, 'The words are so big', 'English Grade', 10, 'Language', 10, '', 0, 154, 'A', 'English', 0, 4),
+('Read Stories with $name', 500, 1, 'The words are so big', 'English Grade', 10, 'Language', 10, '', 0, 155, 'A', 'English', 0, 5),
+('Attend Kunom Reading', 500, 1, 'Read book like do math', 'English Grade', 10, 'Language', 20, '', 0, 156, 'A', 'English', 1200, 0),
+('Attend Kunom Reading', 600, 1, 'Read book like do math', 'English Grade', 10, 'Language', 20, '', 0, 157, 'A', 'English', 1200, 1),
+('Attend Kunom Reading', 600, 1, 'Read book like do math', 'English Grade', 10, 'Language', 20, '', 0, 158, 'A', 'English', 1200, 2),
+('Attend Kunom Reading', 700, 1, 'Read book like do math', 'English Grade', 10, 'Language', 15, '', 0, 159, 'A', 'English', 1200, 3),
+('Attend Kunom Reading', 700, 1, 'Read book like do math', 'English Grade', 10, 'Language', 15, '', 0, 160, 'A', 'English', 1200, 4),
+('Attend Kunom Reading', 800, 1, 'Read book like do math', 'English Grade', 10, 'Language', 10, '', 0, 161, 'A', 'English', 1200, 5),
+('Attend Kunom Reading', 800, 1, 'Read book like do math', 'English Grade', 10, 'Language', 10, '', 0, 162, 'A', 'English', 1200, 6),
+('Attend Kunom Reading', 900, 1, 'Read book like do math', 'English Grade', 10, 'Language', 10, '', 0, 163, 'A', 'English', 1200, 7),
+('Attend Kunom Reading', 900, 1, 'Read book like do math', 'English Grade', 10, 'Language', 10, '', 0, 164, 'A', 'English', 1200, 8),
+('Encourage $name to Start Reading Aloud', 300, 1, 'Read book like do math', 'English Grade', 5, 'Language', 15, '', 0, 165, 'A', 'English', 0, 0),
+('Write Sentences with $name', 200, 1, 'Mommy is smarter than Daddy.', 'English Grade', 3, 'Language', 10, '', 0, 166, 'A', 'English', 0, 1),
+('Write Stories with $name', 300, 1, 'Yesterday Mommy told Daddy he''s dumb.', 'English Grade', 5, 'Language', 10, 'Culture', 2, 167, 'A', 'English', 0, 1),
+('Write Stories with $name', 300, 1, 'Yesterday Mommy told Daddy he''s dumb.', 'English Grade', 5, 'Language', 15, 'Culture', 2, 168, 'A', 'English', 0, 2),
+('Write Stories with $name', 300, 1, 'Yesterday Mommy told Daddy he''s dumb.', 'English Grade', 5, 'Language', 15, 'Culture', 2, 169, 'A', 'English', 0, 3),
+('Practice for Spelling Test With $name', 200, 1, 'Only 26 letters, this not so hard!', 'English Grade', 5, 'Language', 5, '', 0, 170, 'A', 'English', 0, 1),
+('Practice for Spelling Test With $name', 200, 1, 'Only 26 letters, this not so hard!', 'English Grade', 5, 'Language', 5, '', 0, 171, 'A', 'English', 0, 2),
+('Practice for Spelling Test With $name', 200, 1, 'Only 26 letters, this not so hard!', 'English Grade', 5, 'Language', 5, '', 0, 172, 'A', 'English', 0, 3),
+('Practice Cursive Writing with $name', 100, 3, 'Now you can sign name', 'English Grade', 10, 'Language', 10, '', 0, 173, 'A', 'English', 0, 3),
+('Write Short Essay with $name', 100, 4, 'Moms are better than Dads because...', 'English Grade', 20, 'Language', 15, '', 0, 174, 'A', 'English', 1200, 4),
+('Write Short Essay with $name', 100, 4, 'Moms are better than Dads because...', 'English Grade', 20, 'Language', 15, '', 0, 175, 'A', 'English', 1200, 5),
+('Write Short Essay with $name', 100, 4, 'Moms are better than Dads because...', 'English Grade', 25, 'Language', 20, '', 0, 176, 'A', 'English', 1200, 6),
+('Correct $name''s Grammar Worksheet', 100, 2, 'Why you English is bad?', 'English Grade', 7, 'Language', 7, '', 0, 177, 'A', 'English', 0, 5),
+('Correct $name''s Grammar Worksheet', 100, 2, 'Why you English is bad?', 'English Grade', 8, 'Language', 8, '', 0, 178, 'A', 'English', 0, 6),
+('Critique $name''s Critical Essay', 100, 3, 'Need more feeling!', 'English Grade', 10, 'Language', 10, '', 0, 179, 'A', 'English', 0, 7),
+('Critique $name''s Critical Essay', 100, 3, 'Need more feeling!', 'English Grade', 12, 'Language', 12, '', 0, 180, 'A', 'English', 0, 8),
+('Send $name to SAT Prep', 500, 3, 'Need to get perfect score', 'English Grade', 15, 'Language', 20, 'Math', 20, 181, 'A', 'English', 3600, 8),
+('Send $name to SAT Prep', 500, 3, 'Need to get perfect score', 'English Grade', 15, 'Language', 20, 'Math', 20, 182, 'A', 'English', 3600, 9),
+('Send $name to SAT Prep', 500, 4, 'Need to get perfect score', 'English Grade', 15, 'Language', 20, 'Math', 20, 183, 'A', 'English', 3600, 10),
+('Send $name to SAT Prep', 500, 4, 'Need to get perfect score', 'English Grade', 15, 'Language', 20, 'Math', 20, 184, 'A', 'English', 3600, 11),
+('Send $name to SAT Prep', 500, 5, 'Need to get perfect score', 'English Grade', 15, 'Language', 20, 'Math', 20, 185, 'A', 'English', 3600, 12),
+('Prepare for AP English Language Test', 500, 2, 'Every kid get a 5', 'English Grade', 20, 'Language', 40, '', 0, 186, 'A', 'English', 1800, 11),
+('Take EWRT1A at community college', 1000, 1, 'Get more credits for college', 'English Grade', 20, 'Language', 80, '', 0, 187, 'A', '', 3600, 11),
+('Drill 3,000 flashcards for the SAT', 300, 2, 'Need to get perfect score', 'English Grade', 5, 'Language', 15, '', 0, 188, 'A', 'English', 0, 8),
+('Drill 3,000 flashcards for the SAT', 300, 2, 'Need to get perfect score', 'English Grade', 5, 'Language', 15, '', 0, 189, 'A', 'English', 0, 9),
+('Drill 3,000 flashcards for the SAT', 300, 2, 'Need to get perfect score', 'English Grade', 5, 'Language', 15, '', 0, 190, 'A', 'English', 0, 10),
+('Drill 3,000 flashcards for the SAT', 300, 2, 'Need to get perfect score', 'English Grade', 5, 'Language', 15, '', 0, 191, 'A', 'English', 0, 11),
+('Prepare for AP English Literature Test', 500, 2, 'Every kid get a 5', 'English Grade', 20, 'Language', 40, '', 0, 192, 'A', 'English', 1800, 12),
+('Attend College Essay Help Class', 1000, 1, 'Make you write better', 'English Grade', 20, 'Language', 80, '', 0, 193, 'A', 'English', 3600, 12),
+('Learn about holidays in different countries', 100, 1, 'You also have to practice your Chinese New Year''s greetings', 'History Grade', 4, 'History', 2, 'Chinese', 2, 194, 'A', 'History', 0, 0),
+('Learn about schools in different countries', 100, 1, 'In China, kids go to school six days a week!', 'History Grade', 4, 'History', 2, 'Culture', 2, 195, 'A', 'History', 0, 0),
+('Learn to use maps', 100, 1, 'Now you can do errands for Mom!', 'History Grade', 5, 'History', 3, '', 0, 196, 'A', 'History', 0, 1),
+('Learn about different cultures and customs in the world', 100, 1, 'Chinese parents are better at raising kids than Western ones.', 'History Grade', 5, 'History', 3, 'Culture', 2, 197, 'A', 'History', 0, 1),
+('Make report about a US State', 200, 2, 'What state you live in?', 'History Grade', 5, 'History', 5, 'Language', 5, 198, 'A', 'History', 0, 2),
+('Study different industries in different regions', 200, 2, 'But everywhere, doctors are needed, which is why you''re going to become one! :)', 'History Grade', 5, 'History', 5, 'Culture', 5, 199, 'A', 'History', 0, 2),
+('Learn about the structure of government', 100, 1, 'We vote to pick the president, just like picking kickball captain', 'History Grade', 5, 'History', 5, '', 0, 200, 'A', 'History', 0, 3),
+('Study history of California', 100, 1, 'And Mommy immigrated here in..', 'History Grade', 5, 'History', 5, '', 0, 201, 'A', 'History', 0, 3),
+('Write a research paper on a country', 400, 1, 'Mom says China will be the world''s next superpower.', 'History Grade', 10, 'History', 10, 'Language', 5, 202, 'A', 'History', 0, 4),
+('Present current events on world news topics', 100, 1, '"Why Chinese Mothers are Superior" in the Wall Street Journal last week made a lot of people mad, but my mom says Amy Chua is right!', 'History Grade', 5, 'History', 5, '', 0, 203, 'A', 'History', 1200, 4),
+('Learn about the beginning of the United States', 100, 2, 'George Washington invented America', 'History Grade', 8, 'History', 5, '', 0, 204, 'A', 'History', 0, 5),
+('Study the Civil War', 100, 1, 'Abraham Lincoln slayed the vampires', 'History Grade', 5, 'History', 5, '', 0, 205, 'A', 'History', 300, 5),
+('Memorize map of the United States', 200, 1, 'Don''t forget Alaska and Hawaii', 'History Grade', 10, 'History', 5, '', 0, 206, 'A', 'History', 0, 5),
+('Study Ancient History', 300, 1, 'Be thankful I don''t make you learn Classical Chinese.', 'History Grade', 10, 'History', 5, 'Culture', 5, 207, 'A', 'History', 0, 6),
+('Study the Middle East', 100, 2, 'They always bombing', 'History Grade', 10, 'History', 5, '', 0, 208, 'A', 'History', 0, 6),
+('Study the history of East Asia', 100, 2, 'Longest history ever', 'History Grade', 8, 'History', 5, 'Culture', 5, 209, 'A', 'History', 300, 7),
+('Study Modern Europe', 200, 1, 'They lazy so they bankrupt', 'History Grade', 10, 'History', 5, '', 0, 210, 'A', 'History', 0, 7),
+('Research the Revolutionary War', 100, 3, 'George Washington beat the British', 'History Grade', 10, 'History', 15, '', 0, 211, 'A', 'History', 600, 8),
+('Research a US President', 500, 1, 'Which president is favorite?', 'History Grade', 20, 'History', 5, '', 0, 212, 'A', 'History', 0, 8),
+('Prepare for AP World History Test', 500, 2, 'Every kid get a 5', 'History Grade', 20, 'History', 20, '', 0, 213, 'A', 'History', 1800, 9),
+('Prepare for AP European History Test', 500, 2, 'Every kid get a 5', 'History Grade', 20, 'History', 20, '', 0, 214, 'A', 'History', 1800, 10),
+('Prepare for AP US History Test', 500, 2, 'Every kid get a 5', 'History Grade', 20, 'History', 20, '', 0, 215, 'A', 'History', 1800, 11),
+('Prepare for US AP Government Test', 500, 2, 'Every kid get a 5', 'History Grade', 20, 'History', 20, '', 0, 216, 'A', 'History', 1800, 12),
+('Work on Documentary Film Project', 1000, 2, 'You like history so much?', 'History Grade', 40, 'History', 30, 'Language', 30, 217, 'A', 'History', 3600, 12),
+('Take $name to Chinese School', 300, 1, 'You need speak Chinese!', 'Chinese Grade', 5, 'Chinese', 5, 'Culture', 5, 218, 'A', 'Chinese', 600, -1),
+('Take $name to Chinese School', 300, 1, 'You need speak Chinese!', 'Chinese Grade', 5, 'Chinese', 5, 'Culture', 5, 219, 'A', 'Chinese', 600, 0),
+('Take $name to Chinese School', 300, 1, 'You need speak Chinese!', 'Chinese Grade', 5, 'Chinese', 5, 'Culture', 5, 220, 'A', 'Chinese', 600, 1),
+('Take $name to Chinese School', 300, 1, 'You need speak Chinese!', 'Chinese Grade', 5, 'Chinese', 10, 'Culture', 10, 221, 'A', 'Chinese', 600, 2),
+('Take $name to Chinese School', 300, 1, 'You need speak Chinese!', 'Chinese Grade', 10, 'Chinese', 10, 'Culture', 10, 222, 'A', 'Chinese', 600, 3),
+('Take $name to Chinese School', 500, 1, 'You need speak Chinese!', 'Chinese Grade', 10, 'Chinese', 10, 'Culture', 10, 223, 'A', 'Chinese', 600, 4),
+('Take $name to Chinese School', 500, 1, 'You need speak Chinese!', 'Chinese Grade', 10, 'Chinese', 15, 'Culture', 15, 224, 'A', 'Chinese', 600, 5),
+('Take $name to Chinese School', 500, 1, 'You need speak Chinese!', 'Chinese Grade', 10, 'Chinese', 15, 'Culture', 15, 225, 'A', 'Chinese', 600, 6),
+('Take $name to Chinese School', 500, 2, 'You need speak Chinese!', 'Chinese Grade', 15, 'Chinese', 15, 'Culture', 15, 226, 'A', 'Chinese', 600, 7),
+('Take $name to Chinese School', 800, 2, 'You need speak Chinese!', 'Chinese Grade', 15, 'Chinese', 20, 'Culture', 20, 227, 'A', 'Chinese', 600, 8),
+('Take $name to Chinese School', 800, 3, 'You need speak Chinese!', 'Chinese Grade', 15, 'Chinese', 20, 'Culture', 20, 228, 'A', 'Chinese', 600, 9),
+('Take $name to Chinese School', 1000, 3, 'You need speak Chinese!', 'Chinese Grade', 15, 'Chinese', 20, 'Culture', 20, 229, 'A', 'Chinese', 600, 10),
+('Take $name to Chinese School', 1000, 4, 'You need speak Chinese!', 'Chinese Grade', 10, 'Chinese', 15, 'Culture', 15, 230, 'A', 'Chinese', 600, 11),
+('Take $name to Chinese School', 1000, 4, 'You need speak Chinese!', 'Chinese Grade', 10, 'Chinese', 15, 'Culture', 15, 231, 'A', 'Chinese', 600, 12),
+('Drill Chinese Characters with $name', 100, 1, 'Only 4000 more to go!', 'Chinese Grade', 3, 'Chinese', 3, 'Language', 3, 232, 'A', 'Chinese', 0, 0),
+('Drill Chinese Characters with $name', 100, 1, 'Only 4000 more to go!', 'Chinese Grade', 3, 'Chinese', 3, 'Language', 3, 233, 'A', 'Chinese', 0, 1),
+('Drill Chinese Characters with $name', 100, 1, 'Only 4000 more to go!', 'Chinese Grade', 3, 'Chinese', 3, 'Language', 3, 234, 'A', 'Chinese', 0, 2),
+('Drill Chinese Characters with $name', 100, 1, 'Only 4000 more to go!', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 235, 'A', 'Chinese', 0, 3),
+('Drill Chinese Characters with $name', 100, 2, 'Only 4000 more to go!', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 236, 'A', 'Chinese', 0, 4),
+('Drill Chinese Characters with $name', 100, 2, 'Only 4000 more to go!', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 237, 'A', 'Chinese', 0, 5),
+('Drill Chinese Characters with $name', 100, 2, 'Only 4000 more to go!', 'Chinese Grade', 7, 'Chinese', 7, 'Language', 7, 238, 'A', 'Chinese', 0, 6),
+('Drill Chinese Characters with $name', 100, 2, 'Only 4000 more to go!', 'Chinese Grade', 7, 'Chinese', 7, 'Language', 7, 239, 'A', 'Chinese', 0, 7),
+('Drill Chinese Characters with $name', 100, 3, 'Only 4000 more to go!', 'Chinese Grade', 7, 'Chinese', 7, 'Language', 7, 240, 'A', 'Chinese', 0, 8),
+('Drill Chinese Characters with $name', 100, 3, 'Only 4000 more to go!', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 241, 'A', 'Chinese', 0, 9),
+('Drill Chinese Characters with $name', 100, 3, 'Only 4000 more to go!', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 242, 'A', 'Chinese', 0, 10),
+('Drill Chinese Characters with $name', 100, 3, 'Only 4000 more to go!', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 243, 'A', 'Chinese', 0, 11),
+('Drill Chinese Characters with $name', 100, 4, 'Only 4000 more to go!', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 244, 'A', 'Chinese', 0, 12),
+('Read Chinese storybook with $name', 100, 1, 'These books have pictures', 'Chinese', 5, 'Culture', 5, 'Language', 5, 245, 'A', 'Chinese', 0, -1),
+('Read Chinese storybook with $name', 100, 1, 'These books have pictures', 'Chinese', 5, 'Culture', 5, 'Language', 5, 246, 'A', 'Chinese', 0, 0),
+('Read Chinese storybook with $name', 100, 2, 'These books have pictures', 'Chinese', 5, 'Culture', 5, 'Language', 5, 247, 'A', 'Chinese', 0, 1),
+('Read Chinese storybook with $name', 100, 2, 'These books have pictures', 'Chinese', 5, 'Culture', 5, 'Language', 5, 248, 'A', 'Chinese', 0, 2),
+('Read Chinese storybook with $name', 100, 2, 'These books have pictures', 'Chinese', 5, 'Culture', 5, 'Language', 5, 249, 'A', 'Chinese', 0, 3),
+('Read Chinese storybook with $name', 200, 1, 'The words are so big', 'Chinese', 5, 'Culture', 5, 'Language', 5, 250, 'A', 'Chinese', 0, 4),
+('Read Chinese storybook with $name', 200, 1, 'The words are so big', 'Chinese', 5, 'Culture', 5, 'Language', 5, 251, 'A', 'Chinese', 0, 5),
+('Read Chinese storybook with $name', 200, 1, 'The words are so big', 'Chinese', 5, 'Culture', 5, 'Language', 5, 252, 'A', 'Chinese', 0, 6),
+('Take $name to Calligraphy Lessons', 200, 1, 'Write better characters', 'Chinese Grade', 3, 'Chinese', 3, 'Culture', 3, 253, 'A', 'Chinese', 0, 1),
+('Take $name to Calligraphy Lessons', 200, 1, 'Write better characters', 'Chinese Grade', 3, 'Chinese', 3, 'Culture', 3, 254, 'A', 'Chinese', 0, 2),
+('Take $name to Calligraphy Lessons', 200, 2, 'Write better characters', 'Chinese Grade', 5, 'Chinese', 5, 'Culture', 5, 255, 'A', 'Chinese', 0, 3),
+('Take $name to Calligraphy Lessons', 200, 2, 'Write better characters', 'Chinese Grade', 5, 'Chinese', 5, 'Culture', 5, 256, 'A', 'Chinese', 0, 4),
+('Take $name to Calligraphy Lessons', 300, 2, 'Write better characters', 'Chinese Grade', 8, 'Chinese', 8, 'Culture', 8, 257, 'A', 'Chinese', 0, 5),
+('Take $name to Calligraphy Lessons', 300, 2, 'Write better characters', 'Chinese Grade', 8, 'Chinese', 8, 'Culture', 8, 258, 'A', 'Chinese', 0, 6),
+('Take $name to Calligraphy Lessons', 400, 2, 'Write better characters', 'Chinese Grade', 10, 'Chinese', 10, 'Culture', 10, 259, 'A', 'Chinese', 0, 7),
+('Take $name to Calligraphy Lessons', 400, 2, 'Write better characters', 'Chinese Grade', 10, 'Chinese', 10, 'Culture', 10, 260, 'A', 'Chinese', 0, 8),
+('Take $name to Calligraphy Lessons', 400, 2, 'Write better characters', 'Chinese Grade', 10, 'Chinese', 10, 'Culture', 10, 261, 'A', 'Chinese', 0, 9),
+('Take $name to Calligraphy Lessons', 500, 2, 'Write better characters', 'Chinese Grade', 10, 'Chinese', 10, 'Culture', 10, 262, 'A', 'Chinese', 0, 10),
+('Take $name to Calligraphy Lessons', 500, 2, 'Write better characters', 'Chinese Grade', 10, 'Chinese', 10, 'Culture', 10, 263, 'A', 'Chinese', 0, 11),
+('Take $name to Calligraphy Lessons', 500, 2, 'Write better characters', 'Chinese Grade', 10, 'Chinese', 10, 'Culture', 10, 264, 'A', 'Chinese', 0, 12),
+('Chinese Tutoring Session', 1000, 1, 'Make Chinese better', 'Chinese Grade', 15, 'Chinese', 5, 'Language', 5, 265, 'A', 'Chinese', 0, 1),
+('Chinese Tutoring Session', 1000, 1, 'Make Chinese better', 'Chinese Grade', 15, 'Chinese', 5, 'Language', 5, 266, 'A', 'Chinese', 0, 2),
+('Chinese Tutoring Session', 1000, 1, 'Make Chinese better', 'Chinese Grade', 15, 'Chinese', 5, 'Language', 5, 267, 'A', 'Chinese', 0, 3),
+('Chinese Tutoring Session', 1000, 1, 'Make Chinese better', 'Chinese Grade', 15, 'Chinese', 5, 'Language', 5, 268, 'A', 'Chinese', 0, 4),
+('Chinese Tutoring Session', 1000, 1, 'Make Chinese better', 'Chinese Grade', 15, 'Chinese', 5, 'Language', 5, 269, 'A', 'Chinese', 0, 5),
+('Chinese Tutoring Session', 1000, 1, 'Make Chinese better', 'Chinese Grade', 15, 'Chinese', 5, 'Language', 5, 270, 'A', 'Chinese', 0, 6),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 271, 'A', 'Chinese', 0, -1),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 272, 'A', 'Chinese', 0, 0),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 273, 'A', 'Chinese', 0, 1),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 274, 'A', 'Chinese', 0, 2),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 275, 'A', 'Chinese', 0, 3),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 276, 'A', 'Chinese', 0, 4),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 277, 'A', 'Chinese', 0, 5),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 278, 'A', 'Chinese', 0, 6),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 279, 'A', 'Chinese', 0, 7),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 280, 'A', 'Chinese', 0, 8),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 281, 'A', 'Chinese', 0, 9),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 282, 'A', 'Chinese', 0, 10),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 283, 'A', 'Chinese', 0, 11),
+('Practice Chinese dictation', 100, 2, 'Read it again', 'Chinese Grade', 5, 'Chinese', 5, 'Language', 5, 284, 'A', 'Chinese', 0, 12),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 285, 'L', 'Chinese', 300, -1),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 286, 'L', 'Chinese', 300, 0),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 287, 'L', 'Chinese', 300, 1),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 288, 'L', 'Chinese', 300, 2),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 289, 'L', 'Chinese', 300, 3),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 290, 'L', 'Chinese', 300, 4),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 291, 'L', 'Chinese', 300, 5),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 292, 'L', 'Chinese', 300, 6),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 293, 'L', 'Chinese', 300, 7),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 294, 'L', 'Chinese', 300, 8),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 295, 'L', 'Chinese', 300, 9),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 296, 'L', 'Chinese', 300, 10),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 297, 'L', 'Chinese', 300, 11),
+('Make $name speak Chinese at home', 0, 1, 'Because we no speaky Engrish in this house.', 'Chinese', 2, 'Culture', 2, 'Language', 2, 298, 'L', 'Chinese', 300, 12),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 10, 'Language', 5, '', 0, 299, 'A', 'Chinese', 3600, -1),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 10, 'Language', 5, '', 0, 300, 'A', 'Chinese', 3600, 0),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 10, 'Language', 10, '', 0, 301, 'A', 'Chinese', 3600, 1),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 10, 'Language', 10, '', 0, 302, 'A', 'Chinese', 3600, 2),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 15, 'Language', 10, '', 0, 303, 'A', 'Chinese', 3600, 3),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 15, 'Language', 10, '', 0, 304, 'A', 'Chinese', 3600, 4),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 15, 'Language', 15, '', 0, 305, 'A', 'Chinese', 3600, 5),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 15, 'Language', 15, '', 0, 306, 'A', 'Chinese', 3600, 6),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 20, 'Language', 15, '', 0, 307, 'A', 'Chinese', 3600, 7),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 20, 'Language', 15, '', 0, 308, 'A', 'Chinese', 3600, 8),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 15, 'Language', 15, '', 0, 309, 'A', 'Chinese', 3600, 9),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 15, 'Language', 15, '', 0, 310, 'A', 'Chinese', 3600, 10),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 15, 'Language', 15, '', 0, 311, 'A', 'Chinese', 3600, 11),
+('Prepare for Chinese writing contest', 100, 2, 'Then you can write card to grandparents', 'Chinese', 15, 'Language', 15, '', 0, 312, 'A', 'Chinese', 3600, 12),
+('Sign $name up for Intro to Music Program', 500, 1, 'You listen to Mozart before born, remember?', 'Piano', 15, 'Violin', 15, '', 0, 313, 'E', 'Piano', 0, -1),
+('Sign $name up for Intro to Music Program', 500, 1, 'You listen to Mozart before born, remember?', 'Piano', 15, 'Violin', 15, '', 0, 314, 'E', 'Violin', 0, 0),
+('Sign $name up for Intro to Music Program', 500, 1, 'You listen to Mozart before born, remember?', 'Piano', 15, 'Violin', 15, '', 0, 315, 'E', 'Piano', 0, 1),
+('Sign $name up for Intro to Music Program', 500, 1, 'You listen to Mozart before born, remember?', 'Piano', 15, 'Violin', 15, '', 0, 316, 'E', 'Violin', 0, 2),
+('Sign $name up for Intro to Music Program', 500, 1, 'You listen to Mozart before born, remember?', 'Piano', 15, 'Violin', 15, '', 0, 317, 'E', 'Piano', 0, 3),
+('Sign $name up for Intro to Music Program', 500, 1, 'You listen to Mozart before born, remember?', 'Piano', 15, 'Violin', 15, '', 0, 318, 'E', 'Violin', 0, 4),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 319, 'E', 'Piano', 0, -1),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 320, 'E', 'Piano', 0, 0),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 321, 'E', 'Piano', 0, 1),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 322, 'E', 'Piano', 0, 2),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 323, 'E', 'Piano', 0, 3),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 324, 'E', 'Piano', 0, 4),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 325, 'E', 'Piano', 0, 5),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 326, 'E', 'Piano', 0, 6),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 327, 'E', 'Piano', 0, 7),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 328, 'E', 'Piano', 0, 8),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 329, 'E', 'Piano', 0, 9),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 330, 'E', 'Piano', 0, 10),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 331, 'E', 'Piano', 0, 11),
+('Go to group piano lessons', 200, 1, 'You play piano!', 'Piano', 10, '', 0, '', 0, 332, 'E', 'Piano', 0, 12),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 333, 'E', 'Piano', 0, -1),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 334, 'E', 'Piano', 0, 0),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 335, 'E', 'Piano', 0, 1),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 336, 'E', 'Piano', 0, 2);
+INSERT INTO `events` (`eventName`, `eventCost`, `motivationReq`, `eventDescription`, `skillA`, `EXPA`, `skillB`, `EXPB`, `skillC`, `EXPC`, `eventID`, `type`, `category`, `timeLimit`, `eGradeLevel`) VALUES
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 337, 'E', 'Piano', 0, 3),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 338, 'E', 'Piano', 0, 4),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 339, 'E', 'Piano', 0, 5),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 340, 'E', 'Piano', 0, 6),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 341, 'E', 'Piano', 0, 7),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 342, 'E', 'Piano', 0, 8),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 343, 'E', 'Piano', 0, 9),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 344, 'E', 'Piano', 0, 10),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 345, 'E', 'Piano', 0, 11),
+('Go to private piano lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching piano thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The I', 'Piano', 20, '', 0, '', 0, 346, 'E', 'Piano', 0, 12),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 347, 'E', 'Piano', 0, -1),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 348, 'E', 'Piano', 0, 0),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 349, 'E', 'Piano', 0, 1),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 350, 'E', 'Piano', 0, 2),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 351, 'E', 'Piano', 0, 3),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 352, 'E', 'Piano', 0, 4),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 353, 'E', 'Piano', 0, 5),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 354, 'E', 'Piano', 0, 6),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 355, 'E', 'Piano', 0, 7),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 356, 'E', 'Piano', 0, 8),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 357, 'E', 'Piano', 0, 9),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 358, 'E', 'Piano', 0, 10),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 359, 'E', 'Piano', 0, 11),
+('Go to private piano lessons with Russian teacher', 1000, 3, 'In Soviet Russia, piano plays you', 'Piano', 100, '', 0, '', 0, 360, 'E', 'Piano', 0, 12),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 361, 'E', 'Piano', 0, -1),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 362, 'E', 'Piano', 0, 0),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 363, 'E', 'Piano', 0, 1),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 364, 'E', 'Piano', 0, 2),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 365, 'E', 'Piano', 0, 3),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 366, 'E', 'Piano', 0, 4),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 367, 'E', 'Piano', 0, 5),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 368, 'E', 'Piano', 0, 6),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 369, 'E', 'Piano', 0, 7),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 370, 'E', 'Piano', 0, 8),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 371, 'E', 'Piano', 0, 9),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 372, 'E', 'Piano', 0, 10),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 373, 'E', 'Piano', 0, 11),
+('Go to theory lessons', 200, 1, 'Learn music better', 'Piano', 5, 'Violin', 5, '', 0, 374, 'E', 'Piano', 0, 12),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 375, 'E', 'Piano', 0, -1),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 376, 'E', 'Piano', 0, 0),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 377, 'E', 'Piano', 0, 1),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 378, 'E', 'Piano', 0, 2),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 379, 'E', 'Piano', 0, 3),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 380, 'E', 'Piano', 0, 4),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 381, 'E', 'Piano', 0, 5),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 382, 'E', 'Piano', 0, 6),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 383, 'E', 'Piano', 0, 7),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 384, 'E', 'Piano', 0, 8),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 385, 'E', 'Piano', 0, 9),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 386, 'E', 'Piano', 0, 10),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 387, 'E', 'Piano', 0, 11),
+('Go to ear training lessons', 300, 2, 'Hear music better', 'Piano', 10, 'Violin', 10, '', 0, 388, 'E', 'Piano', 0, 12),
+('Attend Group Beginner Piano Camp', 500, 1, 'Intro to piano', 'Piano', 25, '', 0, '', 0, 389, 'E', 'Piano', 0, 2),
+('Attend Group Beginner Piano Camp', 500, 1, 'Intro to piano', 'Piano', 25, '', 0, '', 0, 390, 'E', 'Piano', 0, 3),
+('Attend Group Beginner Piano Camp', 500, 1, 'Intro to piano', 'Piano', 25, '', 0, '', 0, 391, 'E', 'Piano', 0, 4),
+('Practice playing Twinkle, Twinkle, Little Star with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 10, '', 0, '', 0, 392, 'E', 'Piano', 300, -1),
+('Practice playing Ecossaise with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 10, '', 0, '', 0, 393, 'E', 'Piano', 300, 0),
+('Practice playing Sonatina with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 10, '', 0, '', 0, 394, 'E', 'Piano', 300, 1),
+('Practice playing Rondo in C Major with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 10, '', 0, '', 0, 395, 'E', 'Piano', 300, 2),
+('Practice playing Für Elise with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 10, '', 0, '', 0, 396, 'E', 'Piano', 300, 3),
+('Practice playing Pastorale Sonata with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 10, '', 0, '', 0, 397, 'E', 'Piano', 300, 4),
+('Practice playing Bach Prelude with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 10, '', 0, '', 0, 398, 'E', 'Piano', 300, 5),
+('Practice playing Moonlight Sonata with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 10, '', 0, '', 0, 399, 'E', 'Piano', 300, 6),
+('Practice playing Chopin Nocturne with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 15, '', 0, '', 0, 400, 'E', 'Piano', 300, 7),
+('Practice playing Liebesträume with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 15, '', 0, '', 0, 401, 'E', 'Piano', 300, 8),
+('Practice playing Appassionata', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 15, '', 0, '', 0, 402, 'E', 'Piano', 300, 9),
+('Practice playing Chopin Ballade No. 1', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 15, '', 0, '', 0, 403, 'E', 'Piano', 300, 10),
+('Practice playing Rachmaninoff Concerto', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 15, '', 0, '', 0, 404, 'E', 'Piano', 300, 11),
+('Practice playing La Campanella', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Piano', 15, '', 0, '', 0, 405, 'E', 'Piano', 300, 12),
+('Attend Carnegie Mellon Pre-College Summer Program', 1000, 2, 'This event requires a piano skill level of X.', 'Piano', 50, '', 0, '', 0, 406, 'E', 'Piano', 0, 9),
+('Attend Carnegie Mellon Pre-College Summer Program', 1000, 2, 'This event requires a piano skill level of X.', 'Piano', 50, '', 0, '', 0, 407, 'E', 'Piano', 0, 10),
+('Attend Carnegie Mellon Pre-College Summer Program', 1000, 2, 'This event requires a piano skill level of X.', 'Piano', 50, '', 0, '', 0, 408, 'E', 'Piano', 0, 11),
+('Attend Carnegie Mellon Pre-College Summer Program', 1000, 2, 'This event requires a piano skill level of X.', 'Piano', 50, '', 0, '', 0, 409, 'E', 'Piano', 0, 12),
+('Attend Julliard Pre-College Division (Piano)', 3000, 3, 'This event requires a piano skill level of X.', 'Piano', 250, '', 0, '', 0, 410, 'E', 'Piano', 0, 9),
+('Attend Julliard Pre-College Division (Piano)', 3000, 3, 'This event requires a piano skill level of X.', 'Piano', 250, '', 0, '', 0, 411, 'E', 'Piano', 0, 10),
+('Attend Julliard Pre-College Division (Piano)', 3000, 3, 'This event requires a piano skill level of X.', 'Piano', 250, '', 0, '', 0, 412, 'E', 'Piano', 0, 11),
+('Attend Julliard Pre-College Division (Piano)', 3000, 3, 'This event requires a piano skill level of X.', 'Piano', 250, '', 0, '', 0, 413, 'E', 'Piano', 0, 12),
+('Attend Group Beginner Violin Camp', 500, 1, 'Intro to violin', 'Violin', 25, '', 0, '', 0, 414, 'E', 'Violin', 0, 2),
+('Attend Group Beginner Violin Camp', 500, 1, 'Intro to violin', 'Violin', 25, '', 0, '', 0, 415, 'E', 'Violin', 0, 3),
+('Attend Group Beginner Violin Camp', 500, 1, 'Intro to violin', 'Violin', 25, '', 0, '', 0, 416, 'E', 'Violin', 0, 4),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 417, 'E', 'Violin', 0, -1),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 418, 'E', 'Violin', 0, 0),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 419, 'E', 'Violin', 0, 1),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 420, 'E', 'Violin', 0, 2),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 421, 'E', 'Violin', 0, 3),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 422, 'E', 'Violin', 0, 4),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 423, 'E', 'Violin', 0, 5),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 424, 'E', 'Violin', 0, 6),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 425, 'E', 'Violin', 0, 7),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 426, 'E', 'Violin', 0, 8),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 427, 'E', 'Violin', 0, 9),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 428, 'E', 'Violin', 0, 10),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 429, 'E', 'Violin', 0, 11),
+('Go to group violin lessons', 200, 1, 'You play violin!', 'Violin', 10, '', 0, '', 0, 430, 'E', 'Violin', 0, 12),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 431, 'E', 'Violin', 0, -1),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 432, 'E', 'Violin', 0, 0),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 433, 'E', 'Violin', 0, 1),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 434, 'E', 'Violin', 0, 2),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 435, 'E', 'Violin', 0, 3),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 436, 'E', 'Violin', 0, 4),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 437, 'E', 'Violin', 0, 5),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 438, 'E', 'Violin', 0, 6),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 439, 'E', 'Violin', 0, 7),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 440, 'E', 'Violin', 0, 8),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 441, 'E', 'Violin', 0, 9),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 442, 'E', 'Violin', 0, 10),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 443, 'E', 'Violin', 0, 11),
+('Go to private violin lessons with high school student', 300, 2, 'You don''t have to worry about one single thing, Mrs. Chua. I''ve got this teaching violin thing wired. I''ve taken courses and learned CPR and I got excellent marks and certificates...[Reference to The ', 'Violin', 20, '', 0, '', 0, 444, 'E', 'Violin', 0, 12),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 445, 'E', 'Violin', 0, -1),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 446, 'E', 'Violin', 0, 0),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 447, 'E', 'Violin', 0, 1),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 448, 'E', 'Violin', 0, 2),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 449, 'E', 'Violin', 0, 3),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 450, 'E', 'Violin', 0, 4),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 451, 'E', 'Violin', 0, 5),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 452, 'E', 'Violin', 0, 6),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 453, 'E', 'Violin', 0, 7),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 454, 'E', 'Violin', 0, 8),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 455, 'E', 'Violin', 0, 9),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 456, 'E', 'Violin', 0, 10),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 457, 'E', 'Violin', 0, 11),
+('Go to private violin lessons with Russian teacher', 1000, 3, 'In Soviet Russia, violin plays you', 'Violin', 100, '', 0, '', 0, 458, 'E', 'Violin', 0, 12),
+('Practice playing Twinkle, Twinkle, Little Star with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 10, '', 0, '', 0, 459, 'E', 'Violin', 300, -1),
+('Practice playing Musette with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 10, '', 0, '', 0, 460, 'E', 'Violin', 300, 0),
+('Practice playing Minuet with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 10, '', 0, '', 0, 461, 'E', 'Violin', 300, 1),
+('Practice playing Concerto No. 2 in G Major with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 10, '', 0, '', 0, 462, 'E', 'Violin', 300, 2),
+('Practice playing Gavotte with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 10, '', 0, '', 0, 463, 'E', 'Violin', 300, 3),
+('Practice playing La Folia with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 10, '', 0, '', 0, 464, 'E', 'Violin', 300, 4),
+('Practice playing Gigue with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 10, '', 0, '', 0, 465, 'E', 'Violin', 300, 5),
+('Practice playing Tambourin with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 10, '', 0, '', 0, 466, 'E', 'Violin', 300, 6),
+('Practice playing Mozart Concerto in A Major with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 15, '', 0, '', 0, 467, 'E', 'Violin', 300, 7),
+('Practice playing Mozart Concerto in D Major with $name', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 15, '', 0, '', 0, 468, 'E', 'Violin', 300, 8),
+('Practice playing Bach Partita', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 15, '', 0, '', 0, 469, 'E', 'Violin', 300, 9),
+('Practice playing Bartok Rhapsody', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 15, '', 0, '', 0, 470, 'E', 'Violin', 300, 10),
+('Practice Stravisnky Suite Italienne', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 15, '', 0, '', 0, 471, 'E', 'Violin', 300, 11),
+('Practice playing Tchaikovsky Violin Concerto', 100, 1, 'How do you get to Carnegie Hall? Practice!', 'Violin', 15, '', 0, '', 0, 472, 'E', 'Violin', 300, 12),
+('Practice playing Barber Violin Concerto', 100, 2, 'How do you get to Carnegie Hall? Practice!', 'Violin', 20, '', 0, '', 0, 473, 'E', 'Violin', 600, 12),
+('Attend Carnegie Mellon Pre-College Summer Program', 1000, 2, 'This event requires a violin skill level of X.', 'Violin', 50, '', 0, '', 0, 474, 'E', 'Violin', 0, 9),
+('Attend Carnegie Mellon Pre-College Summer Program', 1000, 2, 'This event requires a violin skill level of X.', 'Violin', 50, '', 0, '', 0, 475, 'E', 'Violin', 0, 10),
+('Attend Carnegie Mellon Pre-College Summer Program', 1000, 2, 'This event requires a violin skill level of X.', 'Violin', 50, '', 0, '', 0, 476, 'E', 'Violin', 0, 11),
+('Attend Carnegie Mellon Pre-College Summer Program', 1000, 2, 'This event requires a violin skill level of X.', 'Violin', 50, '', 0, '', 0, 477, 'E', 'Violin', 0, 12),
+('Attend Julliard Pre-College Division (Violin)', 3000, 3, 'This event requires a violin skill level of X.', 'Violin', 250, '', 0, '', 0, 478, 'E', 'Violin', 0, 9),
+('Attend Julliard Pre-College Division (Violin)', 3000, 3, 'This event requires a violin skill level of X.', 'Violin', 250, '', 0, '', 0, 479, 'E', 'Violin', 0, 10),
+('Attend Julliard Pre-College Division (Violin)', 3000, 3, 'This event requires a violin skill level of X.', 'Violin', 250, '', 0, '', 0, 480, 'E', 'Violin', 0, 11),
+('Attend Julliard Pre-College Division (Violin)', 3000, 3, 'This event requires a violin skill level of X.', 'Violin', 250, '', 0, '', 0, 481, 'E', 'Violin', 0, 12),
+('Hire a Chinese-speaking Nanny', 1000, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 40, 'Culture', 25, '', 0, 482, 'L', 'Chinese', 0, -1),
+('Hire a Chinese-speaking Nanny', 1000, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 40, 'Culture', 25, '', 0, 483, 'L', 'Chinese', 0, 0),
+('Hire a Chinese-speaking Nanny', 1000, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 40, 'Culture', 25, '', 0, 484, 'L', 'Chinese', 0, 1),
+('Hire a Chinese-speaking Nanny', 800, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 30, 'Culture', 20, '', 0, 485, 'L', 'Chinese', 0, 2),
+('Hire a Chinese-speaking Nanny', 800, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 30, 'Culture', 20, '', 0, 486, 'L', 'Chinese', 0, 3),
+('Hire a Chinese-speaking Nanny', 800, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 30, 'Culture', 15, '', 0, 487, 'L', 'Chinese', 0, 4),
+('Hire a Chinese-speaking Nanny', 600, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 20, 'Culture', 10, '', 0, 488, 'L', 'Chinese', 0, 5),
+('Hire a Chinese-speaking Nanny', 600, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 10, 'Culture', 10, '', 0, 489, 'L', 'Chinese', 0, 6),
+('Hire a Chinese-speaking Nanny', 600, 0, 'Because we no speaky Engrish in this house.', 'Chinese', 5, 'Culture', 5, '', 0, 490, 'L', 'Chinese', 0, 7),
+('Hire a Chinese-speaking Babysitter', 500, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 20, 'Culture', 10, '', 0, 491, 'L', 'Chinese', 43200, -1),
+('Hire a Chinese-speaking Babysitter', 500, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 15, 'Culture', 8, '', 0, 492, 'L', 'Chinese', 43200, 0),
+('Hire a Chinese-speaking Babysitter', 500, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 15, 'Culture', 8, '', 0, 493, 'L', 'Chinese', 43200, 1),
+('Hire a Chinese-speaking Babysitter', 400, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 10, 'Culture', 5, '', 0, 494, 'L', 'Chinese', 43200, 2),
+('Hire a Chinese-speaking Babysitter', 400, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 10, 'Culture', 5, '', 0, 495, 'L', 'Chinese', 43200, 3),
+('Hire a Chinese-speaking Babysitter', 400, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 5, 'Culture', 3, '', 0, 496, 'L', 'Chinese', 43200, 4),
+('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 5, 'Culture', 3, '', 0, 497, 'L', 'Chinese', 43200, 5),
+('Hire a Chinese-speaking Babysitter', 300, 0, 'No TV, no video games. And make sure Kunom is done before bedtime.', 'Chinese', 5, 'Culture', 3, '', 0, 498, 'L', 'Chinese', 43200, 6),
+('Give $name a Haircut at Home', 0, 2, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 10, '', 0, '', 0, 499, 'L', 'Chinese', 1200, -1),
+('Give $name a Haircut at Home', 0, 2, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 10, '', 0, '', 0, 500, 'L', 'Chinese', 1200, 0),
+('Give $name a Haircut at Home', 0, 2, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 10, '', 0, '', 0, 501, 'L', 'Chinese', 1200, 1),
+('Give $name a Haircut at Home', 0, 2, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 10, '', 0, '', 0, 502, 'L', 'Chinese', 1200, 2),
+('Give $name a Haircut at Home', 0, 2, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 10, '', 0, '', 0, 503, 'L', 'Chinese', 1200, 3),
+('Give $name a Haircut at Home', 0, 2, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 10, '', 0, '', 0, 504, 'L', 'Chinese', 1200, 4),
+('Give $name a Haircut at Home', 0, 2, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 10, '', 0, '', 0, 505, 'L', 'Chinese', 1200, 5),
+('Give $name a Haircut at Home', 0, 2, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 10, '', 0, '', 0, 506, 'L', 'Chinese', 1200, 6),
+('Give $name a Haircut at Home', 0, 2, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 10, '', 0, '', 0, 507, 'L', 'Chinese', 1200, 7),
+('Give $name a Haircut at Home', 0, 2, 'Only three choices: bowlcut, buzzcut, or buzzcut with tail.', 'Culture', 10, '', 0, '', 0, 508, 'L', 'Chinese', 1200, 8),
+('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 5, 'Culture', 5, '', 0, 509, 'L', 'Chinese', 1800, -1),
+('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 5, 'Culture', 5, '', 0, 510, 'L', 'Chinese', 1800, 0),
+('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 5, 'Culture', 5, '', 0, 511, 'L', 'Chinese', 1800, 1),
+('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 3, 'Culture', 3, '', 0, 512, 'L', 'Chinese', 1800, 2),
+('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 3, 'Culture', 3, '', 0, 513, 'L', 'Chinese', 1800, 3),
+('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 3, 'Culture', 3, '', 0, 514, 'L', 'Chinese', 1800, 4),
+('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, 'Culture', 1, '', 0, 515, 'L', 'Chinese', 1800, 5),
+('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, 'Culture', 1, '', 0, 516, 'L', 'Chinese', 1800, 6),
+('Give $name a Whack of the Chopsticks', 0, 1, 'Bad kid! Teach you a lesson!', 'Chinese', 1, 'Culture', 1, '', 0, 517, 'L', 'Chinese', 1800, 7),
+('Forbid $name from Having a Playdate', 0, 3, 'You want playtime? OK - time to play violin.', 'Culture', 15, 'Chinese', 10, '', 0, 518, 'L', 'Chinese', 21600, -1),
+('Forbid $name from Having a Playdate', 0, 3, 'You want playtime? OK - time to play violin.', 'Culture', 15, 'Chinese', 10, '', 0, 519, 'L', 'Chinese', 21600, 0),
+('Forbid $name from Having a Playdate', 0, 3, 'You want playtime? OK - time to play violin.', 'Culture', 15, 'Chinese', 10, '', 0, 520, 'L', 'Chinese', 21600, 1),
+('Forbid $name from Having a Playdate', 0, 3, 'You want playtime? OK - time to play violin.', 'Culture', 10, 'Chinese', 8, '', 0, 521, 'L', 'Chinese', 21600, 2),
+('Forbid $name from Having a Playdate', 0, 3, 'You want playtime? OK - time to play violin.', 'Culture', 10, 'Chinese', 8, '', 0, 522, 'L', 'Chinese', 21600, 3),
+('Forbid $name from Having a Playdate', 0, 3, 'You want playtime? OK - time to play violin.', 'Culture', 10, 'Chinese', 8, '', 0, 523, 'L', 'Chinese', 21600, 4),
+('Forbid $name from Having a Playdate', 0, 3, 'You want playtime? OK - time to play violin.', 'Culture', 10, 'Chinese', 8, '', 0, 524, 'L', 'Chinese', 21600, 5),
+('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, 'Chinese', 5, '', 0, 525, 'L', 'Chinese', 21600, 4),
+('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 20, 'Chinese', 5, '', 0, 526, 'L', 'Chinese', 21600, 5),
+('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 15, 'Chinese', 5, '', 0, 527, 'L', 'Chinese', 21600, 6),
+('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 15, 'Chinese', 5, '', 0, 528, 'L', 'Chinese', 21600, 7),
+('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 15, 'Chinese', 5, '', 0, 529, 'L', 'Chinese', 21600, 8),
+('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 10, 'Chinese', 3, '', 0, 530, 'L', 'Chinese', 21600, 9),
+('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 10, 'Chinese', 3, '', 0, 531, 'L', 'Chinese', 21600, 10),
+('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 5, 'Chinese', 3, '', 0, 532, 'L', 'Chinese', 21600, 11),
+('Forbid $name from Going to Sleepover', 0, 3, 'You can have sleepovers...when you''re married.', 'Culture', 5, 'Chinese', 3, '', 0, 533, 'L', 'Chinese', 21600, 12),
+('Forbid $name from Being in a School Play', 0, 4, 'To be or not to be... Why not A? That is the question.', 'Culture', 20, 'Math', 20, 'Science', 20, 534, 'L', 'Chinese', 86400, 1),
+('Forbid $name from Being in a School Play', 0, 4, 'To be or not to be... Why not A? That is the question.', 'Culture', 20, 'Math', 20, 'Science', 20, 535, 'L', 'Chinese', 86400, 2),
+('Forbid $name from Being in a School Play', 0, 4, 'To be or not to be... Why not A? That is the question.', 'Culture', 15, 'Math', 15, 'Science', 15, 536, 'L', 'Chinese', 86400, 3),
+('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Math Grade', 3, 'Science', 3, 'Athletics', 3, 537, 'L', 'Chinese', 600, -1),
+('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Math Grade', 3, 'Science', 3, 'Athletics', 3, 538, 'L', 'Chinese', 600, 0),
+('Kick $name off the Computer', 0, 1, 'Facebook? Asian face book and study!', 'Math Grade', 3, 'Science', 3, 'Athletics', 3, 539, 'L', 'Chinese', 600, 1),
+('Kick $name off the Computer', 0, 2, 'Facebook? Asian face book and study!', 'Math Grade', 5, 'Science', 5, 'Athletics', 5, 540, 'L', 'Chinese', 600, 2),
+('Kick $name off the Computer', 0, 2, 'Facebook? Asian face book and study!', 'Math Grade', 5, 'Science', 5, 'Athletics', 5, 541, 'L', 'Chinese', 600, 3),
+('Kick $name off the Computer', 0, 2, 'Facebook? Asian face book and study!', 'Math Grade', 5, 'Science', 5, 'Athletics', 5, 542, 'L', 'Chinese', 600, 4),
+('Kick $name off the Computer', 0, 3, 'Facebook? Asian face book and study!', 'Math Grade', 10, 'Science', 10, 'Athletics', 10, 543, 'L', 'Chinese', 600, 5),
+('Kick $name off the Computer', 0, 3, 'Facebook? Asian face book and study!', 'Math Grade', 10, 'Science', 10, 'Athletics', 10, 544, 'L', 'Chinese', 600, 6),
+('Kick $name off the Computer', 0, 4, 'Facebook? Asian face book and study!', 'Math Grade', 15, 'Science', 15, 'Athletics', 15, 545, 'L', 'Chinese', 600, 7),
+('Yell at $name for A- on Homework', 0, 2, 'You got an A minus? Good job...minus.', 'Random', 10, 'Random', 10, 'Random', 5, 546, 'L', 'Chinese', 3600, 6),
+('Yell at $name for A- on Homework', 0, 3, 'You got an A minus? Good job...minus.', 'Random', 20, 'Random', 10, 'Random', 5, 547, 'L', 'Chinese', 3600, 7),
+('Yell at $name for A- on Homework', 0, 3, 'You got an A minus? Good job...minus.', 'Random', 20, 'Random', 10, 'Random', 5, 548, 'L', 'Chinese', 3600, 8),
+('Yell at $name for A- on Homework', 0, 4, 'You got an A minus? Good job...minus.', 'Random', 20, 'Random', 10, 'Random', 5, 549, 'L', 'Chinese', 3600, 9),
+('Yell at $name for A- on Homework', 0, 5, 'You got an A minus? Good job...minus.', 'Random', 20, 'Random', 10, 'Random', 5, 550, 'L', 'Chinese', 3600, 10),
+('Yell at $name for A- on Homework', 0, 5, 'You got an A minus? Good job...minus.', 'Random', 20, 'Random', 10, 'Random', 5, 551, 'L', 'Chinese', 3600, 11),
+('Yell at $name for A- on Homework', 0, 4, 'You got an A minus? Good job...minus.', 'Random', 20, 'Random', 10, 'Random', 5, 552, 'L', 'Chinese', 3600, 12),
+('Visit Hao "Got into Harvard" in Faraway Town', 500, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 5, 'Math', 5, 'Science', 5, 553, 'L', 'Chinese', 18000, 7),
+('Visit Hao "Got into Harvard" in Faraway Town', 500, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 5, 'Math', 5, 'Science', 5, 554, 'L', 'Chinese', 18000, 8),
+('Visit Hao "Got into Harvard" in Faraway Town', 600, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 10, 'Math', 10, 'Science', 10, 555, 'L', 'Chinese', 18000, 9),
+('Visit Hao "Got into Harvard" in Faraway Town', 600, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 10, 'Math', 10, 'Science', 10, 556, 'L', 'Chinese', 18000, 10),
+('Visit Hao "Got into Harvard" in Faraway Town', 700, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 20, 'Math', 20, 'Science', 20, 557, 'L', 'Chinese', 18000, 11),
+('Visit Hao "Got into Harvard" in Faraway Town', 800, 0, 'Be more like your cousins Stanford and Yale.', 'Culture', 15, 'Math', 15, 'Science', 15, 558, 'L', 'Chinese', 18000, 12),
+('Forbid $name from Going to School Dance', 0, 2, 'But you busy! Chinese school is Friday night.', 'Culture', 2, 'Chinese', 5, 'Language', 2, 559, 'L', 'Chinese', 300, 7),
+('Forbid $name from Going to School Dance', 0, 2, 'But you busy! Chinese school is Friday night.', 'Culture', 2, 'Chinese', 5, 'Language', 2, 560, 'L', 'Chinese', 300, 8),
+('Forbid $name from Going to School Dance', 0, 3, 'But you busy! Chinese school is Friday night.', 'Culture', 5, 'Chinese', 10, 'Language', 5, 561, 'L', 'Chinese', 300, 9),
+('Forbid $name from Going to School Dance', 0, 4, 'But you busy! Chinese school is Friday night.', 'Culture', 8, 'Chinese', 12, 'Language', 8, 562, 'L', 'Chinese', 300, 10),
+('Forbid $name from Going to School Dance', 0, 5, 'But you busy! Chinese school is Friday night.', 'Culture', 10, 'Chinese', 15, 'Language', 10, 563, 'L', 'Chinese', 300, 11),
+('Forbid $name from Going to School Dance', 0, 6, 'But you busy! Chinese school is Friday night.', 'Culture', 12, 'Chinese', 20, 'Language', 12, 564, 'L', 'Chinese', 300, 12),
+('Lecture: "Only Date Asians"', 0, 2, 'No, you cannot marry outside the race. Kids will only be 50%!', 'Culture', 10, 'Chinese', 5, '', 0, 565, 'L', 'Chinese', 600, 8),
+('Lecture: "Only Date Asians"', 0, 3, 'No, you cannot marry outside the race. Kids will only be 50%!', 'Culture', 10, 'Chinese', 10, '', 0, 566, 'L', 'Chinese', 600, 9),
+('Lecture: "Only Date Asians"', 0, 4, 'No, you cannot marry outside the race. Kids will only be 50%!', 'Culture', 20, 'Chinese', 10, '', 0, 567, 'L', 'Chinese', 600, 10),
+('Lecture: "Only Date Asians"', 0, 5, 'No, you cannot marry outside the race. Kids will only be 50%!', 'Culture', 20, 'Chinese', 15, '', 0, 568, 'L', 'Chinese', 600, 11),
+('Lecture: "Only Date Asians"', 0, 6, 'No, you cannot marry outside the race. Kids will only be 50%!', 'Culture', 25, 'Chinese', 20, '', 0, 569, 'L', 'Chinese', 600, 12),
+('Lecture: "No Dating Until Done With College"', 0, 1, '16: Too young to date. 26: Why aren''t you married?', 'Culture', 10, '', 0, '', 0, 570, 'L', 'Chinese', 2100, 8),
+('Lecture: "No Dating Until Done With College"', 0, 2, '16: Too young to date. 26: Why aren''t you married?', 'Culture', 20, '', 0, '', 0, 571, 'L', 'Chinese', 2100, 9),
+('Lecture: "No Dating Until Done With College"', 0, 3, '16: Too young to date. 26: Why aren''t you married?', 'Culture', 30, '', 0, '', 0, 572, 'L', 'Chinese', 2100, 10),
+('Lecture: "No Dating Until Done With College"', 0, 4, '16: Too young to date. 26: Why aren''t you married?', 'Culture', 40, '', 0, '', 0, 573, 'L', 'Chinese', 2100, 11),
+('Lecture: "No Dating Until Done With College"', 0, 5, '16: Too young to date. 26: Why aren''t you married?', 'Culture', 60, '', 0, '', 0, 574, 'L', 'Chinese', 2100, 12),
+('Break Up $name''s Relationship', 0, 3, 'You''re already a huge fatty without getting pregnant too!', 'Random', 20, 'Random', 10, '', 0, 575, 'L', 'Chinese', 86400, 10),
+('Break Up $name''s Relationship', 0, 5, 'You''re already a huge fatty without getting pregnant too!', 'Random', 40, 'Random', 20, '', 0, 576, 'L', 'Chinese', 86400, 11),
+('Break Up $name''s Relationship', 0, 7, 'You''re already a huge fatty without getting pregnant too!', 'Random', 50, 'Random', 30, '', 0, 577, 'L', 'Chinese', 86400, 12),
+('Drill Multiplication Tables with $name', 100, 1, 'Do your times table six times a day seven times a week. How many times is that?', 'Math Grade', 5, 'Math', 5, '', 0, 578, 'A', 'Math', 300, 0),
+('Drill Multiplication Tables with $name', 100, 1, 'Do your times table six times a day seven times a week. How many times is that?', 'Math Grade', 8, 'Math', 8, '', 0, 579, 'A', 'Math', 300, 1),
+('Drill Multiplication Tables with $name', 100, 1, 'Do your times table six times a day seven times a week. How many times is that?', 'Math Grade', 10, 'Math', 10, '', 0, 580, 'A', 'Math', 300, 2),
+('Drill Multiplication Tables with $name', 100, 1, 'Do your times table six times a day seven times a week. How many times is that?', 'Math Grade', 10, 'Math', 10, '', 0, 581, 'A', 'Math', 300, 3),
+('Drill Multiplication Tables with $name', 100, 1, 'Do your times table six times a day seven times a week. How many times is that?', 'Math Grade', 8, 'Math', 8, '', 0, 582, 'A', 'Math', 300, 4),
+('Sign up $name for Trike and Trot', 100, 1, 'You lose to baby?', 'Athletics', 8, '', 0, '', 0, 583, 'E', 'Athletics', 300, -1),
+('Sign up $name for Trike and Trot', 100, 1, 'You lose to baby?', 'Athletics', 8, '', 0, '', 0, 584, 'E', 'Athletics', 300, 0),
+('Sign up $name for Trike and Trot', 100, 1, 'You lose to baby?', 'Athletics', 10, '', 0, '', 0, 585, 'E', 'Athletics', 300, 1),
+('Sign up $name for AYSO soccer', 200, 2, 'Kick the ball!', 'Athletics', 10, '', 0, '', 0, 586, 'E', 'Athletics', 600, -1),
+('Sign up $name for AYSO soccer', 200, 2, 'Kick the ball!', 'Athletics', 10, '', 0, '', 0, 587, 'E', 'Athletics', 600, 0),
+('Sign up $name for AYSO soccer', 200, 2, 'Kick the ball!', 'Athletics', 15, '', 0, '', 0, 588, 'E', 'Athletics', 600, 1),
+('Sign up $name for AYSO soccer', 200, 2, 'Kick the ball!', 'Athletics', 15, '', 0, '', 0, 589, 'E', 'Athletics', 600, 2),
+('Sign up $name for AYSO soccer', 200, 2, 'Kick the ball!', 'Athletics', 20, '', 0, '', 0, 590, 'E', 'Athletics', 600, 3),
+('Sign up $name for AYSO soccer', 200, 2, 'Kick the ball!', 'Athletics', 20, '', 0, '', 0, 591, 'E', 'Athletics', 600, 4),
+('Sign up $name for AYSO soccer', 200, 2, 'Kick the ball!', 'Athletics', 25, '', 0, '', 0, 592, 'E', 'Athletics', 600, 5),
+('Sign up $name for AYSO soccer', 200, 2, 'Kick the ball!', 'Athletics', 25, '', 0, '', 0, 593, 'E', 'Athletics', 600, 6),
+('Sign up $name for AYSO soccer', 200, 2, 'Kick the ball!', 'Athletics', 25, '', 0, '', 0, 594, 'E', 'Athletics', 600, 7),
+('Sign up $name for AYSO soccer', 200, 2, 'Kick the ball!', 'Athletics', 25, '', 0, '', 0, 595, 'E', 'Athletics', 600, 8),
+('Sign up $name for Little League', 200, 1, 'Catch the ball!', 'Athletics', 5, '', 0, '', 0, 596, 'E', 'Athletics', 600, -1),
+('Sign up $name for Little League', 200, 1, 'Catch the ball!', 'Athletics', 5, '', 0, '', 0, 597, 'E', 'Athletics', 600, 0),
+('Sign up $name for Little League', 200, 1, 'Catch the ball!', 'Athletics', 10, '', 0, '', 0, 598, 'E', 'Athletics', 600, 1),
+('Sign up $name for Little League', 200, 1, 'Catch the ball!', 'Athletics', 10, '', 0, '', 0, 599, 'E', 'Athletics', 600, 2),
+('Sign up $name for Little League', 200, 1, 'Catch the ball!', 'Athletics', 15, '', 0, '', 0, 600, 'E', 'Athletics', 600, 3),
+('Sign up $name for Little League', 200, 1, 'Catch the ball!', 'Athletics', 15, '', 0, '', 0, 601, 'E', 'Athletics', 600, 4),
+('Sign up $name for Little League', 200, 1, 'Catch the ball!', 'Athletics', 15, '', 0, '', 0, 602, 'E', 'Athletics', 600, 5),
+('Sign up $name for Little League', 200, 1, 'Catch the ball!', 'Athletics', 15, '', 0, '', 0, 603, 'E', 'Athletics', 600, 6),
+('Sign up $name for Little League', 200, 1, 'Catch the ball!', 'Athletics', 15, '', 0, '', 0, 604, 'E', 'Athletics', 600, 7),
+('Sign up $name for Little League', 200, 1, 'Catch the ball!', 'Athletics', 15, '', 0, '', 0, 605, 'E', 'Athletics', 600, 8),
+('Sign up $name for National Junior Basketball league', 100, 2, 'You be like Jeremy Lin', 'Athletics', 10, '', 0, '', 0, 606, 'E', 'Athletics', 600, 3),
+('Sign up $name for National Junior Basketball league', 100, 2, 'You be like Jeremy Lin', 'Athletics', 10, '', 0, '', 0, 607, 'E', 'Athletics', 600, 4),
+('Sign up $name for National Junior Basketball league', 100, 2, 'You be like Jeremy Lin', 'Athletics', 15, '', 0, '', 0, 608, 'E', 'Athletics', 600, 5),
+('Sign up $name for National Junior Basketball league', 100, 2, 'You be like Jeremy Lin', 'Athletics', 15, '', 0, '', 0, 609, 'E', 'Athletics', 600, 6),
+('Sign up $name for National Junior Basketball league', 100, 2, 'You be like Jeremy Lin', 'Athletics', 15, '', 0, '', 0, 610, 'E', 'Athletics', 600, 7),
+('Sign up $name for National Junior Basketball league', 100, 2, 'You be like Jeremy Lin', 'Athletics', 15, '', 0, '', 0, 611, 'E', 'Athletics', 600, 8),
+('Send $name to DACA swimming', 200, 2, 'You can do frog stroke', 'Athletics', 15, '', 0, '', 0, 612, 'E', 'Athletics', 600, -1),
+('Send $name to DACA swimming', 200, 2, 'You can do frog stroke', 'Athletics', 20, '', 0, '', 0, 613, 'E', 'Athletics', 600, 0),
+('Send $name to DACA swimming', 200, 2, 'You can do frog stroke', 'Athletics', 20, '', 0, '', 0, 614, 'E', 'Athletics', 600, 1),
+('Send $name to DACA swimming', 200, 2, 'You can do frog stroke', 'Athletics', 25, '', 0, '', 0, 615, 'E', 'Athletics', 600, 2),
+('Send $name to DACA swimming', 200, 2, 'You can do frog stroke', 'Athletics', 25, '', 0, '', 0, 616, 'E', 'Athletics', 600, 3),
+('Send $name to DACA swimming', 200, 2, 'You can do frog stroke', 'Athletics', 30, '', 0, '', 0, 617, 'E', 'Athletics', 600, 4),
+('Send $name to DACA swimming', 200, 2, 'You can do frog stroke', 'Athletics', 30, '', 0, '', 0, 618, 'E', 'Athletics', 600, 5),
+('Send $name to DACA swimming', 200, 2, 'You can do frog stroke', 'Athletics', 30, '', 0, '', 0, 619, 'E', 'Athletics', 600, 6),
+('Send $name to DACA swimming', 200, 2, 'You can do frog stroke', 'Athletics', 30, '', 0, '', 0, 620, 'E', 'Athletics', 600, 7),
+('Send $name to DACA swimming', 200, 2, 'You can do frog stroke', 'Athletics', 30, '', 0, '', 0, 621, 'E', 'Athletics', 600, 8),
+('Sign $name up for group tennis lessons', 100, 1, 'Learn to hit the ball', 'Athletics', 5, '', 0, '', 0, 622, 'E', 'Athletics', 600, 3),
+('Sign $name up for group tennis lessons', 100, 1, 'Learn to hit the ball', 'Athletics', 5, '', 0, '', 0, 623, 'E', 'Athletics', 600, 4),
+('Sign $name up for group tennis lessons', 100, 1, 'Learn to hit the ball', 'Athletics', 10, '', 0, '', 0, 624, 'E', 'Athletics', 600, 5),
+('Sign $name up for group tennis lessons', 100, 1, 'Learn to hit the ball', 'Athletics', 10, '', 0, '', 0, 625, 'E', 'Athletics', 600, 6),
+('Sign $name up for group tennis lessons', 100, 1, 'Learn to hit the ball', 'Athletics', 15, '', 0, '', 0, 626, 'E', 'Athletics', 600, 7),
+('Sign $name up for group tennis lessons', 100, 1, 'Learn to hit the ball', 'Athletics', 15, '', 0, '', 0, 627, 'E', 'Athletics', 600, 8),
+('Sign $name up for private tennis lessons', 500, 1, 'Learn to hit the ball inside the court', 'Athletics', 20, '', 0, '', 0, 628, 'E', 'Athletics', 0, 3),
+('Sign $name up for private tennis lessons', 500, 1, 'Learn to hit the ball inside the court', 'Athletics', 20, '', 0, '', 0, 629, 'E', 'Athletics', 0, 4),
+('Sign $name up for private tennis lessons', 500, 1, 'Learn to hit the ball inside the court', 'Athletics', 25, '', 0, '', 0, 630, 'E', 'Athletics', 0, 5),
+('Sign $name up for private tennis lessons', 500, 1, 'Learn to hit the ball inside the court', 'Athletics', 25, '', 0, '', 0, 631, 'E', 'Athletics', 0, 6),
+('Sign $name up for private tennis lessons', 500, 1, 'Learn to hit the ball inside the court', 'Athletics', 30, '', 0, '', 0, 632, 'E', 'Athletics', 0, 7),
+('Sign $name up for private tennis lessons', 500, 1, 'Learn to hit the ball inside the court', 'Athletics', 30, '', 0, '', 0, 633, 'E', 'Athletics', 0, 8),
+('Go outside and ride bikes', 0, 1, 'Don''t forget to wear helmet', 'Athletics', 5, '', 0, '', 0, 634, 'E', 'Athletics', 300, -1),
+('Go outside and ride bikes', 0, 1, 'Don''t forget to wear helmet', 'Athletics', 5, '', 0, '', 0, 635, 'E', 'Athletics', 300, 0),
+('Go outside and ride bikes', 0, 1, 'Don''t forget to wear helmet', 'Athletics', 5, '', 0, '', 0, 636, 'E', 'Athletics', 300, 1),
+('Go outside and ride bikes', 0, 1, 'Don''t forget to wear helmet', 'Athletics', 5, '', 0, '', 0, 637, 'E', 'Athletics', 300, 2),
+('Go outside and ride bikes', 0, 1, 'Don''t forget to wear helmet', 'Athletics', 5, '', 0, '', 0, 638, 'E', 'Athletics', 300, 3),
+('Go outside and ride bikes', 0, 1, 'Don''t forget to wear helmet', 'Athletics', 5, '', 0, '', 0, 639, 'E', 'Athletics', 300, 4),
+('Go outside and ride bikes', 0, 1, 'Don''t forget to wear helmet', 'Athletics', 5, '', 0, '', 0, 640, 'E', 'Athletics', 300, 5),
+('Go outside and ride bikes', 0, 1, 'Don''t forget to wear helmet', 'Athletics', 5, '', 0, '', 0, 641, 'E', 'Athletics', 300, 6),
+('Go outside and ride bikes', 0, 1, 'Don''t forget to wear helmet', 'Athletics', 5, '', 0, '', 0, 642, 'E', 'Athletics', 300, 7),
+('Go outside and ride bikes', 0, 1, 'Don''t forget to wear helmet', 'Athletics', 5, '', 0, '', 0, 643, 'E', 'Athletics', 300, 8),
+('Go outside and play frisbee', 0, 2, 'Don''t throw into tree', 'Athletics', 7, '', 0, '', 0, 644, 'E', 'Athletics', 0, -1),
+('Go outside and play frisbee', 0, 2, 'Don''t throw into tree', 'Athletics', 7, '', 0, '', 0, 645, 'E', 'Athletics', 0, 0),
+('Go outside and play frisbee', 0, 2, 'Don''t throw into tree', 'Athletics', 7, '', 0, '', 0, 646, 'E', 'Athletics', 0, 1),
+('Go outside and play frisbee', 0, 2, 'Don''t throw into tree', 'Athletics', 7, '', 0, '', 0, 647, 'E', 'Athletics', 0, 2);
+INSERT INTO `events` (`eventName`, `eventCost`, `motivationReq`, `eventDescription`, `skillA`, `EXPA`, `skillB`, `EXPB`, `skillC`, `EXPC`, `eventID`, `type`, `category`, `timeLimit`, `eGradeLevel`) VALUES
+('Go outside and play frisbee', 0, 2, 'Don''t throw into tree', 'Athletics', 7, '', 0, '', 0, 648, 'E', 'Athletics', 0, 3),
+('Go outside and play frisbee', 0, 2, 'Don''t throw into tree', 'Athletics', 7, '', 0, '', 0, 649, 'E', 'Athletics', 0, 4),
+('Go outside and play frisbee', 0, 2, 'Don''t throw into tree', 'Athletics', 7, '', 0, '', 0, 650, 'E', 'Athletics', 0, 5),
+('Go outside and play frisbee', 0, 2, 'Don''t throw into tree', 'Athletics', 7, '', 0, '', 0, 651, 'E', 'Athletics', 0, 6),
+('Go outside and play frisbee', 0, 2, 'Don''t throw into tree', 'Athletics', 7, '', 0, '', 0, 652, 'E', 'Athletics', 0, 7),
+('Go outside and play frisbee', 0, 2, 'Don''t throw into tree', 'Athletics', 7, '', 0, '', 0, 653, 'E', 'Athletics', 0, 8),
+('Make $name run around the block', 0, 3, 'You fat', 'Athletics', 20, '', 0, '', 0, 654, 'E', 'Athletics', 1800, 1),
+('Make $name run around the block', 0, 3, 'You fat', 'Athletics', 20, '', 0, '', 0, 655, 'E', 'Athletics', 1800, 2),
+('Make $name run around the block', 0, 3, 'You fat', 'Athletics', 20, '', 0, '', 0, 656, 'E', 'Athletics', 1800, 3),
+('Make $name run around the block', 0, 3, 'You fat', 'Athletics', 20, '', 0, '', 0, 657, 'E', 'Athletics', 1800, 4),
+('Make $name run around the block', 0, 3, 'You fat', 'Athletics', 20, '', 0, '', 0, 658, 'E', 'Athletics', 1800, 5),
+('Make $name run around the block', 0, 3, 'You fat', 'Athletics', 20, '', 0, '', 0, 659, 'E', 'Athletics', 1800, 6),
+('Make $name join JV soccer team', 200, 2, 'You kick ball better now?', 'Athletics', 25, '', 0, '', 0, 660, 'E', 'Athletics', 600, 9),
+('Make $name join JV soccer team', 200, 2, 'You kick ball better now?', 'Athletics', 25, '', 0, '', 0, 661, 'E', 'Athletics', 600, 10),
+('Make $name join varsity soccer team', 400, 4, 'Now college app looks better!', 'Athletics', 60, '', 0, '', 0, 662, 'E', 'Athletics', 600, 11),
+('Make $name join varsity soccer team', 400, 4, 'Now college app looks better!', 'Athletics', 60, '', 0, '', 0, 663, 'E', 'Athletics', 600, 12),
+('Make $name join JV baseball or softball team', 300, 1, 'You catch ball better now?', 'Athletics', 20, '', 0, '', 0, 664, 'E', 'Athletics', 600, 9),
+('Make $name join JV baseball or softball team', 300, 1, 'You catch ball better now?', 'Athletics', 20, '', 0, '', 0, 665, 'E', 'Athletics', 600, 10),
+('Make $name join varsity baseball or softball team', 500, 2, 'Now college app looks better!', 'Athletics', 40, '', 0, '', 0, 666, 'E', 'Athletics', 600, 11),
+('Make $name join varsity baseball or softball team', 500, 2, 'Now college app looks better!', 'Athletics', 40, '', 0, '', 0, 667, 'E', 'Athletics', 600, 12),
+('Make $name join JV basketball team', 200, 3, 'You like Jeremy Lin now?', 'Athletics', 30, '', 0, '', 0, 668, 'E', 'Athletics', 600, 9),
+('Make $name join JV basketball team', 200, 3, 'You like Jeremy Lin now?', 'Athletics', 30, '', 0, '', 0, 669, 'E', 'Athletics', 600, 10),
+('Make $name join varsity basketball team', 300, 4, 'Now college app looks better!', 'Athletics', 50, '', 0, '', 0, 670, 'E', 'Athletics', 600, 11),
+('Make $name join varsity basketball team', 300, 4, 'Now college app looks better!', 'Athletics', 50, '', 0, '', 0, 671, 'E', 'Athletics', 600, 12),
+('Make $name join JV swim team', 300, 3, 'You better at frog stroke?', 'Athletics', 40, '', 0, '', 0, 672, 'E', 'Athletics', 600, 9),
+('Make $name join JV swim team', 300, 3, 'You better at frog stroke?', 'Athletics', 40, '', 0, '', 0, 673, 'E', 'Athletics', 600, 10),
+('Make $name join varsity swim team', 500, 4, 'Now college app looks better!', 'Athletics', 80, '', 0, '', 0, 674, 'E', 'Athletics', 600, 11),
+('Make $name join varsity swim team', 500, 4, 'Now college app looks better!', 'Athletics', 80, '', 0, '', 0, 675, 'E', 'Athletics', 600, 12),
+('Make $name join JV tennis team', 200, 1, 'You can serve now?', 'Athletics', 20, '', 0, '', 0, 676, 'E', 'Athletics', 600, 9),
+('Make $name join JV tennis team', 200, 1, 'You can serve now?', 'Athletics', 20, '', 0, '', 0, 677, 'E', 'Athletics', 600, 10),
+('Make $name join varsity tennis team', 300, 2, 'Now college app looks better!', 'Athletics', 35, '', 0, '', 0, 678, 'E', 'Athletics', 600, 11),
+('Make $name join varsity tennis team', 300, 2, 'Now college app looks better!', 'Athletics', 35, '', 0, '', 0, 679, 'E', 'Athletics', 600, 12),
+('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 680, 'E', 'Athletics', 1200, 1),
+('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 681, 'E', 'Athletics', 1200, 2),
+('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 682, 'E', 'Athletics', 1200, 3),
+('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 683, 'E', 'Athletics', 1200, 4),
+('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 684, 'E', 'Athletics', 1200, 5),
+('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 685, 'E', 'Athletics', 1200, 6),
+('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 686, 'E', 'Athletics', 1200, 7),
+('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 687, 'E', 'Athletics', 1200, 8);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `grades`
+-- Table structure for table `grades`
 --
 
-CREATE TABLE `grades` (
+CREATE TABLE IF NOT EXISTS `grades` (
   `subject` varchar(20) NOT NULL,
   `gradeLevel` tinyint(4) NOT NULL DEFAULT '-1',
   `gradeID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -332,87 +875,184 @@ CREATE TABLE `grades` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
--- Daten für Tabelle `grades`
+-- Dumping data for table `grades`
 --
 
-INSERT INTO `grades` VALUES('Math', -1, 1);
-INSERT INTO `grades` VALUES('English', -1, 2);
-INSERT INTO `grades` VALUES('Science', -1, 3);
-INSERT INTO `grades` VALUES('History', -1, 4);
-INSERT INTO `grades` VALUES('Chinese', -1, 5);
-INSERT INTO `grades` VALUES('Math', 0, 6);
-INSERT INTO `grades` VALUES('English', 0, 7);
-INSERT INTO `grades` VALUES('Science', 0, 8);
-INSERT INTO `grades` VALUES('History', 0, 9);
-INSERT INTO `grades` VALUES('Chinese', 0, 10);
-INSERT INTO `grades` VALUES('Math', 1, 11);
-INSERT INTO `grades` VALUES('Math', 2, 12);
-INSERT INTO `grades` VALUES('Math', 3, 13);
-INSERT INTO `grades` VALUES('Math', 4, 14);
-INSERT INTO `grades` VALUES('Math', 5, 15);
-INSERT INTO `grades` VALUES('Math', 6, 16);
-INSERT INTO `grades` VALUES('Math', 7, 17);
-INSERT INTO `grades` VALUES('Math', 8, 18);
-INSERT INTO `grades` VALUES('Math', 9, 19);
-INSERT INTO `grades` VALUES('Math', 10, 20);
-INSERT INTO `grades` VALUES('Math', 11, 21);
-INSERT INTO `grades` VALUES('Math', 12, 22);
-INSERT INTO `grades` VALUES('English', 1, 23);
-INSERT INTO `grades` VALUES('English', 2, 24);
-INSERT INTO `grades` VALUES('English', 3, 25);
-INSERT INTO `grades` VALUES('English', 4, 26);
-INSERT INTO `grades` VALUES('English', 5, 27);
-INSERT INTO `grades` VALUES('English', 6, 28);
-INSERT INTO `grades` VALUES('English', 7, 29);
-INSERT INTO `grades` VALUES('English', 8, 30);
-INSERT INTO `grades` VALUES('English', 9, 31);
-INSERT INTO `grades` VALUES('English', 10, 32);
-INSERT INTO `grades` VALUES('English', 11, 33);
-INSERT INTO `grades` VALUES('English', 12, 34);
-INSERT INTO `grades` VALUES('Science', 1, 35);
-INSERT INTO `grades` VALUES('Science', 2, 36);
-INSERT INTO `grades` VALUES('Science', 3, 37);
-INSERT INTO `grades` VALUES('Science', 4, 38);
-INSERT INTO `grades` VALUES('Science', 5, 39);
-INSERT INTO `grades` VALUES('Science', 6, 40);
-INSERT INTO `grades` VALUES('Science', 7, 41);
-INSERT INTO `grades` VALUES('Science', 8, 42);
-INSERT INTO `grades` VALUES('Science', 9, 43);
-INSERT INTO `grades` VALUES('Science', 10, 44);
-INSERT INTO `grades` VALUES('Science', 11, 45);
-INSERT INTO `grades` VALUES('Science', 12, 46);
-INSERT INTO `grades` VALUES('History', 1, 47);
-INSERT INTO `grades` VALUES('History', 2, 48);
-INSERT INTO `grades` VALUES('History', 3, 49);
-INSERT INTO `grades` VALUES('History', 4, 50);
-INSERT INTO `grades` VALUES('History', 5, 51);
-INSERT INTO `grades` VALUES('History', 6, 52);
-INSERT INTO `grades` VALUES('History', 7, 53);
-INSERT INTO `grades` VALUES('History', 8, 54);
-INSERT INTO `grades` VALUES('History', 9, 55);
-INSERT INTO `grades` VALUES('History', 10, 56);
-INSERT INTO `grades` VALUES('History', 11, 57);
-INSERT INTO `grades` VALUES('History', 12, 58);
-INSERT INTO `grades` VALUES('Chinese', 1, 59);
-INSERT INTO `grades` VALUES('Chinese', 2, 60);
-INSERT INTO `grades` VALUES('Chinese', 3, 61);
-INSERT INTO `grades` VALUES('Chinese', 4, 62);
-INSERT INTO `grades` VALUES('Chinese', 5, 63);
-INSERT INTO `grades` VALUES('Chinese', 6, 64);
-INSERT INTO `grades` VALUES('Chinese', 7, 65);
-INSERT INTO `grades` VALUES('Chinese', 8, 66);
-INSERT INTO `grades` VALUES('Chinese', 9, 67);
-INSERT INTO `grades` VALUES('Chinese', 10, 68);
-INSERT INTO `grades` VALUES('Chinese', 11, 69);
-INSERT INTO `grades` VALUES('Chinese', 12, 70);
+INSERT INTO `grades` (`subject`, `gradeLevel`, `gradeID`) VALUES
+('Math', -1, 1),
+('English', -1, 2),
+('Science', -1, 3),
+('History', -1, 4),
+('Chinese', -1, 5),
+('Math', 0, 6),
+('English', 0, 7),
+('Science', 0, 8),
+('History', 0, 9),
+('Chinese', 0, 10),
+('Math', 1, 11),
+('Math', 2, 12),
+('Math', 3, 13),
+('Math', 4, 14),
+('Math', 5, 15),
+('Math', 6, 16),
+('Math', 7, 17),
+('Math', 8, 18),
+('Math', 9, 19),
+('Math', 10, 20),
+('Math', 11, 21),
+('Math', 12, 22),
+('English', 1, 23),
+('English', 2, 24),
+('English', 3, 25),
+('English', 4, 26),
+('English', 5, 27),
+('English', 6, 28),
+('English', 7, 29),
+('English', 8, 30),
+('English', 9, 31),
+('English', 10, 32),
+('English', 11, 33),
+('English', 12, 34),
+('Science', 1, 35),
+('Science', 2, 36),
+('Science', 3, 37),
+('Science', 4, 38),
+('Science', 5, 39),
+('Science', 6, 40),
+('Science', 7, 41),
+('Science', 8, 42),
+('Science', 9, 43),
+('Science', 10, 44),
+('Science', 11, 45),
+('Science', 12, 46),
+('History', 1, 47),
+('History', 2, 48),
+('History', 3, 49),
+('History', 4, 50),
+('History', 5, 51),
+('History', 6, 52),
+('History', 7, 53),
+('History', 8, 54),
+('History', 9, 55),
+('History', 10, 56),
+('History', 11, 57),
+('History', 12, 58),
+('Chinese', 1, 59),
+('Chinese', 2, 60),
+('Chinese', 3, 61),
+('Chinese', 4, 62),
+('Chinese', 5, 63),
+('Chinese', 6, 64),
+('Chinese', 7, 65),
+('Chinese', 8, 66),
+('Chinese', 9, 67),
+('Chinese', 10, 68),
+('Chinese', 11, 69),
+('Chinese', 12, 70);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `items`
+-- Table structure for table `itembonus`
 --
 
-CREATE TABLE `items` (
+CREATE TABLE IF NOT EXISTS `itembonus` (
+  `itemID` int(11) NOT NULL DEFAULT '0',
+  `eventID` int(11) NOT NULL DEFAULT '0',
+  KEY `itemID` (`itemID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `itembonus`
+--
+
+INSERT INTO `itembonus` (`itemID`, `eventID`) VALUES
+(27, 586),
+(27, 587),
+(27, 588),
+(27, 589),
+(27, 590),
+(27, 591),
+(27, 592),
+(27, 593),
+(27, 594),
+(27, 595),
+(29, 596),
+(29, 597),
+(29, 598),
+(29, 599),
+(29, 600),
+(29, 601),
+(29, 602),
+(29, 603),
+(29, 604),
+(29, 605),
+(28, 606),
+(28, 607),
+(28, 608),
+(28, 609),
+(28, 610),
+(28, 611),
+(32, 612),
+(32, 613),
+(32, 614),
+(32, 615),
+(32, 616),
+(32, 617),
+(32, 618),
+(32, 619),
+(32, 620),
+(32, 621),
+(30, 622),
+(30, 623),
+(30, 624),
+(30, 625),
+(30, 626),
+(30, 627),
+(30, 628),
+(30, 629),
+(30, 630),
+(30, 631),
+(30, 632),
+(30, 633),
+(31, 654),
+(31, 655),
+(31, 656),
+(31, 657),
+(31, 658),
+(31, 659),
+(27, 660),
+(27, 661),
+(27, 662),
+(27, 663),
+(33, 660),
+(33, 661),
+(33, 662),
+(33, 663),
+(29, 664),
+(29, 665),
+(29, 666),
+(29, 667),
+(28, 668),
+(28, 669),
+(28, 670),
+(28, 671),
+(32, 672),
+(32, 673),
+(32, 674),
+(32, 675),
+(30, 676),
+(30, 677),
+(30, 678),
+(30, 679);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE IF NOT EXISTS `items` (
   `itemName` varchar(50) NOT NULL,
   `itemType` varchar(20) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -424,68 +1064,79 @@ CREATE TABLE `items` (
   `price` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`itemID`),
   KEY `itemName` (`itemName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
--- Daten für Tabelle `items`
+-- Dumping data for table `items`
 --
 
-INSERT INTO `items` VALUES('Abacus', 'Math', 'Abacus lessons are why Asians are better at math.', 'images/abacus.gif', 0, 0, 'Math', 36, 100);
-INSERT INTO `items` VALUES('4-function calculator', 'Math', '', 'images/4func_calculator.gif', 0, 0, 'Math', 37, 200);
-INSERT INTO `items` VALUES('Scientific caclulator', 'Math', '', 'images/scientific_calculator.gif', 0, 0, 'Math', 38, 300);
-INSERT INTO `items` VALUES('Graphing calculator', 'Math', '"""This is birthday present now that you''re starting Geometry."""', 'images/graphing_calculator.gif', 0, 0, 'Math', 39, 1000);
-INSERT INTO `items` VALUES('Multiplication table paper', 'Math', '', 'images/times_table.gif', 0, 0, 'Math', 40, 200);
-INSERT INTO `items` VALUES('Compass and protractor', 'Math', '', 'images/compass_protractor.gif', 0, 0, 'Math', 41, 300);
-INSERT INTO `items` VALUES('Math flash cards', 'Math', 'Not multiple choice', 'images/math_flash_cards.gif', 0, 0, 'Math', 42, 100);
-INSERT INTO `items` VALUES('My ABC Book', 'Language', '', 'images/first_ABC_book.gif', 0, 0, 'Language', 43, 250);
-INSERT INTO `items` VALUES('Picture Dictionary', 'Language', 'The first step to a perfect SAT score!', 'images/picture_dictionary.gif', 0, 0, 'Language', 44, 250);
-INSERT INTO `items` VALUES('To Give a Mouse a Dollar', 'Language', '', 'images/mouse_dollar_book.gif', 0, 0, 'Language', 45, 250);
-INSERT INTO `items` VALUES('Kid''s Dictionary', 'Language', 'Are you ready for flashcards yet?', 'images/childrens_dictionary.gif', 0, 0, 'Language', 46, 250);
-INSERT INTO `items` VALUES('Mary Potter', 'Language', '', 'images/mary_potter.gif', 0, 0, 'Language', 47, 250);
-INSERT INTO `items` VALUES('Nancy Hu', 'Language', 'She solves mysteries and still gets A''s', 'images/nancy_hu.gif', 0, 0, 'Language', 48, 250);
-INSERT INTO `items` VALUES('Harbin Boys', 'Language', 'Solving mysteries in mysterious China', 'images/harbin_boys.gif', 0, 0, 'Language', 49, 250);
-INSERT INTO `items` VALUES('Webster''s Dictionary', 'Language', 'A Top College Dictionary!', 'images/college_dictionary.gif', 0, 0, 'Language', 50, 250);
-INSERT INTO `items` VALUES('Expensive Pen', 'Language', 'It doesn''t fix your handwriting', 'images/fancy_pen.gif', 0, 0, 'Language', 51, 250);
-INSERT INTO `items` VALUES('Calligraphy Set', 'Language', 'Fixes your handwriting', 'images/calligraphy_set.gif', 0, 0, 'Language', 52, 250);
-INSERT INTO `items` VALUES('101 Fun Science Experiments Book', 'Science', 'To cultivate your budding Einstein!', 'images/science_experiments.gif', 0, 0, 'Science', 53, 100);
-INSERT INTO `items` VALUES('Magnet set', 'Science', 'Aren''t you attracted to these?', 'images/magnet_set.gif', 0, 0, 'Science', 54, 200);
-INSERT INTO `items` VALUES('Legos', 'Science', '', 'images/legos.gif', 0, 0, 'Science', 55, 300);
-INSERT INTO `items` VALUES('Solar car kit', 'Science', 'Do you have an engineer on your hands?', 'images/solar_car.gif', 0, 0, 'Science', 56, 400);
-INSERT INTO `items` VALUES('Microscope', 'Science', '', 'images/microscope.gif', 0, 0, 'Science', 57, 500);
-INSERT INTO `items` VALUES('Binoculars', 'Science', '', 'images/binoculars.gif', 0, 0, 'Science', 58, 600);
-INSERT INTO `items` VALUES('Telescope', 'Science', 'See the stars!', 'images/telescope.gif', 0, 0, 'Science', 59, 700);
-INSERT INTO `items` VALUES('Compass', 'Science', 'Learn about the Earth''s magnetic field', 'images/compass.gif', 0, 0, 'Science', 60, 800);
-INSERT INTO `items` VALUES('Chemistry Kit', 'Science', 'Adult supervision required', 'images/chemistry_kit.gif', 0, 0, 'Science', 61, 900);
-INSERT INTO `items` VALUES('Soccer ball', 'Athletics', '', 'images/soccer_ball.gif', 0, 0, 'Athletics', 62, 400);
-INSERT INTO `items` VALUES('Basketball', 'Athletics', '', 'images/basketball.gif', 0, 0, 'Athletics', 63, 400);
-INSERT INTO `items` VALUES('Baseball glove', 'Athletics', '', 'images/baseball_glove.gif', 0, 0, 'Athletics', 64, 400);
-INSERT INTO `items` VALUES('Tennis racket', 'Athletics', '', 'images/tennis_racket.gif', 0, 0, 'Athletics', 65, 800);
+INSERT INTO `items` (`itemName`, `itemType`, `description`, `picture`, `bonus`, `rank`, `itemSkill`, `itemID`, `price`) VALUES
+('Abacus', 'Math', 'Abacus lessons are why Asians are better at math.', 'images/abacus.gif', 1.2, 0, 'Math', 1, 200),
+('4-function calculator', 'Math', 'Calculator only for checking, do math in your head!', 'images/4func_calculator.gif', 1.5, 0, 'Math', 2, 600),
+('Scientific caclulator', 'Math', 'Okay, can use calculator for trigonometry', 'images/scientific_calculator.gif', 2, 0, 'Math', 3, 1500),
+('Graphing calculator', 'Math', '"This is birthday present now that you''re starting calculus."', 'images/graphing_calculator.gif', 4, 0, 'Math', 4, 5000),
+('Multiplication table paper', 'Math', 'Practice everyday', 'images/times_table.gif', 1.05, 0, 'Math', 5, 100),
+('Compass and protractor', 'Math', 'Draw better shapes for geometry', 'images/compass_protractor.gif', 1.25, 0, 'Math', 6, 300),
+('Math flash cards', 'Math', 'Not multiple choice', 'images/math_flash_cards.gif', 1.3, 0, 'Math', 7, 200),
+('My ABC Book', 'Language', 'More pictures than words', 'images/first_ABC_book.gif', 1.05, 0, 'Language', 8, 50),
+('Picture Dictionary', 'Language', 'The first step to a perfect SAT score!', 'images/picture_dictionary.gif', 1.1, 0, 'Language', 9, 100),
+('To Give a Mouse a Dollar', 'Language', 'Same as allowance', 'images/mouse_dollar_book.gif', 1.15, 0, 'Language', 10, 200),
+('Kid''s Dictionary', 'Language', 'Are you ready for flashcards yet?', 'images/childrens_dictionary.gif', 1.2, 0, 'Language', 11, 250),
+('Mary Potter', 'Language', 'Get from library for free', 'images/mary_potter.gif', 1.25, 0, 'Language', 12, 300),
+('Nancy Hu Mysteries', 'Language', 'She solves mysteries and still gets A''s', 'images/nancy_hu.gif', 1.3, 0, 'Language', 13, 350),
+('The Harbin Boys', 'Language', 'Solving mysteries in mysterious China', 'images/harbin_boys.gif', 1.35, 0, 'Language', 14, 400),
+('Webster''s Dictionary', 'Language', 'A Top College Dictionary!', 'images/college_dictionary.gif', 1.5, 0, 'Language', 15, 500),
+('Expensive Pen', 'Language', 'It doesn''t fix your handwriting', 'images/fancy_pen.gif', 1.2, 0, 'Language', 16, 250),
+('Calligraphy Set', 'Language', 'Fixes your handwriting', 'images/calligraphy_set.gif', 1.3, 0, 'Language', 17, 300),
+('101 Fun Science Experiments Book', 'Science', 'To cultivate your budding Einstein!', 'images/science_experiments.gif', 1.1, 0, 'Science', 18, 100),
+('Magnet set', 'Science', 'Aren''t you attracted to these?', 'images/magnet_set.gif', 1.05, 0, 'Science', 19, 100),
+('Legos', 'Science', 'You better clean them up so I don''t step on them', 'images/legos.gif', 2, 0, 'Science', 20, 400),
+('Solar car kit', 'Science', 'Do you have an engineer on your hands?', 'images/solar_car.gif', 1.15, 0, 'Science', 21, 200),
+('Microscope', 'Science', 'Look at bugs', 'images/microscope.gif', 1.5, 0, 'Science', 22, 500),
+('Binoculars', 'Science', 'Look at birds', 'images/binoculars.gif', 1.8, 0, 'Science', 23, 800),
+('Telescope', 'Science', 'See the stars!', 'images/telescope.gif', 2, 0, 'Science', 24, 1000),
+('Compass', 'Science', 'Learn about the Earth''s magnetic field', 'images/compass.gif', 1.05, 0, 'Science', 25, 100),
+('Chemistry Kit', 'Science', 'Adult supervision required', 'images/chemistry_kit.gif', 2, 0, 'Science', 26, 1000),
+('Soccer ball', 'Athletics', 'How play soccer with no ball?', 'images/soccer_ball.gif', 2, 0, '', 27, 500),
+('Basketball', 'Athletics', 'How play basketball with no ball?', 'images/basketball.gif', 2, 0, '', 28, 500),
+('Baseball glove', 'Athletics', 'You catch ball with hands?', 'images/baseball_glove.gif', 2, 0, '', 29, 500),
+('Tennis racket', 'Athletics', 'Don''t use it to hit bugs!', 'images/tennis_racket.gif', 2, 0, '', 30, 500),
+('Running shoes', 'Athletics', 'You still too fat to run fast', 'images/running_shoes.gif', 1.5, 0, '', 31, 100),
+('Swimming goggles', 'Athletics', 'Use goggles for frog stroke', 'images/swimming_goggles.gif', 2, 0, '', 32, 500),
+('Cleats', 'Athletics', 'Run faster on grass', 'images/cleats.gif', 2, 0, '', 33, 500),
+('Water bottle', 'Athletics', 'Drink more water, it''s free!', 'images/water_bottle.gif', 1.5, 0, 'Athletics', 34, 500),
+('3/4 size violin', 'Violin', 'Baby violin', 'images/small_violin.gif', 2, 0, 'Violin', 35, 1000),
+('full size beginner violin', 'Violin', 'Good starter violin', 'images/violin.gif', 4, 0, 'Violin', 36, 5000),
+('Premium violin', 'Violin', 'Spend the big bucks', 'images/premium_violin.gif', 6, 0, 'Violin', 37, 10000),
+('Aged violin', 'Violin', 'Like a fine cheese', 'images/aged_violin.gif', 10, 0, 'Violin', 38, 30000),
+('Ancient artifact violin', 'Violin', '"Older than you"', 'images/ancient_violin.gif', 20, 0, 'Violin', 39, 80000),
+('Digital Keyboard', 'Piano', 'Plastic piano', 'images/digital_piano.gif', 2, 0, 'Piano', 40, 1000),
+('Used Upright Piano', 'Piano', 'Good starter piano', 'images/upright_piano.gif', 4, 0, 'Piano', 41, 5000),
+('Upright European Piano', 'Piano', 'Good piano, but you still play bad', 'images/upright_euro_piano.gif', 6, 0, 'Piano', 42, 10000),
+('Baby Grand Piano', 'Piano', 'Practice more or this come out of your college fund', 'images/baby_grand_piano.gif', 10, 0, 'Piano', 43, 30000),
+('Grand Piano', 'Piano', 'Got this instead of BMW 7 series', 'images/grand_piano.gif', 20, 0, 'Piano', 44, 80000),
+('Metronome', 'Piano', 'Why you practice so fast?', 'images/metronome.gif', 1.3, 0, 'Piano', 45, 500);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `purchases`
+-- Table structure for table `purchases`
 --
 
-CREATE TABLE `purchases` (
+CREATE TABLE IF NOT EXISTS `purchases` (
   `studentID` int(10) unsigned NOT NULL,
   `itemID` int(10) unsigned NOT NULL,
   KEY `studentID` (`studentID`),
   KEY `itemID` (`itemID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `purchases`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `schools`
+-- Table structure for table `schools`
 --
 
-CREATE TABLE `schools` (
+CREATE TABLE IF NOT EXISTS `schools` (
   `schoolName` varchar(35) DEFAULT NULL,
   `schoolType` varchar(13) NOT NULL,
   `schoolID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -495,39 +1146,40 @@ CREATE TABLE `schools` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
--- Daten für Tabelle `schools`
+-- Dumping data for table `schools`
 --
 
-INSERT INTO `schools` VALUES('92 Street Y Nursery School, NYC', 'Preschool', 1, 'Make all the right playdates with all the right mommies, and maybe you''ll be offered an application to 92Y!', 20);
-INSERT INTO `schools` VALUES('Bonsai Tree Bilingual Montessori', 'Preschool', 2, 'Boost your child''s Mandarin skills, and as an added bonus, more thoroughly indoctrinate them in the Chinese style of (rote) learning.', 10);
-INSERT INTO `schools` VALUES('Dance Your Name Waldorf School', 'Preschool', 3, 'Someday, your child will just be happy to have this part of their lives behind them. For now, they can master eurhythmy and the other unusual education ideas at Waldorf!', 10);
-INSERT INTO `schools` VALUES('Challenger Preschool', 'Preschool', 4, 'Where 5-year-olds with ulcers are a matter-of-course!', 5);
-INSERT INTO `schools` VALUES('YMCA Child Care for Preschoolers', 'Preschool', 5, 'Learn the YMCA song before all the other kids, so you can be a Village Person too!', 2);
-INSERT INTO `schools` VALUES('Daddy Day Care, Anytown, USA', 'Preschool', 6, 'If it''s good enough for Eddie Murphy, it''s good enough for me', 1);
-INSERT INTO `schools` VALUES('Hunter College Elementary, NYC', 'Elementary', 7, '"College" is in the name so it must be better!', 20);
-INSERT INTO `schools` VALUES('Chinatown Language Immersion', 'Elementary', 8, 'Random lottery to get into this school, unless your Asian Parent Network is big enough.', 10);
-INSERT INTO `schools` VALUES('The Stuffy Private School Lower Div', 'Elementary', 9, 'A premiere "college-prep" school...for your 7-year-old.', 5);
-INSERT INTO `schools` VALUES('White Picket Fence Public School', 'Elementary', 10, 'Achieving the American Dream is good enough for you, isn''t it? Isn''t it?', 2);
-INSERT INTO `schools` VALUES('DC Public School', 'Elementary', 11, 'Teacher firings? Michelle Rhee debates? Not scared are you?', 1);
-INSERT INTO `schools` VALUES('The Dalton School', 'Middle', 12, 'Helicopter parents just like you galore at this Manhattan prep school', 20);
-INSERT INTO `schools` VALUES('The Stuffy Middle Private School', 'Middle', 13, 'Uniforms make us almost as good as those private schools mentioned in Forbes', 10);
-INSERT INTO `schools` VALUES('Chinatown Language Immersion', 'Middle', 14, 'Random lottery to get into this school, unless your Asian Parent Network is big enough.', 5);
-INSERT INTO `schools` VALUES('White Picket Fence Public School', 'Middle', 15, 'Achieving the American Dream is good enough for you, isn''t it? Isn''t it?', 2);
-INSERT INTO `schools` VALUES('Ghetto DC Public Middle School', 'Middle', 16, 'All the charm of a medium security prison.', 1);
-INSERT INTO `schools` VALUES('Stuyvescent High School', 'High', 17, 'Get a high enough SHSAT score to go here and you too can be an Intel finalist and later, Nobel laureate! I mean, your child can be!', 20);
-INSERT INTO `schools` VALUES('LaGuardia School of Music & Arts', 'High', 18, 'For your budding hipster kid. Gee are you sure about this?', 20);
-INSERT INTO `schools` VALUES('Phillips Exeter Academy', 'High', 19, 'Phillips Exeter Academy', 20);
-INSERT INTO `schools` VALUES('Wannabe Snobby College Prep', 'High', 20, 'College preparatory: because you better be going to college!', 10);
-INSERT INTO `schools` VALUES('Suburbia High', 'High', 21, 'Pay for a million-dollar shack in Suburbia just to go to this school', 2);
-INSERT INTO `schools` VALUES('Inner City High School, Detroit', 'High', 22, 'Why you always be talkin'' ghetto? Get yo''self a propa'' e-ju-ma-kay-shun, kid!" ', 1);
+INSERT INTO `schools` (`schoolName`, `schoolType`, `schoolID`, `description`, `friendsReq`) VALUES
+('92 Street Y Nursery School, NYC', 'Preschool', 1, 'Make all the right playdates with all the right mommies, and maybe you''ll be offered an application to 92Y!', 20),
+('Bonsai Tree Bilingual Montessori', 'Preschool', 2, 'Boost your child''s Mandarin skills, and as an added bonus, more thoroughly indoctrinate them in the Chinese style of (rote) learning.', 10),
+('Dance Your Name Waldorf School', 'Preschool', 3, 'Someday, your child will just be happy to have this part of their lives behind them. For now, they can master eurhythmy and the other unusual education ideas at Waldorf!', 10),
+('Challenger Preschool', 'Preschool', 4, 'Where 5-year-olds with ulcers are a matter-of-course!', 5),
+('YMCA Child Care for Preschoolers', 'Preschool', 5, 'Learn the YMCA song before all the other kids, so you can be a Village Person too!', 2),
+('Daddy Day Care, Anytown, USA', 'Preschool', 6, 'If it''s good enough for Eddie Murphy, it''s good enough for me', 1),
+('Hunter College Elementary, NYC', 'Elementary', 7, '"College" is in the name so it must be better!', 20),
+('Chinatown Language Immersion', 'Elementary', 8, 'Random lottery to get into this school, unless your Asian Parent Network is big enough.', 10),
+('The Stuffy Private School Lower Div', 'Elementary', 9, 'A premiere "college-prep" school...for your 7-year-old.', 5),
+('White Picket Fence Public School', 'Elementary', 10, 'Achieving the American Dream is good enough for you, isn''t it? Isn''t it?', 2),
+('DC Public School', 'Elementary', 11, 'Teacher firings? Michelle Rhee debates? Not scared are you?', 1),
+('The Dalton School', 'Middle', 12, 'Helicopter parents just like you galore at this Manhattan prep school', 20),
+('The Stuffy Middle Private School', 'Middle', 13, 'Uniforms make us almost as good as those private schools mentioned in Forbes', 10),
+('Chinatown Language Immersion', 'Middle', 14, 'Random lottery to get into this school, unless your Asian Parent Network is big enough.', 5),
+('White Picket Fence Public School', 'Middle', 15, 'Achieving the American Dream is good enough for you, isn''t it? Isn''t it?', 2),
+('Ghetto DC Public Middle School', 'Middle', 16, 'All the charm of a medium security prison.', 1),
+('Stuyvescent High School', 'High', 17, 'Get a high enough SHSAT score to go here and you too can be an Intel finalist and later, Nobel laureate! I mean, your child can be!', 20),
+('LaGuardia School of Music & Arts', 'High', 18, 'For your budding hipster kid. Gee are you sure about this?', 20),
+('Phillips Exeter Academy', 'High', 19, 'Phillips Exeter Academy', 20),
+('Wannabe Snobby College Prep', 'High', 20, 'College preparatory: because you better be going to college!', 10),
+('Suburbia High', 'High', 21, 'Pay for a million-dollar shack in Suburbia just to go to this school', 2),
+('Inner City High School, Detroit', 'High', 22, 'Why you always be talkin'' ghetto? Get yo''self a propa'' e-ju-ma-kay-shun, kid!" ', 1);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `specialItems`
+-- Table structure for table `specialitems`
 --
 
-CREATE TABLE `specialItems` (
+CREATE TABLE IF NOT EXISTS `specialitems` (
   `sItemName` varchar(20) NOT NULL,
   `itemDescription` varchar(200) DEFAULT NULL,
   `itemPic` longblob,
@@ -537,44 +1189,43 @@ CREATE TABLE `specialItems` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Daten für Tabelle `specialItems`
---
-
-
---
--- Constraints der exportierten Tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Constraints der Tabelle `accounts`
+-- Constraints for table `accounts`
 --
 ALTER TABLE `accounts`
   ADD CONSTRAINT `accounts_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `characters` (`studentID`);
 
 --
--- Constraints der Tabelle `charEvents`
+-- Constraints for table `charevents`
 --
-ALTER TABLE `charEvents`
+ALTER TABLE `charevents`
   ADD CONSTRAINT `charEvents_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `characters` (`studentID`),
   ADD CONSTRAINT `charEvents_ibfk_2` FOREIGN KEY (`eventID`) REFERENCES `events` (`eventID`);
 
 --
--- Constraints der Tabelle `charGrades`
+-- Constraints for table `chargrades`
 --
-ALTER TABLE `charGrades`
+ALTER TABLE `chargrades`
   ADD CONSTRAINT `charGrades_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `characters` (`studentID`),
   ADD CONSTRAINT `charGrades_ibfk_2` FOREIGN KEY (`gradeID`) REFERENCES `grades` (`gradeID`);
 
 --
--- Constraints der Tabelle `charSchool`
+-- Constraints for table `charschool`
 --
-ALTER TABLE `charSchool`
+ALTER TABLE `charschool`
   ADD CONSTRAINT `charSchool_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `characters` (`studentID`),
   ADD CONSTRAINT `charSchool_ibfk_2` FOREIGN KEY (`schoolID`) REFERENCES `schools` (`schoolID`);
 
 --
--- Constraints der Tabelle `purchases`
+-- Constraints for table `purchases`
 --
 ALTER TABLE `purchases`
   ADD CONSTRAINT `purchases_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `characters` (`studentID`),
   ADD CONSTRAINT `purchases_ibfk_2` FOREIGN KEY (`itemID`) REFERENCES `items` (`itemID`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
