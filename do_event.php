@@ -46,7 +46,15 @@
       if (count($temp) > 1)
       {
         $isGrade[$i] = 1;
-        $skill[$i] = $temp[0];
+        if ($temp[0] == "English")
+        {
+          $skill[$i] = "language"; // Convert English into language
+          $category = "Language";
+        }
+        else
+        {
+          $skill[$i] = $temp[0];
+        }
       }
       else
       {
@@ -129,7 +137,7 @@
         $bonusPercent = (int)(($bonus - 1) * 100);
         $bonusString .= $itemName . " gives " . $bonusPercent ."% bonus! ";
       }
-      //echo $bonusString . "Total bonus: " . $itemBonus . " ";
+      echo $bonusString . "Total bonus: " . $itemBonus . " ";
       
       // Find category item bonuses (i.e. math)
       $query = "SELECT items.bonus,items.itemName FROM purchases LEFT JOIN items
@@ -145,7 +153,7 @@
         $bonusPercent = (int)(($bonus-1) * 100);
         $bonusString .= $itemName . " gives " . $bonusPercent ."% bonus! ";
       }
-      //echo $bonusString . "Total bonus2: " . $itemBonus2 . "<br>";
+      echo $bonusString . "Total bonus2: " . $itemBonus2 . "<br>";
       
       // Create query to update skills by concatenating each skill increase
       $skillString = "";
@@ -167,6 +175,10 @@
       {
         if ($isGrade[$i] == 1)
         {
+          if ($skill[$i] == "language")
+          {
+            $skill[$i] = "English"; // Convert language back in English
+          }
           // Retrieve character grades
           $query = "SELECT chargrades.percent,grades.gradeID,grades.subject
                     FROM chargrades, grades WHERE chargrades.gradeID=grades.gradeID
@@ -259,7 +271,26 @@
     }
     else
     {
-      echo "You are missing some requirement!<br>";
+      if ($cash < $eventCost)
+      {
+        echo "You are too poor!<br>";
+      }
+      else if ($currMotivation < $motivationReq)
+      {
+        echo "Your tiger cub is too mopey to do anything!<br>";
+      }
+      else if ($gradeLevel < $eGradeLevel)
+      {
+        echo "Your tiger cub is too young to do this!<br>";
+      }
+      else if ($time < $timeReady)
+      {
+        echo "Your tiger cub did this event too recently!<br>";
+      }
+      else if ($timeLimit < -1)
+      {
+        echo "Your tiger cub completed this one-time event!<br>";
+      }
     }
   }
   
