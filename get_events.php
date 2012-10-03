@@ -6,7 +6,7 @@
   {
     $playerID = sanitizeString($_POST['playerID']);
     $type = sanitizeString($_POST['type']);
-    
+
     // Get grade level from playerID
     $query = "SELECT name, characters.studentID,gradeLevel FROM " .
              "accounts,characters WHERE playerID=$playerID " .
@@ -16,11 +16,11 @@
     $name = $row['name'];
     $studentID = $row['studentID'];
     $gradeLevel = $row['gradeLevel'];
-    
-    // Get all events below current grade level, join events and charEvents table
-    $query = "SELECT events.*,charEvents.timeReady,charEvents.timesDone FROM" .
-             " events LEFT JOIN charEvents ON events.eventID=" .
-             "charEvents.eventID AND charEvents.studentID=$studentID WHERE " .
+
+    // Get all events below current grade level, join events and charevents table
+    $query = "SELECT events.*,charevents.timeReady,charevents.timesDone FROM" .
+             " events LEFT JOIN charevents ON events.eventID=" .
+             "charevents.eventID AND charevents.studentID=$studentID WHERE " .
              "events.eGradeLevel=$gradeLevel AND events.type='$type' " .
              "ORDER BY events.category, events.eventCost, events.motivationReq";
     $result = queryMysql($query);
@@ -45,7 +45,7 @@
       $timesDone = $row['timesDone'];
       $category = $row['category'];
       $type = $row['type'];
-      
+
       $timerName = "NULL";
       $timeLeft=0;
       // TODO: Use -2 to implement a completed one-time event
@@ -64,7 +64,7 @@
 
       // Hack to replace $name in eventName with character's name.
       $eventName = str_replace('$name', $name, $eventName);
-      
+
       // Sort events into categories for slider
       if ($prevEventCategory != $category && $category != '') {
         if ($prevEventCategory != '') {

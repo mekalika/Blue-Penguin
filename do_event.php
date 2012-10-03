@@ -7,18 +7,18 @@
     $playerID = sanitizeString($_POST['playerID']);
     $eventID = sanitizeString($_POST['eventID']);
     $type = sanitizeString($_POST['type']);
-    
+
     // Get grade level from playerID
     $query = "SELECT characters.studentID,gradeLevel FROM accounts,characters
               WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
     $result = queryMysql($query);
     $row = mysql_fetch_array($result);
     $studentID  = $row['studentID'];
-    
+
     // Retrieve event properties
-    $query = "SELECT events.*, charEvents.timeReady FROM events LEFT JOIN charEvents
-              ON events.eventID=charEvents.eventID
-              AND charEvents.studentID=$studentID WHERE events.eventID=$eventID";
+    $query = "SELECT events.*, charevents.timeReady FROM events LEFT JOIN charevents
+              ON events.eventID=charevents.eventID
+              AND charevents.studentID=$studentID WHERE events.eventID=$eventID";
     $result = queryMysql($query);
     $row=mysql_fetch_array($result);
     $eventName          = $row['eventName'];
@@ -34,11 +34,11 @@
     $skill[2]           = $row['skillC'];
     $EXP[2]             = $row['EXPC'];
     $category           = $row['category'];
-    
+
     // Debug info
     //echo "eventName: $eventName timeLimit: $timeLimit timeReady: $timeReady<br>";
     //echo "studentID: $studentID eventID: $eventID<br>";
-    
+
     // Check if any skills are grades
     for ($i = 0; $i < 3; $i++)
     {
@@ -88,19 +88,19 @@
       }
     }
     $time = time();
-    
+
     // Calculate time since last action
     $motivationTime = $time - $motivationTimer;
     $prideTime = $time - $prideTimer;
     $battleTime = $time - $battleTimer;
     $idleTime = $time - $lastAction;
     $offsetTime = ($time - $lastAction) % $RT;
-    
+
     // Calculate stat replenishment
     $currMotivation = min($currMotivation + floor($motivationTime/$RT),$maxMotivation);
     $currPride = min($currPride + floor($prideTime/$RT),$maxPride);
     $currBattle = min($currBattle + floor($battleTime/$RT),$maxBattle);
-    
+
     // Reset timer if stat is full
     if ($currMotivation == $maxMotivation)
       $motivationTime = 0;
@@ -108,12 +108,12 @@
       $prideTime = 0;
     if ($currBattle == $maxBattle)
       $battleTime = 0;
-    
+
     // Calculate timestamp for replenishment timers
     $motivationTime = $time - $motivationTime % $RT;
     $prideTime = $time - $prideTime % $RT;
     $battleTime = $time - $battleTime % $RT;
-    
+
     // Check if you can do the event
     if ($cash >= $eventCost && $currMotivation >= $motivationReq && $gradeLevel >= $eGradeLevel
         && $time > $timeReady && $timeLimit > -2)
@@ -121,9 +121,9 @@
       // OK, you can do the event
       $cash -= $eventCost;
       $currMotivation -= $motivationReq;
-      
+
       // Find event specific item bonuses (for specific sports like soccer)
-      $query = "SELECT items.bonus,items.itemName FROM purchases LEFT JOIN itembonus 
+      $query = "SELECT items.bonus,items.itemName FROM purchases LEFT JOIN itembonus
                 ON itembonus.itemID=purchases.itemID
                 LEFT JOIN items ON itembonus.itemID=items.itemID WHERE itembonus.eventID=$eventID";
       $result = queryMysql($query);
@@ -138,7 +138,7 @@
         $bonusString .= $itemName . " gives " . $bonusPercent ."% bonus! ";
       }
       echo $bonusString . "Total bonus: " . $itemBonus . " ";
-      
+
       // Find category item bonuses (i.e. math)
       $query = "SELECT items.bonus,items.itemName FROM purchases LEFT JOIN items
                 ON purchases.itemID=items.itemID WHERE items.itemSkill='$category'";
@@ -154,7 +154,7 @@
         $bonusString .= $itemName . " gives " . $bonusPercent ."% bonus! ";
       }
       echo $bonusString . "Total bonus2: " . $itemBonus2 . "<br>";
-      
+
       // Create query to update skills by concatenating each skill increase
       $skillString = "";
       for ($i = 0; $i < 3; $i++)
@@ -168,7 +168,7 @@
           echo $skill[$i] . " increased from " . $prevEXP  . " to " . $skillEXP[$i] . "!<br>";
         }
       }
-      
+
       // Create query to update grades by concatenating each grade increase
       $gradeString = "";
       for ($i = 0; $i < 3; $i++)
@@ -188,7 +188,7 @@
           $row=mysql_fetch_array($result);
           $percent[$i] = $row['percent'];
           $gradeID[$i] = $row['gradeID'];
-          
+
           $prevGrade = $percent[$i];
           $percent[$i] += round((int)$EXP[$i] * (float)($skillMultiplier[$i] * $itemBonus * $itemBonus2));
           $percent[$i] = min($percent[$i], 100); // Cap grades at 100%
@@ -196,19 +196,19 @@
           //echo "gradeID=" . $gradeID[$i] . " Percent=" . $percent[$i] . " Subject=" . $skill[$i];
           //echo "Base=" . $EXP[$i] . " $skill[$i]" . " grade increased to " . $percent[$i] . "<br>";
           echo $skill[$i] . " grade increased from " . $prevGrade . " to " . $percent[$i] . "!<br>";
-          
+
           // Update grade
           $query = "UPDATE chargrades SET percent=$percent[$i] WHERE gradeID=$gradeID[$i]";
           $result = queryMysql($query);
         }
       }
-      
+
       /*// Create query to update skills by concatenating each skill increase
       $skillString = "";
       $skillEXP1 += round((int)$EXPA * (float)($skillMultiplier1 * $itemBonus * $itemBonus2));
       if ($isGradeA == 1)
       {
-        
+
       }
       else
       {
@@ -216,13 +216,13 @@
         echo "Base=" . $EXPA . " skillMult=" . $skillMultiplier1 . " bonus1=" . $itemBonus . " bonus2=" . $itemBonus2;
         echo "$skillA increased to $skillEXP1!<br>";
       }
-      
+
       if ($skillB != "")
       {
         $skillEXP2 += round((int)$EXPB * (float)($skillMultiplier2 * $itemBonus * $itemBonus2));
         $skillString .= ", " . strtolower($skillB) . "EXP" . "=$skillEXP2";
         echo "$skillB increased to $skillEXP2!<br>";
-      }        
+      }
       if ($skillC != "")
       {
         $skillEXP3 += round((int)$EXPC * (float)($skillMultiplier3 * $itemBonus * $itemBonus2));
@@ -236,34 +236,34 @@
                 motivationTimer=$motivationTime, prideTimer=$prideTime,
                 battleTimer=$battleTime" . $skillString . " WHERE studentID=$studentID";
       $result = queryMysql($query);
-      
+
       // Handle one-time event
       if ($timeLimit == -1)
       {
         $query = "UPDATE events SET timeLimit=-2 WHERE eventID=$eventID";
         $result = queryMysql($query);
       }
-      
-      // Update charEvents table
-      $query = "SELECT * FROM charEvents WHERE studentID=$studentID AND eventID=$eventID";
+
+      // Update charevents table
+      $query = "SELECT * FROM charevents WHERE studentID=$studentID AND eventID=$eventID";
       $result = queryMysql($query);
-      
+
       if (mysql_num_rows($result) == 0)
       {
-        // First time doing event, add to charEvents table
-        $query = "INSERT INTO charEvents (studentID, eventID, timeReady)
+        // First time doing event, add to charevents table
+        $query = "INSERT INTO charevents (studentID, eventID, timeReady)
                   VALUES ($studentID, $eventID, $timeLimit+$time)";
         $result = queryMysql($query);
         //echo "Adding new charevent";
       }
       else
       {
-        // Update previous charEvents entry
+        // Update previous charevents entry
         $row = mysql_fetch_array($result);
         $timesDone = $row['timesDone'];
         $timesDone++;
-        
-        $query = "UPDATE charEvents SET timeReady=$timeLimit+$time, timesDone=$timesDone
+
+        $query = "UPDATE charevents SET timeReady=$timeLimit+$time, timesDone=$timesDone
                   WHERE studentID=$studentID AND eventID=$eventID";
         $result = queryMysql($query);
         //echo "Updating charevent";
@@ -293,6 +293,6 @@
       }
     }
   }
-  
+
   mysql_close($db_server);
 ?>

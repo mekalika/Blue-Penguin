@@ -11,15 +11,15 @@
   {
     $playerID = sanitizeString($_POST['playerID']);
     $schoolID = sanitizeString($_POST['schoolID']);
-    
+
     $query = "SELECT studentID from accounts WHERE playerID=$playerID";
     $result = queryMysql($query);
     $studentID = mysql_result($result, 0);
 
-    $query = "UPDATE charSchool SET schoolID=$schoolID " .
+    $query = "UPDATE charschool SET schoolID=$schoolID " .
              "WHERE studentID=$studentID";
     queryMysql($query);
   }
-  
+
   mysql_close($db_server);
 ?>

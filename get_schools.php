@@ -11,7 +11,7 @@
   if (isset($_POST['playerID']))
   {
     $playerID = sanitizeString($_POST['playerID']);
-    
+
     // Get grade level from playerID.
     $query = "SELECT characters.studentID,gradeLevel from accounts,characters WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
     $result = queryMysql($query);
@@ -20,10 +20,10 @@
     $gradeLevel = $row['gradeLevel'];
 
     // Get current school.
-    $query = "SELECT schoolID from charSchool WHERE studentID=$studentID";
+    $query = "SELECT schoolID from charschool WHERE studentID=$studentID";
     $result = queryMysql($query);
     $currSchoolID = mysql_result($result, 0);
-    
+
     // Determine schoolType based on grade.
     if ($gradeLevel == -1) {
       $schoolType = 'Preschool';
@@ -59,7 +59,7 @@ _HTML;
       $description 	= $row['description'];
 
      // Print out the Schools table! Alternates colors and has a color for
-     // current school.      
+     // current school.
       if ($alt % 2 == 1) {
         if ($currSchoolID == $schoolID) {
           echo <<<_HTML
@@ -76,7 +76,7 @@ _HTML;
   <td>$friendsReq</td>
   <td>$description</td>
 _HTML;
-        if ($numFriends >= $friendsReq && $currSchoolID != $schoolID) {  
+        if ($numFriends >= $friendsReq && $currSchoolID != $schoolID) {
           echo <<<_HTML
   <td><input type="button" value="Enroll!" onClick="enrollSchool($playerID,$schoolID)"></td>
 </tr>
@@ -111,7 +111,7 @@ _HTML;
    <td>$friendsReq</td>
    <td>$description</td>
 _HTML;
-        if ($numFriends >= $friendsReq && $currSchoolID != $schoolID) {  
+        if ($numFriends >= $friendsReq && $currSchoolID != $schoolID) {
           echo <<<_HTML
   <td><input type="button" value="Enroll!" onClick="enrollSchool($playerID,$schoolID)"></td>
 </tr>
@@ -130,7 +130,7 @@ _HTML;
 _HTML;
         }
       }
-      $alt++; 
+      $alt++;
     }
     echo "</table></br>";
   }

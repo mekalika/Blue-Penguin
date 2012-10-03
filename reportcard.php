@@ -124,7 +124,7 @@ _HTML;
   $gradeLevel 	= $row['gradeLevel'];
 
   // Get current school.
-  $query = "SELECT schoolID from charSchool WHERE studentID=$studentID";
+  $query = "SELECT schoolID from charschool WHERE studentID=$studentID";
   $result = queryMysql($query);
   $schoolID = mysql_result($result, 0);
   $query = "SELECT schoolName from schools WHERE schoolID=$schoolID";
@@ -162,10 +162,10 @@ _HTML;
     while($row = mysql_fetch_array($result)) {
       $gradeID	= $row['gradeID'];
       $subject	= $row['subject'];
-      // Get percent from charGrades table
-      $query = "SELECT percent FROM charGrades WHERE gradeID=$gradeID AND " .
+      // Get percent from chargrades table
+      $query = "SELECT percent FROM chargrades WHERE gradeID=$gradeID AND " .
                "studentID=$studentID";
-      $result2 = queryMysql($query); 
+      $result2 = queryMysql($query);
       $percent = mysql_result($result2, 0);
       $letterGrade = getLetterGrade($percent);
 
@@ -178,13 +178,13 @@ _HTML;
       echo "$progressWidth";
       if ($percent < 70) {
         echo <<<_HTML
-px;background-color:#F875C5;">$percent% <!--pink--> 
+px;background-color:#F875C5;">$percent% <!--pink-->
     </div></div><br><br>
 _HTML;
-      } 
+      }
       elseif ($percent < 80) {
         echo <<<_HTML
-px;background-color:#F28626;"> $letterGrade ($percent%) <!--orange--> 
+px;background-color:#F28626;"> $letterGrade ($percent%) <!--orange-->
     </div></div><br><br>
 _HTML;
       }
@@ -208,11 +208,11 @@ _HTML;
       }
       elseif ($percent = 100) {
         echo <<<_HTML
-px;background-color:#2962A7;color:#FFFFFF"><strong>$letterGrade ($percent%) </strong><!--teal--> 
+px;background-color:#2962A7;color:#FFFFFF"><strong>$letterGrade ($percent%) </strong><!--teal-->
     </div></div><br><br>
 _HTML;
       }
-    } 
+    }
     echo '</span><span class="gliding-report-content">';
 
 
@@ -252,7 +252,7 @@ _HTML;
 _HTML;
       echo "$progressWidth";
         echo <<<_HTML
-px;background-color:#2FB2A0;">Level $currLevel: $exp/$expNextLevel 
+px;background-color:#2FB2A0;">Level $currLevel: $exp/$expNextLevel
     </div></td>
 _HTML;
      if ($index == 2 || $index == 5) {
@@ -266,11 +266,11 @@ _HTML;
     }
     elseif ($skillName == 'Violin') {
       echo 'Only one finger bleeding. Keep practicing!<br><br>';
-    } 
+    }
     elseif ($skillName == 'Chinese') {
       echo 'Gotta write that letter to Grandma.<br><br>';
     }
-    else { 
+    else {
       echo '<br><br>';
     } */
   }
@@ -284,7 +284,7 @@ _HTML;
       echo <<<_HTML
 <tr><td width="115px"><strong>$gradeString</strong><br>
 _HTML;
-    } 
+    }
     elseif ($grade == 3 || $grade == 7 || $grade == 11) {
       echo <<<_HTML
 </td></tr><tr><td width="115px"><strong>$gradeString</strong><br>
@@ -301,9 +301,9 @@ _HTML;
     while($row = mysql_fetch_array($result)) {
       $gradeID	= $row['gradeID'];
       $subject	= $row['subject'];
-      // Get percent from charGrades table
-      $query = "SELECT percent FROM charGrades WHERE gradeID=$gradeID AND studentID=$studentID";
-      $result2 = queryMysql($query); 
+      // Get percent from chargrades table
+      $query = "SELECT percent FROM chargrades WHERE gradeID=$gradeID AND studentID=$studentID";
+      $result2 = queryMysql($query);
       $num_results = mysql_num_rows($result2);
       if ($num_results == 0) {  // Gray out grade.
         echo <<<_HTML
@@ -313,7 +313,7 @@ _HTML;
       }
       else {  // Normal color.
         $percent = mysql_result($result2, 0);
-        $letterGrade = getLetterGrade($percent); 
+        $letterGrade = getLetterGrade($percent);
         echo "$subject: $letterGrade ($percent%)<br>";
       }
     }
@@ -322,7 +322,7 @@ _HTML;
   echo <<<_HTML
 
 <!-- Sign and date the page, it's only polite! -->
-<center><a href="blog.html">Blog</a> 
+<center><a href="blog.html">Blog</a>
         <a href="forums.html">Forums</a>
         <a href="help.html">Help</a>
 <address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
