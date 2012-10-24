@@ -13,7 +13,7 @@
 <script>
 window.onload = getSchools($playerID)
 function getSchools(playerID) {
-  params = "playerID=" + playerID 
+  params = "playerID=" + playerID
   request = new ajaxRequest()
   request.open("POST", "get_schools.php", true)
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
@@ -101,13 +101,13 @@ function temp() {
 
 <!-- Schools -->
 <h2>Schools</h2>
-<p>The right preschool will lead to the right elementary school which leads to 
+<p>The right preschool will lead to the right elementary school which leads to
 the right middle school, and so on! But do you live in the right school
 district? The more Tiger Mom friends you have, the better!"
 <div class="electivelist" id='schoolList'>a</div>
 <!-- Sign and date the page, it's only polite! -->
-<center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
-<address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
+<center><a href="http://tigermomgame.tumblr.com">Tiger Mom Game Blog</a>
+<address>Copyright &copy 2012 Bearslug Games. All Rights Reserved.</address>
 </center>
 _HTML;
 

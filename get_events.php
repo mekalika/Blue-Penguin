@@ -70,9 +70,11 @@
         if ($prevEventCategory != '') {
           echo '</span>';
         }
-        echo "<span class=\"gliding-content\" title=$category>";
-        echo "<h2>$category</h2>";
-        $prevEventCategory = $category;
+        if ($type != 'L') {
+          echo "<span class=\"gliding-content\" title=$category>";
+          echo "<h2>$category</h2>";
+          $prevEventCategory = $category;
+        }
       }
 
       $divName = "event" . "$index";
@@ -80,7 +82,7 @@
 <div id=$divName>
 <table id="events">
 <tr class="eventname">
-<td colspan="2">$index $eventName</td>
+<td colspan="2">$eventName</td>
 <td><div name=$timerName title=$timeLeft>$eventTime</div></td>
 </tr>
 <tr class="eventdescription">
@@ -120,8 +122,7 @@ _HTML;
         }
       }
       echo <<<_HTML
-<td><input type="button" value="Do event" onClick="doEvent($playerID,$eventID,'$type','$divName')">
-<input type="button" value="test" onClick="test('$divName')"></td>
+<td><input type="button" value="Do event" onClick="doEvent($playerID,$eventID,'$type','$divName')"></td>
 </tr>
 <tr>
 <td>$skillC</td>

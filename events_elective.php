@@ -42,8 +42,8 @@ window.onload = getEvents($playerID, 'E')
 </script>
 <script src="scripts/sliding.js"></script>
 <!-- Sign and date the page, it's only polite! -->
-<center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
-<address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
+<center><a href="tigermomgame.tumblr.com">Tiger Mom Game Blog</a>
+<address>Copyright &copy 2012 Bearslug Games. All Rights Reserved.</address>
 </center>
 </body>
 </html>

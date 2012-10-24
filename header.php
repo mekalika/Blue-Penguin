@@ -7,9 +7,9 @@
 
   require_once 'botm_functions.php';
   session_start();
-  
+
   $time = time();
- 
+
   if(isset($_SESSION['playerID'])) {
     // Determine studentID from playerID.
     $playerID = $_SESSION['playerID'];
@@ -18,7 +18,7 @@
     $row = mysql_fetch_array($result);
     $studentID = $row['studentID'];
 
-    // Get character information. 
+    // Get character information.
     $query = "SELECT * FROM characters WHERE studentID='$studentID'";
     $result = queryMysql($query);
     $row = mysql_fetch_array($result);
@@ -35,7 +35,7 @@
     $motivationTimer    = $row['motivationTimer'];
     $prideTimer         = $row['prideTimer'];
     $battleTimer        = $row['battleTimer'];
-    
+
     // Update lastAction timestamp
     $query = "UPDATE characters SET lastAction=$time WHERE studentID=$studentID";
     $result = queryMysql($query);
@@ -54,24 +54,24 @@
   else {
     header( 'Location: logout.php' );
   }
-  
+
   // Calculate time since last action
   $motivationTime = $time - $motivationTimer;
   $prideTime = $time - $prideTimer;
   $battleTime = $time - $battleTimer;
   $idleTime = $time - $lastAction;
   $offsetTime = ($time - $lastAction) % $RT;
-  
+
   // Calculate stat replenishment
   $currMotivation = min($currMotivation + floor($motivationTime/$RT),$maxMotivation);
   $currPride = min($currPride + floor($prideTime/$RT),$maxPride);
   $currBattle = min($currBattle + floor($battleTime/$RT),$maxBattle);
-  
+
   // Calculate time left after stat replenishment
   $motivationTime %= $RT;
   $prideTime %= $RT;
   $battleTime %= $RT;
-  
+
   // Set time left to -1 if stat is full
   if ($currMotivation == $maxMotivation)
     $motivationTime = 0;
@@ -93,8 +93,8 @@
 <!-- ID Card -->
 <div id="topbar">
 <img src="images/logo.gif">
-<div id="cssbox"> 
-<h2 align="left">$characterName</h2> 
+<div id="cssbox">
+<h2 align="left">$characterName</h2>
 <ul class = "stats">
   <li>Motivation: <span id="currMotivation">$currMotivation</span>/<span id="maxMotivation">$maxMotivation</span>
     <span id="motivationTimer" title=$motivationTime></span> <!-- <span id="motivationTime">$motivationTime</span> -->
@@ -107,7 +107,7 @@
 <!-- TODO: District is based on friends. -->
 <table width=100%>
   <tr>
-    <td>District: 27</td>
+    <!--<td>District: 27</td>-->
     <td>$gradeString</td>
   </tr>
 </table>
@@ -123,7 +123,7 @@
       <li><a href="events_life.php">Life</a>
     </ul>
   <li onMouseOver="document.images['icon_shop'].src='images/icon_shop1.gif'" onMouseOut="document.images['icon_shop'].src='images/icon_shop.gif'"><a href="shop.php"><img name="icon_shop" src="images/icon_shop.gif" height=12 width=18/> Shop</a>
-  <li onMouseOver="document.images['icon_compete'].src='images/icon_compete1.gif'" onMouseOut="document.images['icon_compete'].src='images/icon_compete.gif'"><a href="compete.html"><img name="icon_compete" src="images/icon_compete.gif" height=12 width=14/> Compete</a>
+<!--  <li onMouseOver="document.images['icon_compete'].src='images/icon_compete1.gif'" onMouseOut="document.images['icon_compete'].src='images/icon_compete.gif'"><a href="compete.html"><img name="icon_compete" src="images/icon_compete.gif" height=12 width=14/> Compete</a> -->
   <li onMouseOver="document.images['icon_stats'].src='images/icon_stats1.gif'" onMouseOut="document.images['icon_stats'].src='images/icon_stats.gif'"><a href="reportcard.php"><img name="icon_stats" src="images/icon_stats.gif" height=12 width=12/> Stats</a>
     <ul>
       <li><a href="reportcard.php">Report Card</a>
@@ -131,7 +131,7 @@
       <li><a href="traits.php">My Traits</a>
       <li><a href="school.php">School</a>
     </ul>
-  <li onMouseOver="document.images['icon_district'].src='images/icon_district1.gif'" onMouseOut="document.images['icon_district'].src='images/icon_district.gif'"><a href="district.html"><img name="icon_district" src="images/icon_district.gif" height=12 width=12/> District</a>
+<!--  <li onMouseOver="document.images['icon_district'].src='images/icon_district1.gif'" onMouseOut="document.images['icon_district'].src='images/icon_district.gif'"><a href="district.html"><img name="icon_district" src="images/icon_district.gif" height=12 width=12/> District</a>-->
 </ul>
 </div>
 <script type="text/javascript" src="scripts/timer.js"></script>

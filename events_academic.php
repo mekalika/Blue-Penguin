@@ -21,7 +21,7 @@
 
 <!-- Events -->
 <h2>Academic Events</h2>
-<p>"Chinese mothers believe their children can be "the best" students, that "academic achievement reflects successful parenting," and that if children did not excel at school then there was "a problem" and parents "were not doing their job."<br><br> 
+<p>"Chinese mothers believe their children can be "the best" students, that "academic achievement reflects successful parenting," and that if children did not excel at school then there was "a problem" and parents "were not doing their job."<br><br>
 Well, are you doing your job?<br><br>
 <center>
 <div class="control-panel">
@@ -42,8 +42,8 @@ trimGlider()
 //tick()
 </script>
 <!-- Sign and date the page, it's only polite! -->
-<center><a href="blog.html">Blog</a> <a href="forums.html">Forums</a> <a href="help.html">Help</a>
-<address>Copyright &copy 2011 Bearslug Games. All Rights Reserved.</address>
+<center><a href="tigermomgame.tumblr.com">Tiger Mom Game Blog</a>
+<address>Copyright &copy 2012 Bearslug Games. All Rights Reserved.</address>
 </center>
 </body>
 </html>

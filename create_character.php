@@ -1,7 +1,7 @@
 <?php // create_character.php
 // Copyright 2011 Bearslug. All Rights Reserved.
 
-/* 
+/*
  * @fileoverview: Gets character information from form and by randomly
  *                generating multiplier values, and inserts into characters
  *                table. If creating a character midgame, determine average
@@ -12,8 +12,8 @@
     $x = lcg_value(); // PHP uses this function to generate ~U(0,1]
     return - log($x) / $lambda;
   }
-    
-  /** 
+
+  /**
    * mean = n / lambda
    * variation = n / (lambda^2)
    * n: number of exponential samples
@@ -35,12 +35,12 @@
 
     return $y;
   }
- 
+
   require_once 'botm_functions.php';
   session_start();
 
   $pianoMultiplier 	= gamma(6,12) + 0.5;
-  $violinMultiplier 	= gamma(6,12) + 0.5;  
+  $violinMultiplier 	= gamma(6,12) + 0.5;
   $athleticsMultiplier 	= gamma(6,12) + 0.5;
   $danceMultiplier 	= gamma(6,12) + 0.5;
   $languageMultiplier 	= gamma(6,12) + 0.5;
@@ -48,7 +48,7 @@
   $mathMultiplier 	= gamma(6,12) + 0.5;
   $historyMultiplier 	= gamma(6,12) + 0.5;
   $chineseMultiplier 	= gamma(6,12) + 0.5;
-  
+
   if (isset($_POST['name']) &&
       isset($_POST['gender'])) {
     $name 	= get_post('name');
@@ -57,11 +57,11 @@
     $minActiveCharTime = $time - 604800;  // One week in seconds
 
     // Create character!
-    queryMysql('INSERT INTO characters (name, gender, pianoMultiplier, ' . 
-               'violinMultiplier, athleticsMultiplier,danceMultiplier, ' . 
-               'languageMultiplier, scienceMultiplier, mathMultiplier, ' . 
-               'historyMultiplier, chineseMultiplier, lastAction) VALUES' . 
-               " ('$name', '$gender', '$pianoMultiplier', " . 
+    queryMysql('INSERT INTO characters (name, gender, pianoMultiplier, ' .
+               'violinMultiplier, athleticsMultiplier,danceMultiplier, ' .
+               'languageMultiplier, scienceMultiplier, mathMultiplier, ' .
+               'historyMultiplier, chineseMultiplier, lastAction) VALUES' .
+               " ('$name', '$gender', '$pianoMultiplier', " .
                "'$violinMultiplier', '$athleticsMultiplier', " .
                "'$danceMultiplier', '$languageMultiplier', " .
                "'$scienceMultiplier', '$mathMultiplier', " .
@@ -72,7 +72,7 @@
     $row = mysql_fetch_array($result);
     $studentID = $row['studentID'];
     $round = $row['round'];
-    $gradeLevel = $row['gradeLevel']; 
+    $gradeLevel = $row['gradeLevel'];
 
 
     $result = queryMysql('SELECT gradeID FROM grades WHERE gradeLevel=' .
@@ -80,8 +80,8 @@
     while($row = mysql_fetch_array($result)) {
       $gradeID = $row['gradeID'];
       // Initiate current grades to 0.
-      $result2 = queryMysql('INSERT INTO charGrades VALUES' .
-                           "($studentID, $gradeID, 0)"); 
+      $result2 = queryMysql('INSERT INTO chargrades VALUES' .
+                           "($studentID, $gradeID, 0)");
     }
 
     // Determine schoolType based on grade.
@@ -101,7 +101,7 @@
     // Enroll character in lowest school based on grade.
     $result = queryMysql("SELECT schoolID FROM schools WHERE friendsReq=1 AND schoolType='$schoolType'");
     $schoolID = mysql_result($result, 0);
-    queryMysql("INSERT INTO charSchool VALUES ($studentID, $schoolID)");
+    queryMysql("INSERT INTO charschool VALUES ($studentID, $schoolID)");
 
     $skills = array('pianoEXP', 'violinEXP', 'athleticsEXP', 'danceEXP',
                     'languageEXP', 'scienceEXP', 'mathEXP', 'historyEXP',
@@ -111,10 +111,10 @@
     if ($gradeLevel != -1) {
       // Give user 10 * (grade + 1) number of skill points.
       $numSkillPoints = 10 * ($row['gradeLevel'] + 1);
-      queryMysql('UPDATE characters SET skillPoints=' . 
+      queryMysql('UPDATE characters SET skillPoints=' .
                 "'$numSkillPoints'" . ' WHERE name=' . "'$name'");
 
-      // Calculate and give student average EXPs for Chinese, math, etc. 
+      // Calculate and give student average EXPs for Chinese, math, etc.
       $result = queryMysql('SELECT COUNT(*) FROM characters');
       $numChars = mysql_result($result, 0);
       foreach ($skills as $skill) {
@@ -122,15 +122,15 @@
         $result = queryMysql("SELECT $skill FROM characters WHERE name!=" .
                              "'$name' AND round='$round' AND " .
                              "lastAction>='$minActiveCharTime'");
- 
+
         while($skillRow = mysql_fetch_array($result)) {
           $total += $skillRow[$skill];
         }
         $avgSkillEXP = $total / ($numChars - 1);
-        queryMysql('UPDATE characters SET ' . "$skill" . 
-                   "='$avgSkillEXP'" . ' WHERE name=' . "'$name'"); 
-    
-      // TODO: Calculate and insert levels based on EXP. 
+        queryMysql('UPDATE characters SET ' . "$skill" .
+                   "='$avgSkillEXP'" . ' WHERE name=' . "'$name'");
+
+      // TODO: Calculate and insert levels based on EXP.
       }
     }
 
@@ -144,5 +144,5 @@
     $playerID = mysql_result($result, 0);
     $_SESSION['playerID'] = $playerID;
     header( 'Location: main.php' );
-  }    
+  }
 ?>

@@ -2,18 +2,18 @@
 <html>
  <head>
   <title>Battle of the Tiger Moms Start Playing</title>
-  
+
   <meta name="description" content="Battle of the Tiger Moms. By M.G.Twice.">
   <meta name="copyright" content="2011© Bearslug Games">
   <meta name="keywords" content="games, facebook, google plus, fun, tiger mom">
 
   <link rel="stylesheet" type="text/css" href="styles/style.css"/>
-  
+
   <script type="text/javascript" src="scripts/jquery-1.2.6.min.js"></script>
   <script type="text/javascript">
   /*
   Thanks: Bit Repository
-  Source: www.bitrepository.com/web-programming/ajax/username-checker.html 
+  Source: www.bitrepository.com/web-programming/ajax/username-checker.html
   */
 
   $(document).ready(function() {
@@ -26,7 +26,7 @@
       var specialCharFound = false;
       var iChars = /[^a-zA-Z0-9 _-]/;
       for (var i = 0; i < usr.length; i++) {
-        if (usr.match(iChars)) {     
+        if (usr.match(iChars)) {
           specialCharFound = true;
         }
       }
@@ -36,14 +36,14 @@
             '<img src="images/loader.gif" align="absmiddle">' +
             '&nbsp;Checking availability...');
 
-        $.ajax({  
-          type: "POST",  
-          url: "check_name_availability.php",  
-          data: "name="+ usr,  
-          success: function(msg) { 
-   
-            $("#status").ajaxComplete(function(event, request, settings) { 
-              if(msg == 'OK') { 
+        $.ajax({
+          type: "POST",
+          url: "check_name_availability.php",
+          data: "name="+ usr,
+          success: function(msg) {
+
+            $("#status").ajaxComplete(function(event, request, settings) {
+              if(msg == 'OK') {
                 // Check for special characters
                 if (specialCharFound == true) {
                   $("#status").html(
@@ -58,15 +58,15 @@
                   $(this).html('&nbsp;<img src="images/tick.gif"' +
                                ' align="absmiddle">');
                 }
-              }  
-              else {  
+              }
+              else {
                 $("#name").removeClass('object_ok'); // if necessary
                 $("#name").addClass("object_error");
                 $(this).html(msg);
-              }    
+              }
             });
-          } 
-        }); 
+          }
+        });
 
       }
       else if (usr.length > 20) {
@@ -81,16 +81,16 @@
         $("#name").removeClass('object_ok'); // if necessary
         $("#name").removeClass("object_error");
       }
-    
+
     });
 
   });
 
 
 /**
- * Validates the create character form, preventing the user from submitting 
+ * Validates the create character form, preventing the user from submitting
  * if there is any invalid input.
- * @return {boolean} Returns true if form is valid, and false otherwise. 
+ * @return {boolean} Returns true if form is valid, and false otherwise.
  */
 function validateForm() {
   //var x=document.forms["create"]["name"].value
@@ -99,7 +99,7 @@ function validateForm() {
   var specialCharFound = false;
   var iChars = /[^a-zA-Z0-9 _-]/;
   for (var i = 0; i < x.length; i++) {
-    if (x.match(iChars)) {     
+    if (x.match(iChars)) {
       specialCharFound = true;
     }
   }
@@ -130,23 +130,23 @@ function validateForm() {
   }
   // Check that name is unique
   $(document).ready(function() {
-    $.ajax({ 
-      async: false, 
-      type: "POST",  
-      url: "check_name_availability.php",  
-      data: "name="+ x,  
+    $.ajax({
+      async: false,
+      type: "POST",
+      url: "check_name_availability.php",
+      data: "name="+ x,
       success: function(msg) {
-        
-          if (msg == 'OK') { 
+
+          if (msg == 'OK') {
             $("#create").submit();
             return true;
           }
           else {
             $("#name").removeClass('object_ok'); // if necessary
             $("#name").addClass("object_error");
-            $("#status").html(msg);          
+            $("#status").html(msg);
             return false;
-          } 
+          }
       }
     });
   });
@@ -162,13 +162,13 @@ function validateForm() {
 <h2 align="center">Battle of the Tiger Moms</h2>
 
 <center>
-Every tiger mom or dad needs a tiger cub, so start playing by creating 
+Every tiger mom or dad needs a tiger cub, so start playing by creating
 yours!<br /><br />
 
 <!-- The form! -->
-<form id='create' action="create_character.php" 
+<form id='create' action="create_character.php"
          onsubmit="return validateForm()" method="post">
-  <table width="700" border="0">  
+  <table width="700" border="0">
     <tr>
       <td width="200">
         <div align="right">
@@ -176,7 +176,7 @@ yours!<br /><br />
       </td>
 </div>
       <td width="100">
-        <input id="name" size="20" type="text" name="name" 
+        <input id="name" size="20" type="text" name="name"
          onChange="javascript:
 
          while(''+this.value.charAt(this.value.length-1)==' ')
@@ -185,16 +185,16 @@ yours!<br /><br />
            this.value=this.value.substring(1,this.value.length);">
        </td>
       <td width="400" align="left"><div id="status"></div></td>
-    </tr> 
+    </tr>
 
     <tr>
       <td width="200"><div align="right">Gender:&nbsp;</div></td>
       <td width="100"><select name="gender">
                       <option value="0">Male</option>
                       <option value="1">Female</option>
-                      </select> 
+                      </select>
       <td width="400" align="left"><div id="status"></div></td>
-    </tr> 
+    </tr>
 
     <tr>
       <td width="200"><div align="right"></div></td>
@@ -202,7 +202,7 @@ yours!<br /><br />
         <input size="20" type="submit" name='Submit' value="GIVE BIRTH!">
       </td>
       <td width="400" align="left"><div id="status"></div></td>
-    </tr> 
+    </tr>
   </table>
 </form>
 
