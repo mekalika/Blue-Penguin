@@ -29,12 +29,13 @@
     $maxPride           = $row['maxPride'];
     $currBattle         = $row['currBattle'];
     $maxBattle          = $row['maxBattle'];
-    $cash               = $row['cash'];
+    $expense            = $row['expense'];
     $gradeLevel         = $row['gradeLevel'];
     $lastAction         = $row['lastAction'];
     $motivationTimer    = $row['motivationTimer'];
     $prideTimer         = $row['prideTimer'];
     $battleTimer        = $row['battleTimer'];
+    $cash               = getCash($time, $expense);
 
     // Update lastAction timestamp
     $query = "UPDATE characters SET lastAction=$time WHERE studentID=$studentID";
@@ -136,4 +137,9 @@
 </div>
 <script type="text/javascript" src="scripts/timer.js"></script>
 _HTML;
+echo "Time: $time<br>";
+echo "Start: $termStart<br>";
+echo "Expense: $expense<br>";
+$weeks = floor(($time - $termStart) / 604800);
+echo "Weeks: $weeks<br>";
 ?>
