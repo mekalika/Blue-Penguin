@@ -2,7 +2,7 @@
 // Copyright 2011 Bearslug Entertainment. All Rights Reserved.
 
 /**
-  * @fileoverview: Loads traits and displays available skill points. 
+  * @fileoverview: Loads traits and displays available skill points.
   */
 
   // Log in to MySQL
@@ -88,7 +88,7 @@ function refreshHeader()
           maxPride              = this.responseXML.getElementsByTagName('maxpride')
           cash                  = this.responseXML.getElementsByTagName('cash')
           gradeString           = this.responseXML.getElementsByTagName('gradestring')
-          
+
           // Update ID card info
           document.getElementById('currMotivation').innerHTML = currMotivation[0].childNodes[0].nodeValue
           document.getElementById('maxMotivation').innerHTML = maxMotivation[0].childNodes[0].nodeValue

@@ -116,12 +116,12 @@ function reportName(studentID) {
 _HTML;
 
   // Get grade level from playerID.
-  $query = "SELECT name,characters.studentID,gradeLevel from accounts,characters WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
+  $query = "SELECT name,characters.studentID from accounts,characters WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
   $result = queryMysql($query);
   $row = mysql_fetch_array($result);
   $name 	= $row['name'];
   $studentID 	= $row['studentID'];
-  $gradeLevel 	= $row['gradeLevel'];
+  $gradeLevel 	= getGrade();
 
   // Get current school.
   $query = "SELECT schoolID from charschool WHERE studentID=$studentID";
@@ -305,7 +305,7 @@ _HTML;
       $query = "SELECT percent FROM chargrades WHERE gradeID=$gradeID AND studentID=$studentID";
       $result2 = queryMysql($query);
       $num_results = mysql_num_rows($result2);
-      if ($num_results == 0) {  // Gray out grade.
+      if ($grade > getGrade()) {  // Gray out grade.
         echo <<<_HTML
 <font color ="#999999">$subject</font>
 <br>

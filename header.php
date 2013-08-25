@@ -30,12 +30,12 @@
     $currBattle         = $row['currBattle'];
     $maxBattle          = $row['maxBattle'];
     $expense            = $row['expense'];
-    $gradeLevel         = $row['gradeLevel'];
+    $gradeLevel         = getGrade();
     $lastAction         = $row['lastAction'];
     $motivationTimer    = $row['motivationTimer'];
     $prideTimer         = $row['prideTimer'];
     $battleTimer        = $row['battleTimer'];
-    $cash               = getCash($time, $expense);
+    $cash               = getCash($expense);
 
     // Update lastAction timestamp
     $query = "UPDATE characters SET lastAction=$time WHERE studentID=$studentID";

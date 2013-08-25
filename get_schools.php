@@ -13,11 +13,11 @@
     $playerID = sanitizeString($_POST['playerID']);
 
     // Get grade level from playerID.
-    $query = "SELECT characters.studentID,gradeLevel from accounts,characters WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
+    $query = "SELECT characters.studentID from accounts,characters WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
     $result = queryMysql($query);
     $row = mysql_fetch_array($result);
     $studentID = $row['studentID'];
-    $gradeLevel = $row['gradeLevel'];
+    $gradeLevel = getGrade();
 
     // Get current school.
     $query = "SELECT schoolID from charschool WHERE studentID=$studentID";

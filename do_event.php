@@ -9,7 +9,7 @@
     $type = sanitizeString($_POST['type']);
 
     // Get grade level from playerID
-    $query = "SELECT characters.studentID,gradeLevel FROM accounts,characters
+    $query = "SELECT characters.studentID FROM accounts,characters
               WHERE playerID=$playerID AND accounts.studentID=characters.studentID";
     $result = queryMysql($query);
     $row = mysql_fetch_array($result);
@@ -67,8 +67,8 @@
     $result = queryMysql($query);
     $row=mysql_fetch_array($result);
     $studentID          = $row['studentID'];
-    $gradeLevel         = $row['gradeLevel'];
-    $cash               = $row['cash'];
+    $gradeLevel         = getGrade();
+    $expense            = $row['expense'];
     $currMotivation     = $row['currMotivation'];
     $maxMotivation      = $row['maxMotivation'];
     $currPride          = $row['currPride'];
@@ -79,6 +79,8 @@
     $motivationTimer    = $row['motivationTimer'];
     $prideTimer         = $row['prideTimer'];
     $battleTimer        = $row['battleTimer'];
+    $cash               = getCash($expense);
+
     for ($i = 0; $i < 3; $i++)
     {
       if ($skill[$i] != "")
@@ -119,7 +121,7 @@
         && $time > $timeReady && $timeLimit > -2)
     {
       // OK, you can do the event
-      $cash -= $eventCost;
+      $expense += $eventCost;
       $currMotivation -= $motivationReq;
 
       // Find event specific item bonuses (for specific sports like soccer)
@@ -231,7 +233,7 @@
       }*/
 
       // Update character stats
-      $query = "UPDATE characters SET cash=$cash, currMotivation=$currMotivation,
+      $query = "UPDATE characters SET expense=$expense, currMotivation=$currMotivation,
                 currPride=$currPride, currBattle=$currBattle, lastAction=$time,
                 motivationTimer=$motivationTime, prideTimer=$prideTime,
                 battleTimer=$battleTime" . $skillString . " WHERE studentID=$studentID";

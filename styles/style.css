@@ -14,10 +14,10 @@
  *   #5ca8b1 Teal green for drop-down menu.
  *   #c0d8d8 Baby blue for hovering over links in drop-down menu.
  *   #eceff6 Pretty light blue for subnavbar.
- *   #a7c942 Bright green for row with column names. 
+ *   #a7c942 Bright green for row with column names.
  *   #8cc0fa Bright blue for event/item name and description backgrounds.
  *   #d2e4fc Another pretty light blue for alt rows in tables.
- *   #d6adff Strong lilac for selected rows in tables. 
+ *   #d6adff Strong lilac for selected rows in tables.
  */
 
 A:link,
@@ -36,19 +36,19 @@ body {
   font: .9em "lucida grande", tahoma, verdana, arial, sans-serif;
   padding-left: 0;
 }
- 
+
 /* Contains the app. */
 #container {
   background: #fffacd;
   color: #333;
   margin: auto;
   padding: 10px;
-  width: 760px; 
+  width: 760px;
 }
 
 /* Contains the header. */
 #topbar {
-  overflow: auto; 
+  overflow: auto;
   width: 100%;
 }
 
@@ -74,7 +74,7 @@ input {
   font-size: 13px;
   margin: 5 5 5 0;
   padding: 2px;
-} 
+}
 
 /* A pretty select input for forms. */
 select {
@@ -106,7 +106,7 @@ select {
 }
 
 /* ID card. */
-#cssbox { 
+#cssbox {
   background: #eceff6;
   border-radius: 15px;
   float: left;
@@ -118,7 +118,7 @@ select {
   top: 0;
   width: 300px !important; /* IE Win = width - padding */
   width: 250px; 
-} 
+}
 #cssbox ul {
   list-style: none;
 }
@@ -225,7 +225,7 @@ select {
 #subnav li.selected {
   background: #8cc0fa;
 }
- 
+
 /* Copyright info, etc. on bottom of page. */
 address {
   border-top: thin dotted;
@@ -294,13 +294,13 @@ address {
   font-size: 1.3em;
   padding-top: 5px;
   padding-bottom: 4px;
-} 
+}
 #events tr.eventdescription td {
   background-color: #d8f0f0;
   font-size: .8em;
   padding-top: 0;
   padding-bottom: 4px;
-} 
+}
 #events tr td {
   background-color: white; 
   color: #333;
@@ -333,7 +333,7 @@ address {
   padding-bottom: 4px;
   padding-left: 10px;
   padding-top: 8px;
-} 
+}
 #items tr.itemdescription td {
   background-color: white;
   border: 1px solid #8cc0fa;
@@ -341,7 +341,7 @@ address {
   font-size: .8em;
   padding-top: 0;
   padding-bottom: 4px;
-} 
+}
 
 
 #altitems {
@@ -369,7 +369,7 @@ address {
   padding-bottom: 4px;
   padding-left: 10px;
   padding-top: 8px;
-} 
+}
 #altitems tr.altitemdescription td {
   background-color: white;
   border: 1px solid #5ca8b1;
@@ -377,7 +377,7 @@ address {
   font-size: .8em;
   padding-top: 0;
   padding-bottom: 4px;
-} 
+}
 
 
 #wrapper {
@@ -430,7 +430,7 @@ address {
 
 .gliding-report-content {
   width: 760px;
-  height: 460px;
+  height: 500px;
   float: left;
   padding: 0;
   margin: 0; }

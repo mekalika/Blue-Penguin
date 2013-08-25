@@ -67,21 +67,23 @@
                "'$scienceMultiplier', '$mathMultiplier', " .
                "'$historyMultiplier', '$chineseMultiplier', '$time')"
               );
-    $result = queryMysql('SELECT studentID, round, gradeLevel FROM ' .
+    $result = queryMysql('SELECT studentID, round FROM ' .
                          'characters WHERE name=' . "('$name')");
     $row = mysql_fetch_array($result);
     $studentID = $row['studentID'];
     $round = $row['round'];
-    $gradeLevel = $row['gradeLevel'];
+    $gradeLevel = getGrade();
 
-
-    $result = queryMysql('SELECT gradeID FROM grades WHERE gradeLevel=' .
-                         "$gradeLevel");
-    while($row = mysql_fetch_array($result)) {
-      $gradeID = $row['gradeID'];
-      // Initiate current grades to 0.
-      $result2 = queryMysql('INSERT INTO chargrades VALUES' .
-                           "($studentID, $gradeID, 0)");
+    // Set all grades to 0
+    for ($grade = -1; $grade <= 12; $grade++) {
+      $result = queryMysql('SELECT gradeID FROM grades WHERE gradeLevel=' .
+                           "$grade");
+      while($row = mysql_fetch_array($result)) {
+        $gradeID = $row['gradeID'];
+        // Initiate current grades to 0.
+        $result2 = queryMysql('INSERT INTO chargrades VALUES' .
+                              "($studentID, $gradeID, 0)");
+      }
     }
 
     // Determine schoolType based on grade.
@@ -110,7 +112,7 @@
     // skills of active characters in this round.
     if ($gradeLevel != -1) {
       // Give user 10 * (grade + 1) number of skill points.
-      $numSkillPoints = 10 * ($row['gradeLevel'] + 1);
+      $numSkillPoints = 10 * ($gradeLevel + 1);
       queryMysql('UPDATE characters SET skillPoints=' .
                 "'$numSkillPoints'" . ' WHERE name=' . "'$name'");
 

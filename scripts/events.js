@@ -24,7 +24,7 @@ function getEvents(playerID, type)
         {
           // Write events table to the eventList DIV
           document.getElementById('eventList').innerHTML = this.responseText
-          
+
           // Reset timers
           resetCountdownTimer()
         }
@@ -56,13 +56,13 @@ function doEvent(playerID, eventID, type, eventIndex)
           // refresh header
           refreshHeader()
           resetCountupTimers()
-          
+
           // refresh events list
           getEvents(playerID, type)
-          
+
           // refresh timers
           updateTimers()
-          
+
           // Display stat increases
           //document.getElementById('eventResult').innerHTML = this.responseText
           //test(eventIndex)
@@ -72,10 +72,10 @@ function doEvent(playerID, eventID, type, eventIndex)
           code = "<div style=\"display:inline-block; height:" + height + "px;\">" + this.responseText + "</div>"
           x.innerHTML = code
           setTimeout(function(){x.innerHTML = y}, 50000)
-          
+
           // Restore slider page
           setPage()
-          
+
           // debug
           //document.getElementById('info1').innerHTML = this.responseText
         }

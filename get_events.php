@@ -8,14 +8,14 @@
     $type = sanitizeString($_POST['type']);
 
     // Get grade level from playerID
-    $query = "SELECT name, characters.studentID,gradeLevel FROM " .
+    $query = "SELECT name, characters.studentID FROM " .
              "accounts,characters WHERE playerID=$playerID " .
              " AND accounts.studentID=characters.studentID";
     $result = queryMysql($query);
     $row = mysql_fetch_array($result);
     $name = $row['name'];
     $studentID = $row['studentID'];
-    $gradeLevel = $row['gradeLevel'];
+    $gradeLevel = getGrade();
 
     // Get all events below current grade level, join events and charevents table
     $query = "SELECT events.*,charevents.timeReady,charevents.timesDone FROM" .

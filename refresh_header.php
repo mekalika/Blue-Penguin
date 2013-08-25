@@ -7,9 +7,9 @@
 
   require_once 'botm_functions.php';
   session_start();
-  
+
   $time = time();
- 
+
   if(isset($_SESSION['playerID'])) {
     // Determine studentID from playerID.
     $playerID = $_SESSION['playerID'];
@@ -18,7 +18,7 @@
     $row = mysql_fetch_array($result);
     $studentID = $row['studentID'];
 
-    // Get character information. 
+    // Get character information.
     $query = "SELECT * FROM characters WHERE studentID='$studentID'";
     $result = queryMysql($query);
     $row = mysql_fetch_array($result);
@@ -29,11 +29,12 @@
     $maxPride           = $row['maxPride'];
     $currBattle         = $row['currBattle'];
     $maxBattle          = $row['maxBattle'];
-    $cash               = $row['cash'];
-    $gradeLevel         = $row['gradeLevel'];
+    $expense            = $row['expense'];
+    $gradeLevel         = getGrade();
     $motivationTimer    = $row['motivationTimer'];
     $prideTimer         = $row['prideTimer'];
     $battleTimer        = $row['battleTimer'];
+    $cash               = getCash($expense);
 
     // Determine what to print on ID card based on gradeLevel.
     if ($gradeLevel == -1) {
@@ -45,24 +46,24 @@
     else {
       $gradeString = 'Grade: ' . "$gradeLevel";
     }
-    
+
     // Calculate time since last action
     $motivationTime = $time - $motivationTimer;
     $prideTime = $time - $prideTimer;
     $battleTime = $time - $battleTimer;
     //$idleTime = $time - $lastAction;
     //$offsetTime = ($time - $lastAction) % $RT;
-    
+
     // Calculate stat replenishment
     $currMotivation = min($currMotivation + floor($motivationTime/$RT),$maxMotivation);
     $currPride = min($currPride + floor($prideTime/$RT),$maxPride);
     $currBattle = min($currBattle + floor($battleTime/$RT),$maxBattle);
-    
+
     // Calculate time left after stat replenishment
     $motivationTime %= $RT;
     $prideTime %= $RT;
     $battleTime %= $RT;
-    
+
     // Set time left to -1 if stat is full
     if ($currMotivation == $maxMotivation)
       $motivationTime = 0;
