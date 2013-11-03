@@ -103,8 +103,9 @@ function temp() {
 <h2>Schools</h2>
 <p>The right preschool will lead to the right elementary school which leads to
 the right middle school, and so on! But do you live in the right school
-district? The more Tiger Mom friends you have, the better!"
-<div class="electivelist" id='schoolList'>a</div>
+district? The more Tiger Mom friends you have, the better!"<br>
+Friends: <div id='numFriends'></div>
+<div class="electivelist" id='schoolList'></div>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="http://tigermomgame.tumblr.com">Tiger Mom Game Blog</a>
 <address>Copyright &copy 2012 Bearslug Games. All Rights Reserved.</address>

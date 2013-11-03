@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.3.2
+-- version 3.5.7
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 21, 2012 at 11:10 PM
--- Server version: 5.5.15
--- PHP Version: 5.3.7
+-- Host: localhost
+-- Generation Time: Aug 26, 2013 at 09:35 AM
+-- Server version: 5.5.29
+-- PHP Version: 5.4.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,13 +26,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `accounts`
 --
 
-CREATE TABLE IF NOT EXISTS `accounts` (
+CREATE TABLE `accounts` (
   `playerID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `password` varchar(20) NOT NULL,
   `studentID` int(10) unsigned NOT NULL,
   PRIMARY KEY (`playerID`),
   KEY `studentID` (`studentID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -40,12 +40,12 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 -- Table structure for table `characters`
 --
 
-CREATE TABLE IF NOT EXISTS `characters` (
+CREATE TABLE `characters` (
   `name` varchar(20) NOT NULL,
   `gender` binary(1) NOT NULL,
   `gradeLevel` tinyint(2) NOT NULL DEFAULT '-1',
   `inappropriate` binary(1) DEFAULT NULL,
-  `cash` mediumint(8) unsigned NOT NULL DEFAULT '20000',
+  `expense` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `maxBattle` tinyint(3) unsigned NOT NULL DEFAULT '3',
   `currBattle` tinyint(3) unsigned NOT NULL DEFAULT '3',
   `maxMotivation` tinyint(3) unsigned NOT NULL DEFAULT '10',
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `characters` (
   UNIQUE KEY `name_2` (`name`),
   KEY `name` (`name`),
   KEY `inappropriate` (`inappropriate`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `characters` (
 -- Table structure for table `charevents`
 --
 
-CREATE TABLE IF NOT EXISTS `charevents` (
+CREATE TABLE `charevents` (
   `studentID` int(10) unsigned NOT NULL,
   `eventID` int(10) unsigned NOT NULL,
   `timeReady` int(10) unsigned DEFAULT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `charevents` (
 -- Table structure for table `chargrades`
 --
 
-CREATE TABLE IF NOT EXISTS `chargrades` (
+CREATE TABLE `chargrades` (
   `studentID` int(10) unsigned NOT NULL,
   `gradeID` int(10) unsigned NOT NULL,
   `percent` float NOT NULL DEFAULT '0',
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `chargrades` (
 -- Table structure for table `charschool`
 --
 
-CREATE TABLE IF NOT EXISTS `charschool` (
+CREATE TABLE `charschool` (
   `studentID` int(10) unsigned NOT NULL,
   `schoolID` int(10) unsigned NOT NULL,
   KEY `studentID` (`studentID`),
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `charschool` (
 -- Table structure for table `events`
 --
 
-CREATE TABLE IF NOT EXISTS `events` (
+CREATE TABLE `events` (
   `eventName` varchar(70) DEFAULT NULL,
   `eventCost` smallint(5) unsigned NOT NULL DEFAULT '0',
   `motivationReq` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `events` (
   `eGradeLevel` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`eventID`),
   KEY `eventName` (`eventName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=689 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=690 ;
 
 --
 -- Dumping data for table `events`
@@ -357,7 +357,7 @@ INSERT INTO `events` (`eventName`, `eventCost`, `motivationReq`, `eventDescripti
 ('Send $name to SAT Prep', 500, 4, 'Need to get perfect score', 'English Grade', 15, 'Language', 20, 'Math', 20, 184, 'A', 'English', 3600, 11),
 ('Send $name to SAT Prep', 500, 5, 'Need to get perfect score', 'English Grade', 15, 'Language', 20, 'Math', 20, 185, 'A', 'English', 3600, 12),
 ('Prepare for AP English Language Test', 500, 2, 'Every kid get a 5', 'English Grade', 20, 'Language', 40, '', 0, 186, 'A', 'English', 1800, 11),
-('Take EWRT1A at community college', 1000, 1, 'Get more credits for college', 'English Grade', 20, 'Language', 80, '', 0, 187, 'A', '', 3600, 11),
+('Take EWRT1A at community college', 1000, 1, 'Get more credits for college', 'English Grade', 20, 'Language', 80, '', 0, 187, 'A', 'English', 3600, 11),
 ('Drill 3,000 flashcards for the SAT', 300, 2, 'Need to get perfect score', 'English Grade', 5, 'Language', 15, '', 0, 188, 'A', 'English', 0, 8),
 ('Drill 3,000 flashcards for the SAT', 300, 2, 'Need to get perfect score', 'English Grade', 5, 'Language', 15, '', 0, 189, 'A', 'English', 0, 9),
 ('Drill 3,000 flashcards for the SAT', 300, 2, 'Need to get perfect score', 'English Grade', 5, 'Language', 15, '', 0, 190, 'A', 'English', 0, 10),
@@ -859,7 +859,9 @@ INSERT INTO `events` (`eventName`, `eventCost`, `motivationReq`, `eventDescripti
 ('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 684, 'E', 'Athletics', 1200, 5),
 ('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 685, 'E', 'Athletics', 1200, 6),
 ('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 686, 'E', 'Athletics', 1200, 7),
-('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 687, 'E', 'Athletics', 1200, 8);
+('Send $name to College for Kids summer program', 400, 2, 'Summer vacation? Still go to school!', 'Random', 15, 'Random', 15, 'Random', 15, 687, 'E', 'Athletics', 1200, 8),
+('Talk on phone with grandparents', 100, 1, 'Can''t understand?', 'History Grade', 2, 'Chinese', 1, NULL, NULL, 688, 'A', 'History', 0, -1),
+('Watch Chinese cartoons', 100, 1, 'Only 1 episode!', 'History Grade', 2, 'Culture', 1, NULL, NULL, 689, 'A', 'History', 0, -1);
 
 -- --------------------------------------------------------
 
@@ -867,7 +869,7 @@ INSERT INTO `events` (`eventName`, `eventCost`, `motivationReq`, `eventDescripti
 -- Table structure for table `grades`
 --
 
-CREATE TABLE IF NOT EXISTS `grades` (
+CREATE TABLE `grades` (
   `subject` varchar(20) NOT NULL,
   `gradeLevel` tinyint(4) NOT NULL DEFAULT '-1',
   `gradeID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -956,7 +958,7 @@ INSERT INTO `grades` (`subject`, `gradeLevel`, `gradeID`) VALUES
 -- Table structure for table `itembonus`
 --
 
-CREATE TABLE IF NOT EXISTS `itembonus` (
+CREATE TABLE `itembonus` (
   `itemID` int(11) NOT NULL DEFAULT '0',
   `eventID` int(11) NOT NULL DEFAULT '0',
   KEY `itemID` (`itemID`)
@@ -1052,7 +1054,7 @@ INSERT INTO `itembonus` (`itemID`, `eventID`) VALUES
 -- Table structure for table `items`
 --
 
-CREATE TABLE IF NOT EXISTS `items` (
+CREATE TABLE `items` (
   `itemName` varchar(50) NOT NULL,
   `itemType` varchar(20) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -1123,7 +1125,7 @@ INSERT INTO `items` (`itemName`, `itemType`, `description`, `picture`, `bonus`, 
 -- Table structure for table `purchases`
 --
 
-CREATE TABLE IF NOT EXISTS `purchases` (
+CREATE TABLE `purchases` (
   `studentID` int(10) unsigned NOT NULL,
   `itemID` int(10) unsigned NOT NULL,
   KEY `studentID` (`studentID`),
@@ -1136,7 +1138,7 @@ CREATE TABLE IF NOT EXISTS `purchases` (
 -- Table structure for table `schools`
 --
 
-CREATE TABLE IF NOT EXISTS `schools` (
+CREATE TABLE `schools` (
   `schoolName` varchar(35) DEFAULT NULL,
   `schoolType` varchar(13) NOT NULL,
   `schoolID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -1179,7 +1181,7 @@ INSERT INTO `schools` (`schoolName`, `schoolType`, `schoolID`, `description`, `f
 -- Table structure for table `specialitems`
 --
 
-CREATE TABLE IF NOT EXISTS `specialitems` (
+CREATE TABLE `specialitems` (
   `sItemName` varchar(20) NOT NULL,
   `itemDescription` varchar(200) DEFAULT NULL,
   `itemPic` longblob,

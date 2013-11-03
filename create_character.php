@@ -50,7 +50,7 @@
   $chineseMultiplier 	= gamma(6,12) + 0.5;
 
   if (isset($_POST['name']) &&
-      isset($_POST['gender'])) {
+      isset($_POST['gender']) && time() < $termEnd && time() > $termStart) {
     $name 	= get_post('name');
     $gender 	= get_post('gender');
     $time = time();
@@ -137,8 +137,20 @@
     }
 
     // TODO: Change the following section once we integrate with Facebook.
-    queryMysql('INSERT INTO accounts (studentID, password) VALUES (' .
-               "'$studentID'" . ', \'a\')');
+    require_once 'php-sdk/facebook.php';
+    $fb_creds = array(
+      'appId' => '404296149675647',
+      'secret' => '79f9f4a19297ea45092704fcd4dd592b',
+    );
+    $facebook = new Facebook($fb_creds);
+    $user_id = $facebook->getUser();
+    if ($user_id) {
+      $playerID = $user_id;
+    } else {
+      header('Location: index.php');
+    }
+    $query = "INSERT INTO accounts (studentID, playerID) VALUES ('$studentID', '$playerID')";
+    $result = queryMysql($query);
 
     // Log in to BoTM!
     $result = queryMysql('SELECT playerID FROM accounts WHERE studentID=' .

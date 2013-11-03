@@ -2,7 +2,8 @@
   require_once 'botm_functions.php';
   session_start();
 
-  if (isset($_POST['playerID']) && isset($_POST['eventID']) && isset($_POST['type']))
+  if (isset($_POST['playerID']) && isset($_POST['eventID']) && isset($_POST['type']) &&
+      time() < $termEnd && time() > $termStart)
   {
     $playerID = sanitizeString($_POST['playerID']);
     $eventID = sanitizeString($_POST['eventID']);
@@ -16,7 +17,7 @@
     $studentID  = $row['studentID'];
 
     // Retrieve event properties
-    $query = "SELECT events.*, charevents.timeReady FROM events LEFT JOIN charevents
+    $query = "SELECT events.*, charevents.timeReady, charevents.timesDone FROM events LEFT JOIN charevents
               ON events.eventID=charevents.eventID
               AND charevents.studentID=$studentID WHERE events.eventID=$eventID";
     $result = queryMysql($query);
@@ -34,6 +35,12 @@
     $skill[2]           = $row['skillC'];
     $EXP[2]             = $row['EXPC'];
     $category           = $row['category'];
+    $timesDone          = $row['timesDone'];
+
+    // Handle one-time events
+    if ($timeLimit == -1 && $timesDone == 1) {
+      $timeLimit = -2;
+    }
 
     // Debug info
     //echo "eventName: $eventName timeLimit: $timeLimit timeReady: $timeReady<br>";
@@ -127,7 +134,8 @@
       // Find event specific item bonuses (for specific sports like soccer)
       $query = "SELECT items.bonus,items.itemName FROM purchases LEFT JOIN itembonus
                 ON itembonus.itemID=purchases.itemID
-                LEFT JOIN items ON itembonus.itemID=items.itemID WHERE itembonus.eventID=$eventID";
+                LEFT JOIN items ON itembonus.itemID=items.itemID WHERE itembonus.eventID=$eventID
+                AND purchases.studentID='$studentID'";
       $result = queryMysql($query);
       $itemBonus = 1;
       $bonusString = "";
@@ -143,7 +151,8 @@
 
       // Find category item bonuses (i.e. math)
       $query = "SELECT items.bonus,items.itemName FROM purchases LEFT JOIN items
-                ON purchases.itemID=items.itemID WHERE items.itemSkill='$category'";
+                ON purchases.itemID=items.itemID WHERE items.itemSkill='$category'
+                AND purchases.studentID='$studentID'";
       $result = queryMysql($query);
       $itemBonus2 = 1;
       $bonusString2 = "";
@@ -200,7 +209,7 @@
           echo $skill[$i] . " grade increased from " . $prevGrade . " to " . $percent[$i] . "!<br>";
 
           // Update grade
-          $query = "UPDATE chargrades SET percent=$percent[$i] WHERE gradeID=$gradeID[$i]";
+          $query = "UPDATE chargrades SET percent=$percent[$i] WHERE gradeID=$gradeID[$i] AND studentID='$studentID'";
           $result = queryMysql($query);
         }
       }
@@ -238,13 +247,6 @@
                 motivationTimer=$motivationTime, prideTimer=$prideTime,
                 battleTimer=$battleTime" . $skillString . " WHERE studentID=$studentID";
       $result = queryMysql($query);
-
-      // Handle one-time event
-      if ($timeLimit == -1)
-      {
-        $query = "UPDATE events SET timeLimit=-2 WHERE eventID=$eventID";
-        $result = queryMysql($query);
-      }
 
       // Update charevents table
       $query = "SELECT * FROM charevents WHERE studentID=$studentID AND eventID=$eventID";

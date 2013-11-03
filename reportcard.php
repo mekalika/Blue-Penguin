@@ -131,6 +131,11 @@ _HTML;
   $result = queryMysql($query);
   $schoolName = mysql_result($result, 0);
 
+  // Get number of players in the district
+  $query = "SELECT studentID from accounts";
+  $result = queryMysql($query);
+  $numPlayers = mysql_num_rows($result);
+
   echo <<<_HTML
 <!-- Main content -->
 <h1>$name</h1>
@@ -148,7 +153,7 @@ _HTML;
 
 Grade Level: $gradeString<br>
 School: $schoolName<br>
-District Size: 27<br> <!-- TODO -->
+District Size: $numPlayers<br> <!-- TODO -->
 _HTML;
 
 // Progress bars for current grades

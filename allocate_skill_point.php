@@ -7,11 +7,12 @@
   require_once 'botm_functions.php';
   session_start();
 
-  if (isset($_POST['playerID']) && isset($_POST['trait']))
+  if (isset($_POST['playerID']) && isset($_POST['trait']) &&
+      time() < $termEnd && time() > $termStart)
   {
     $playerID = sanitizeString($_POST['playerID']);
     $trait = sanitizeString($_POST['trait']);
-    
+
     $query = "SELECT studentID from accounts WHERE playerID=$playerID";
     $result = queryMysql($query);
     $studentID = mysql_result($result, 0);
@@ -32,8 +33,8 @@
     $query = "UPDATE characters SET skillPoints=skillPoints-1 ".
              "WHERE studentID=$studentID";
     queryMysql($query);
-   
+
   }
-  
+
   mysql_close($db_server);
 ?>

@@ -10,6 +10,7 @@
   require_once 'header.php';
 
   echo <<<_HTML
+<script src="scripts/sliding.js"></script>
 <script type="text/javascript" src="scripts/events.js"></script>
 
 <!-- Subnavigation menu -->
@@ -27,11 +28,11 @@
 <ul class="control-list">
   <li id="1">Athletics</li>
   <li id="2">Dance</li>
-  <li id="3">Language</li>
-  <li id="4">Math</li>
-  <li id="5">Piano</li>
-  <li id="6">Science</li>
-  <li id="7">Violin</li>
+  <li id="2">Language</li>
+  <li id="3">Math</li>
+  <li id="4">Piano</li>
+  <li id="5">Science</li>
+  <li id="6">Violin</li>
 </ul>
 </div>
 <div id='eventResult'></div>
@@ -39,8 +40,8 @@
 </center>
 <script>
 window.onload = getEvents($playerID, 'E')
+trimGlider()
 </script>
-<script src="scripts/sliding.js"></script>
 <!-- Sign and date the page, it's only polite! -->
 <center><a href="tigermomgame.tumblr.com">Tiger Mom Game Blog</a>
 <address>Copyright &copy 2012 Bearslug Games. All Rights Reserved.</address>

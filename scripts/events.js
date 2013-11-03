@@ -71,7 +71,7 @@ function doEvent(playerID, eventID, type, eventIndex)
           height = x.clientHeight
           code = "<div style=\"display:inline-block; height:" + height + "px;\">" + this.responseText + "</div>"
           x.innerHTML = code
-          setTimeout(function(){x.innerHTML = y}, 50000)
+          setTimeout(function(){x.innerHTML = y}, 5000)
 
           // Restore slider page
           setPage()
@@ -114,7 +114,7 @@ function refreshHeader()
           motivationTime        = this.responseXML.getElementsByTagName('motivationTime')
           prideTime             = this.responseXML.getElementsByTagName('prideTime')
           battleTime            = this.responseXML.getElementsByTagName('battleTime')
-          
+
           // Update ID card info
           document.getElementById('currMotivation').innerHTML = currMotivation[0].childNodes[0].nodeValue
           document.getElementById('maxMotivation').innerHTML = maxMotivation[0].childNodes[0].nodeValue
@@ -125,7 +125,7 @@ function refreshHeader()
           document.getElementById('motivationTimer').title = motivationTime[0].childNodes[0].nodeValue
           document.getElementById('prideTimer').title = prideTime[0].childNodes[0].nodeValue
           document.getElementById('battleTimer').title = battleTime[0].childNodes[0].nodeValue
-          
+
           // debug
           //document.getElementById('info1').innerHTML = "success"
         }

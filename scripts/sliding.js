@@ -1,4 +1,4 @@
-/* 
+/*
  * Code from tutorial at Practical E Commerce:
  * http://developer.practicalecommerce.com/articles/
  * 2048-Sliding-and-Gliding-Page-Content-with-JavaScript
@@ -12,7 +12,7 @@ function contentGlide(e)
 	if(!e) var e = window.event;
 	var target = e.target || e.srcElement;
 	if(target.parentNode.className=='control-list')
-	{	
+	{
 		findGliding();
 		var glideMultiple = parseInt(target.id);
 		var tPos = (-760 * (glideMultiple - 1));
@@ -72,7 +72,6 @@ function motionGlide(t)
 	}
 	else{clearTimeout(glideTimer);
 	}
-	
 }
 
 function trimGlider()

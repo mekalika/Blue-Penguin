@@ -7,7 +7,8 @@
   require_once 'botm_functions.php';
   session_start();
 
-  if (isset($_POST['playerID']) && isset($_POST['schoolID']))
+  if (isset($_POST['playerID']) && isset($_POST['schoolID']) &&
+      time() < $termEnd && time() > $termStart)
   {
     $playerID = sanitizeString($_POST['playerID']);
     $schoolID = sanitizeString($_POST['schoolID']);

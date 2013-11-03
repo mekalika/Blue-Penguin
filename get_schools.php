@@ -6,6 +6,14 @@
   */
 
   require_once 'botm_functions.php';
+  require_once 'php-sdk/facebook.php';
+  $fb_creds = array(
+    'appId' => '404296149675647',
+    'secret' => '79f9f4a19297ea45092704fcd4dd592b',
+  );
+  $facebook = new Facebook($fb_creds);
+  $user_id = $facebook->getUser();
+
   session_start();
 
   if (isset($_POST['playerID']))
@@ -40,7 +48,13 @@
 
     $query = "SELECT * FROM schools WHERE schoolType='$schoolType'";
     $result = queryMysql($query);
-    $numFriends = 3;  // TODO: Change this once integrated to Facebook
+    $numFriends = 0;  // TODO: Change this once integrated to Facebook
+    $friends = $facebook->api('/209275/friends','GET',array('fields' => 'installed'));
+    foreach ($friends["data"] as $value) {
+      if ($value["installed"]) {
+        $numFriends++;
+      }
+    }
     echo <<<_HTML
 <table id="traits">
   <tr>

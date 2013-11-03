@@ -2,7 +2,8 @@
   require_once 'botm_functions.php';
   session_start();
 
-  if (isset($_POST['playerID']) && isset($_POST['itemID']))
+  if (isset($_POST['playerID']) && isset($_POST['itemID']) &&
+      time() < $termEnd && time() > $termStart)
   {
     $playerID = sanitizeString($_POST['playerID']);
     $itemID = sanitizeString($_POST['itemID']);

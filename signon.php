@@ -20,7 +20,6 @@
     }
   }
 
-  /*
   require_once 'php-sdk/facebook.php';
   $fb_creds = array(
     'appId' => '404296149675647',
@@ -57,7 +56,6 @@
     $login_url = $facebook->getLoginUrl(array('redirect_uri' => 'https://apps.facebook.com/tigermomgame/signon.php'));
     echo '<div><script>top.location.href="' . $login_url . '"</script></div>';
   }
-  */
 
   echo <<<_HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">

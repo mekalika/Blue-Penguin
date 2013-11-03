@@ -1,25 +1,26 @@
 <?php //botm_functions.php
 
+  /*
   // Local login using MAMP
   $db_hostname = 'localhost';
   $db_database = 'botm';
   $db_username = 'sandrew';
   $db_password = 'Burrito8291';
+  */
 
-  /*
   // Login using Facebook
   $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
   $db_hostname = $url["host"];
   $db_database = substr($url["path"],1);
   $db_username = $url["user"];
   $db_password = $url["pass"];
-  */
 
   // Define stat replenishment interval to be 3 minutes (180 seconds)
   $RT = 30;
 
   // Define start of the school term (beginning of current round)
-  $termStart = 1377414000;
+  $termStart = 1377576000;
+  $termEnd = 1378785600;
 
   $db_server = mysql_connect($db_hostname, $db_username, $db_password) or die(mysql_error());
   mysql_select_db($db_database) or die(mysql_error());
@@ -52,7 +53,9 @@
 
   function weeksPassed() {
   global $termStart;
-  $numWeeks = floor((time() - $termStart) / 604800);
+  //$numWeeks = floor((time() - $termStart) / 604800);
+  // Fast mode: each week is now 24hr
+  $numWeeks = floor((time() - $termStart) / 86400);
   $numWeeks = min($numWeeks, 13);
   $numWeeks = max($numWeeks, 0);
   return $numWeeks;

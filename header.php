@@ -137,9 +137,4 @@
 </div>
 <script type="text/javascript" src="scripts/timer.js"></script>
 _HTML;
-echo "Time: $time<br>";
-echo "Start: $termStart<br>";
-echo "Expense: $expense<br>";
-$weeks = floor(($time - $termStart) / 604800);
-echo "Weeks: $weeks<br>";
 ?>
